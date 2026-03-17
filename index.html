@@ -4,67 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Ashlley</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-light d-flex align-items-center min-vh-100">
 
-<div class="container">
-    <div class="profile-card">
-        <div class="profile-circle">
-            <img src="profilepic.jpg" alt="Profile Picture">
+<div class="container my-5">
+    <div class="row g-4 justify-content-center">
+        
+        <div class="col-12 col-md-4 col-lg-3">
+            <div class="card border-0 shadow-sm text-center p-4 h-100">
+                <div class="profile-circle mx-auto mb-3">
+                    <img src="profilepic.jpg" alt="Profile Picture" class="img-fluid rounded-circle">
+                </div>
+                <h5 class="fw-bold text-dark mb-3">ASHLLEY NICHOLE A. MANGABAT</h5>
+                <span class="badge custom-badge">DIT 2-1</span>
+            </div>
         </div>
-        <div class="profile-name">ASHLLEY NICHOLE A. MANGABAT</div>
-        <div class="level-box">DIT 2-1</div>
+
+        <div class="col-12 col-md-8 col-lg-7">
+            <div class="card border-0 shadow-sm p-4 h-100">
+                <ul class="nav nav-pills nav-justified mb-4 custom-tabs p-1 rounded-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#about" type="button">ABOUT</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-portfolio-tab" data-bs-toggle="pill" data-bs-target="#portfolio" type="button">PORTFOLIO</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-education-tab" data-bs-toggle="pill" data-bs-target="#education" type="button">EDUCATION</button>
+                    </li>
+                </ul>
+
+                <div class="tab-content about-box p-4 rounded-3" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="about">
+                        <h2 class="text-pink mb-3">About Me</h2>
+                        <p>I am Ashlley. I enjoy watching anime, playing games, and learning new things. I often hyperfixate on something if I really enjoy learning about it.</p>
+                        <div class="quest-box border-start border-5 border-pink p-3 mt-4 bg-white rounded shadow-sm">
+                            <h5 class="fw-bold">GOALS:</h5>
+                            <ul class="mb-0">
+                                <li>Graduate College</li>
+                                <li>Earn tons of money for me and my family.</li>
+                                <li>Make my dream house come true.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="portfolio">
+                        <h2 class="text-pink mb-3">Portfolio</h2>
+                        <div class="quest-box border-start border-5 border-pink p-3 bg-white rounded shadow-sm">
+                            <ul class="mb-0">
+                                <li>COMING SOON..</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="education">
+                        <h2 class="text-pink mb-3">Education</h2>
+                        <p>My academic background:</p>
+                        <div class="quest-box border-start border-5 border-pink p-3 bg-white rounded shadow-sm">
+                            <ul class="mb-0">
+                                <li>🎓 DIT 2-1 Student</li>
+                                <li>🏫 College Studies</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-    <div class="content-card">
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="about">ABOUT</button>
-            <button class="tab-btn" data-tab="portfolio">PORTFOLIO</button>
-            <button class="tab-btn" data-tab="education">EDUCATION</button>
-        </div>
-
-        <div class="panel active" id="about">
-            <div class="about-box">
-                <h1>About Me</h1>
-                <p>I am Ashlley. I enjoy watching anime, playing games, and learning new things. I often hyperfixate on something if I really enjoy learning about it.</p>
-                <div class="quest-box">
-                    <h3>GOALS:</h3>
-                    <ul>
-                        <li>Graduate College</li>
-                        <li>Earn tons of money for me and my family.</li>
-                        <li>Make my dream house come true.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" id="portfolio">
-            <div class="about-box">
-                <h1>Portfolio</h1>
-                <div class="quest-box">
-                    <ul>
-                        <li>COMING SOON..</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel" id="education">
-            <div class="about-box">
-                <h1>Education</h1>
-                <p>My academic background:</p>
-                <div class="quest-box">
-                    <ul>
-                        <li>🎓 DIT 2-1 Student</li>
-                        <li>🏫 College Studies</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div> 
 </div>
 
-<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
