@@ -1,186 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Portfolio - Ashlley</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: #e9eef2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .container { display: flex; gap: 25px; align-items: flex-start; }
-
-    .profile-card, .content-card {
-      background: white;
-      border-radius: 14px;
-      padding: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .profile-card { width: 260px; text-align: center; }
-
-    .profile-circle {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #ff537b;
-      margin: 0 auto 20px;
-      overflow: hidden;
-      background: #f0f0f0; /* Placeholder color if image fails */
-    }
-
-    .profile-circle img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .profile-name { font-weight: bold; color: #444; margin-bottom: 10px; font-size: 14px; }
-
-    .level-box {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 6px;
-      background: #ffe3ea;
-      border: 2px solid #ff6f91;
-      font-weight: bold;
-      color: #ff6f91;
-    }
-
-    .content-card { width: 520px; min-height: 440px; }
-
-    .tabs {
-      display: flex;
-      background: #ff6f91;
-      padding: 6px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-    }
-
-    .tabs button {
-      flex: 1;
-      border: none;
-      padding: 8px;
-      margin: 0 4px;
-      border-radius: 6px;
-      background: #ffd6de;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      color: #444;
-    }
-
-    .tabs button.active {
-      background: white;
-      color: #ff6f91;
-    }
-
-    .panel { display: none; }
-    .panel.active { display: block; }
-
-    .about-box {
-      background: #f7f7f7;
-      border-radius: 10px;
-      padding: 20px;
-      min-height: 300px;
-    }
-
-    .about-box h1 { color: #ff6f91; margin-top: 0; }
-
-    .quest-box {
-      margin-top: 15px;
-      background: white;
-      border-left: 5px solid #ff6f91;
-      padding: 15px;
-      border-radius: 6px;
-    }
-
-    ul { padding-left: 20px; }
-    li { margin-bottom: 8px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Ashlley</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="container">
-
-  <div class="profile-card">
-    <div class="profile-circle">
-      <img src="profilepic.jpg" alt="Profile Picture">
-    </div>
-    <div class="profile-name">ASHLLEY NICHOLE A. MANGABAT</div>
-    <div class="level-box">DIT 2-1</div>
-  </div>
-
-  <div class="content-card">
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="about">ABOUT</button>
-      <button class="tab-btn" data-tab="portfolio">PORTFOLIO</button>
-      <button class="tab-btn" data-tab="education">EDUCATION</button>
-    </div>
-
-    <div class="panel active" id="about">
-      <div class="about-box">
-        <h1>About Me</h1>
-        <p>I am Ashlley. I enjoy watching anime, playing games, and learning new things. I often hyperfixate on something if I really enjoy learning about it.</p>
-        <div class="quest-box">
-          <h3>GOALS:</h3>
-          <ul>
-            <li>Graduate College</li>
-            <li>Earn tons of money for me and my family.</li>
-            <li>Make my dream house come true.</li>
-          </ul>
+    <div class="profile-card">
+        <div class="profile-circle">
+            <img src="profilepic.jpg" alt="Profile Picture">
         </div>
-      </div>
+        <div class="profile-name">ASHLLEY NICHOLE A. MANGABAT</div>
+        <div class="level-box">DIT 2-1</div>
     </div>
 
-    <div class="panel" id="portfolio">
-      <div class="about-box">
-        <h1>Portfolio</h1>
-        <div class="quest-box">
-          <ul>
-            <li>COMING SOON..</li>
-          </ul>
+    <div class="content-card">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="about">ABOUT</button>
+            <button class="tab-btn" data-tab="portfolio">PORTFOLIO</button>
+            <button class="tab-btn" data-tab="education">EDUCATION</button>
         </div>
-      </div>
-    </div>
 
-    <div class="panel" id="education">
-      <div class="about-box">
-        <h1>Education</h1>
-        <p>My academic background:</p>
-        <div class="quest-box">
-          <ul>
-            <li>🎓 DIT 2-1 Student</li>
-            <li>🏫 College Studies</li>
-          </ul>
+        <div class="panel active" id="about">
+            <div class="about-box">
+                <h1>About Me</h1>
+                <p>I am Ashlley. I enjoy watching anime, playing games, and learning new things. I often hyperfixate on something if I really enjoy learning about it.</p>
+                <div class="quest-box">
+                    <h3>GOALS:</h3>
+                    <ul>
+                        <li>Graduate College</li>
+                        <li>Earn tons of money for me and my family.</li>
+                        <li>Make my dream house come true.</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </div> </div> <script>
-  const buttons = document.querySelectorAll(".tab-btn");
-  const panels = document.querySelectorAll(".panel");
+        <div class="panel" id="portfolio">
+            <div class="about-box">
+                <h1>Portfolio</h1>
+                <div class="quest-box">
+                    <ul>
+                        <li>COMING SOON..</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      // Toggle Active Tab
-      buttons.forEach(btn => btn.classList.remove("active"));
-      button.classList.add("active");
+        <div class="panel" id="education">
+            <div class="about-box">
+                <h1>Education</h1>
+                <p>My academic background:</p>
+                <div class="quest-box">
+                    <ul>
+                        <li>🎓 DIT 2-1 Student</li>
+                        <li>🏫 College Studies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
 
-      // Toggle Active Panel
-      panels.forEach(panel => panel.classList.remove("active"));
-      const tabId = button.getAttribute("data-tab");
-      document.getElementById(tabId).classList.add("active");
-    });
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
