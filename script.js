@@ -12,6 +12,10 @@ buttons.forEach(button => {
 
         // Show the corresponding panel
         const tabId = button.getAttribute("data-tab");
-        document.getElementById(tabId).classList.add("active");
+        const targetPanel = document.getElementById(tabId);
+        
+        if (targetPanel) {
+            targetPanel.classList.add("active");
+        }
     });
 });
