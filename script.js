@@ -7,7 +7,6 @@ document.querySelectorAll('.tab-btn').forEach(button => {
         document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
 
 
-
         button.classList.add('active');
 
         document.getElementById(button.dataset.tab).classList.add('active');
