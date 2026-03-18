@@ -36,7 +36,7 @@
             box-shadow: 0 0 15px rgba(77, 166, 255, 0.5);
         }
 
-        /* ✅ FIXED HERE */
+        /* Frame */
         .frame-border {
             position: absolute;
             width: 110%;
@@ -44,17 +44,20 @@
             z-index: 1;
             object-fit: contain;
 
-            mix-blend-mode: multiply;
-            opacity: 0.95;
+            /* zoom in a bit to hide edges */
+            transform: scale(1.1);
         }
 
+        /* ✅ FIXED PROFILE IMAGE */
         .profile-img {
-            width: 112px; 
-            height: 112px;
+            width: 130px;   /* bigger to cover white ring */
+            height: 130px;
             object-fit: cover;
             border-radius: 50%;
-            z-index: 2; 
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+
+            /* THIS hides the white ring */
+            border: 8px solid var(--card-bg);
         }
 
         .profile-card {
