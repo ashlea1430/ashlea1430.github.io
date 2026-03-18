@@ -1,83 +1,266 @@
-* { box-sizing: border-box; }
+/* MLBB Theme Colors */
 
-.profile-card, .content-card {
-    background: white;
-    border-radius: 14px;
-    padding: 30px;
-    width: 100%; /* Changed from fixed width to fluid */
+:root {
+
+    --bg-dark: #0f1c33;
+
+    --card-bg: #1a2c4d;
+
+    --panel-bg: #13223f;
+
+    --ml-gold: #c6a34f;
+
+    --ml-blue: #4da6ff;
+
+    --tab-inactive: #2c4169;
+
+    --text-main: #e0e6ed;
+
 }
 
-.profile-card { text-align: center; }
 
-.profile-circle {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 4px solid #ff537b;
-    overflow: hidden;
-    background: #f0f0f0;
+
+body {
+
+    background-color: var(--bg-dark) !important;
+
+    background-image: radial-gradient(circle at center, #1a2c4d 0%, #0a111f 100%);
+
+    color: var(--text-main);
+
+    font-family: 'Segoe UI', sans-serif;
+
 }
 
-.profile-circle img {
+
+
+/* Profile Card & Custom Frame */
+
+.profile-card {
+
+    background: var(--card-bg);
+
+    border: 1px solid rgba(198, 163, 79, 0.3);
+
+    border-radius: 12px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+}
+
+
+
+.profile-frame {
+
+    position: relative;
+
+    width: 160px;
+
+    height: 160px;
+
+    display: flex;
+
+    justify-content: right;
+
+    align-items: right;
+
+}
+
+
+
+.frame-border {
+
+    position: absolute;
+
     width: 100%;
+
     height: 100%;
-    object-fit: cover;
+
+    z-index: 2; /* Frame stays on top */
+
+    pointer-events: none;
+
 }
 
-.profile-name { font-weight: bold; color: #444; font-size: 14px; }
+
+
+.profile-img {
+
+    width: 75%; /* Adjust this if your face is too big/small in the frame */
+
+    height: 75%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    z-index: 1; /* Photo stays behind frame */
+
+}
+
+
+
+.profile-name {
+
+    font-weight: bold;
+
+    color: #fff;
+
+    font-size: 1.1rem;
+
+    text-transform: uppercase;
+
+}
+
+
 
 .level-box {
+
+    background: linear-gradient(to right, #2b4b8d, #1a2c4d);
+
+    border: 1px solid var(--ml-blue);
+
+    color: var(--ml-blue);
+
     display: inline-block;
-    padding: 6px 14px;
-    border-radius: 6px;
-    background: #ffe3ea;
-    border: 2px solid #ff6f91;
+
+    padding: 2px 15px;
+
+    border-radius: 4px;
+
     font-weight: bold;
-    color: #ff6f91;
+
     margin-top: 10px;
+
 }
+
+
+
+/* Content Card & Tabs */
+
+.content-card {
+
+    background: var(--card-bg);
+
+    border-radius: 12px;
+
+    padding: 20px;
+
+}
+
+
 
 .tabs {
+
     display: flex;
-    background: #ff6f91;
-    padding: 6px;
-    border-radius: 8px;
+
+    gap: 10px;
+
 }
 
-.tabs button {
-    flex: 1;
+
+
+.tab-btn {
+
+    background: var(--tab-inactive);
+
     border: none;
-    padding: 8px;
-    margin: 0 4px;
-    border-radius: 6px;
-    background: #ffd6de;
+
+    color: #a0aec0;
+
+    padding: 10px 20px;
+
     font-weight: bold;
-    cursor: pointer;
+
+    flex-grow: 1;
+
+    clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+
     transition: 0.3s;
-    color: #444;
+
 }
 
-.tabs button.active {
-    background: white;
-    color: #ff6f91;
+
+
+.tab-btn.active {
+
+    background: linear-gradient(to bottom, #4a6fa5, #2b4b8d);
+
+    color: white;
+
+    box-shadow: 0 4px 10px rgba(77, 166, 255, 0.3);
+
 }
 
-.panel { display: none; }
-.panel.active { display: block; }
+
+
+/* Content Panels */
+
+.panel {
+
+    display: none;
+
+}
+
+
+
+.panel.active {
+
+    display: block;
+
+    animation: fadeIn 0.4s ease;
+
+}
+
+
 
 .about-box {
-    background: #f7f7f7;
-    border-radius: 10px;
-    padding: 20px;
-    min-height: 350px;
+
+    background: var(--panel-bg);
+
+    border-radius: 8px;
+
+    padding: 25px;
+
 }
 
-.about-box h1 { color: #ff6f91; }
+
 
 .quest-box {
-    margin-top: 15px;
-    background: white;
-    border-left: 5px solid #ff6f91;
+
+    background: rgba(0, 0, 0, 0.3);
+
+    border-left: 4px solid var(--ml-gold);
+
     padding: 15px;
-    border-radius: 6px;
+
+    margin-top: 20px;
+
 }
+
+
+
+h1.display-6 {
+
+    color: var(--ml-gold);
+
+    font-size: 1.6rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+
+
+@keyframes fadeIn {
+
+    from { opacity: 0; transform: translateY(10px); }
+
+    to { opacity: 1; transform: translateY(0); }
+
+}
+
