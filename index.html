@@ -22,9 +22,11 @@
             background-image: radial-gradient(circle at center, #1a2c4d 0%, #0a111f 100%);
             color: var(--text-main);
             font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        /* --- THE FIXED BORDER & PHOTO LAYERING --- */
+        /* --- PROFILE FRAME SECTION --- */
         .profile-frame {
             position: relative;
             width: 180px; 
@@ -33,28 +35,29 @@
             justify-content: center;
             align-items: center;
             margin: 0 auto;
+            background: transparent; /* Ensures no white background shows */
         }
 
         .frame-border {
             position: absolute;
             width: 100%;
             height: 100%;
-            z-index: 1; /* Border is the bottom layer */
+            z-index: 3; /* Places the decorative border ON TOP */
             object-fit: contain;
-            /* Added an icy blue glow to match your frame */
+            pointer-events: none;
+            /* Added glow to match the blue ice theme */
             filter: drop-shadow(0 0 10px var(--ml-blue));
         }
 
         .profile-img {
-            width: 110px; /* Sized to fit exactly inside the ice circle */
+            width: 110px; /* Sized to fit perfectly inside the frame hole */
             height: 110px;
             object-fit: cover;
-            border-radius: 50%;
-            z-index: 2; /* Your photo is the top layer */
-            border: 2px solid #fff; /* White rim to blend with the ice */
+            border-radius: 50%; /* Makes your photo a circle */
+            z-index: 1; /* Places your photo BEHIND the border */
         }
 
-        /* --- UI STYLING --- */
+        /* --- UI CARD STYLING --- */
         .profile-card {
             background: var(--card-bg);
             border: 1px solid rgba(198, 163, 79, 0.3);
@@ -89,6 +92,12 @@
             padding: 20px;
         }
 
+        /* --- TAB SYSTEM --- */
+        .tabs {
+            display: flex;
+            gap: 5px;
+        }
+
         .tab-btn {
             background: var(--tab-inactive);
             border: none;
@@ -96,8 +105,10 @@
             padding: 10px 20px;
             font-weight: bold;
             flex-grow: 1;
+            /* Creates the slanted MLBB tab shape */
             clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
             transition: 0.3s;
+            cursor: pointer;
         }
 
         .tab-btn.active {
@@ -124,7 +135,7 @@
 
         h1 { color: var(--ml-gold); font-size: 1.5rem; text-transform: uppercase; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="d-flex align-items-center min-vh-100">
@@ -135,7 +146,7 @@
         <div class="col-12 col-md-4 col-lg-3">
             <div class="profile-card shadow-sm h-100">
                 <div class="profile-frame">
-                    <img src="frame.jpg" class="frame-border" alt="Ice Border">
+                    <img src="image_897b63.png" class="frame-border" alt="Fantasy Border">
                     <img src="profilepic.jpg" class="profile-img" alt="Profile Picture">
                 </div>
                 <div class="profile-name">ASHLLEY NICHOLE A. MANGABAT</div>
@@ -145,7 +156,7 @@
 
         <div class="col-12 col-md-8 col-lg-7">
             <div class="content-card shadow-sm h-100">
-                <div class="tabs d-flex mb-4">
+                <div class="tabs mb-4">
                     <button class="tab-btn active" data-tab="about">ABOUT</button>
                     <button class="tab-btn" data-tab="portfolio">PORTFOLIO</button>
                     <button class="tab-btn" data-tab="education">EDUCATION</button>
@@ -167,7 +178,16 @@
                 </div>
 
                 <div class="panel" id="portfolio">
-                    <div class="about-box"><h1>Portfolio</h1><p>Coming Soon...</p></div>
+                    <div class="about-box">
+                        <h1>Portfolio</h1>
+                        <p>Current Projects:</p>
+                        <div class="quest-box">
+                            <ul class="mb-0">
+                                <li>Personal MLBB Portfolio</li>
+                                <li>Web Development Basics</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="panel" id="education">
@@ -188,6 +208,7 @@
 </div>
 
 <script>
+    // Handles switching between About, Portfolio, and Education tabs
     document.querySelectorAll('.tab-btn').forEach(button => {
         button.addEventListener('click', () => {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
