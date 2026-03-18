@@ -5,19 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Ashlley</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* MLBB Theme Colors */
+        :root {
+            --bg-dark: #0f1c33;
+            --card-bg: #1a2c4d;
+            --panel-bg: #13223f;
+            --ml-gold: #c6a34f;
+            --ml-blue: #4da6ff;
+            --tab-inactive: #2c4169;
+            --text-main: #e0e6ed;
+        }
+
+        body {
+            background-color: var(--bg-dark) !important;
+            background-image: radial-gradient(circle at center, #1a2c4d 0%, #0a111f 100%);
+            color: var(--text-main);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* Profile Card & Custom Frame */
+        .profile-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(198, 163, 79, 0.3);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            display: flex;
+            justify-content: center; /* Centered photo */
+            align-items: center;     /* Centered photo */
+            margin: 0 auto;
+        }
+
+        .frame-border {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2; /* Frame stays on top */
+            pointer-events: none;
+        }
+
+        .profile-img {
+            width: 72%; /* Adjusted to fit better inside the fantasy frame */
+            height: 72%;
+            object-fit: cover;
+            border-radius: 50%;
+            z-index: 1; /* Photo stays behind frame */
+        }
+
+        .profile-name {
+            font-weight: bold;
+            color: #fff;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+
+        .level-box {
+            background: linear-gradient(to right, #2b4b8d, #1a2c4d);
+            border: 1px solid var(--ml-blue);
+            color: var(--ml-blue);
+            display: inline-block;
+            padding: 2px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Content Card & Tabs */
+        .content-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab-btn {
+            background: var(--tab-inactive);
+            border: none;
+            color: #a0aec0;
+            padding: 10px 20px;
+            font-weight: bold;
+            flex-grow: 1;
+            clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(to bottom, #4a6fa5, #2b4b8d);
+            color: white;
+            box-shadow: 0 4px 10px rgba(77, 166, 255, 0.3);
+        }
+
+        /* Content Panels */
+        .panel {
+            display: none;
+        }
+
+        .panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .about-box {
+            background: var(--panel-bg);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .quest-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--ml-gold);
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        h1.display-6 {
+            color: var(--ml-gold);
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
-<body class="bg-light d-flex align-items-center min-vh-100">
+<body class="d-flex align-items-center min-vh-100">
 
 <div class="container my-5">
     <div class="row g-4 justify-content-center">
         
         <div class="col-12 col-md-4 col-lg-3">
             <div class="profile-card shadow-sm h-100">
-                <div class="profile-circle mx-auto">
-                    <img src="profilepic.jpg" alt="Profile Picture">
+                <div class="profile-frame">
+                    <img src="frame.png" class="frame-border" alt="Frame">
+                    <img src="profilepic.jpg" class="profile-img" alt="Profile Picture">
                 </div>
-                <div class="profile-name mt-3">ASHLLEY NICHOLE A. MANGABAT</div>
+                <div class="profile-name">ASHLLEY NICHOLE A. MANGABAT</div>
                 <div class="level-box">DIT 2-1</div>
             </div>
         </div>
@@ -72,6 +211,20 @@
     </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+    document.querySelectorAll('.tab-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active classes
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+
+            // Add active class to clicked button and target panel
+            button.classList.add('active');
+            const target = button.getAttribute('data-tab');
+            document.getElementById(target).classList.add('active');
+        });
+    });
+</script>
+
 </body>
 </html>
