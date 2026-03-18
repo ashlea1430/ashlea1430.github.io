@@ -10,10 +10,8 @@
         :root {
             --bg-dark: #0f1c33;
             --card-bg: #1a2c4d;
-            --panel-bg: #13223f;
-            --ml-gold: #c6a34f;
             --ml-blue: #4da6ff;
-            --tab-inactive: #2c4169;
+            --ml-gold: #c6a34f;
             --text-main: #e0e6ed;
         }
 
@@ -24,7 +22,7 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        /* --- THE FIX FOR WHITE EDGES --- */
+        /* --- THE MAGIC FIX FOR THE WHITE CIRCLE --- */
         .profile-frame {
             position: relative;
             width: 180px; 
@@ -34,32 +32,38 @@
             justify-content: center;
             align-items: center;
             
-            /* This clips the white corners of the JPG frame */
-            border-radius: 50%; 
-            overflow: hidden; 
+            /* 1. We force the container to be a circle to cut the square corners */
+            border-radius: 50%;
+            overflow: hidden;
             
-            /* Glow effect */
-            box-shadow: 0 0 20px rgba(77, 166, 255, 0.4);
+            /* 2. We set the background to match the card so white doesn't peek through */
+            background-color: var(--card-bg);
+            box-shadow: 0 0 15px rgba(77, 166, 255, 0.5);
         }
 
         .frame-border {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1; /* Border stays in back */
-            object-fit: cover;
+            width: 110%; /* Slightly larger to push white edges out of view */
+            height: 110%;
+            z-index: 1;
+            object-fit: contain;
+            
+            /* 3. THE CODE FIX: This removes 'white' using a brightness filter */
+            /* It treats the white as 'too bright' and turns it transparent */
+            mix-blend-mode: screen; 
         }
 
         .profile-img {
-            width: 120px; 
-            height: 120px;
+            /* 4. We size your face to cover the inner white ring exactly */
+            width: 112px; 
+            height: 112px;
             object-fit: cover;
             border-radius: 50%;
-            z-index: 2; /* Your face stays in front */
-            border: 2px solid rgba(255,255,255,0.2);
+            z-index: 2; 
+            border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* --- UI STYLING --- */
+        /* --- REST OF THE UI --- */
         .profile-card {
             background: var(--card-bg);
             border: 1px solid rgba(198, 163, 79, 0.3);
@@ -94,7 +98,7 @@
         }
 
         .tab-btn {
-            background: var(--tab-inactive);
+            background: #2c4169;
             border: none;
             color: #a0aec0;
             padding: 10px 20px;
@@ -112,21 +116,6 @@
 
         .panel { display: none; }
         .panel.active { display: block; animation: fadeIn 0.4s ease; }
-
-        .about-box {
-            background: var(--panel-bg);
-            border-radius: 8px;
-            padding: 25px;
-        }
-
-        .quest-box {
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 4px solid var(--ml-gold);
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        h1 { color: var(--ml-gold); font-size: 1.5rem; text-transform: uppercase; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -156,34 +145,18 @@
                 </div>
 
                 <div class="panel active" id="about">
-                    <div class="about-box">
-                        <h1>About Me</h1>
+                    <div style="background: #13223f; padding: 25px; border-radius: 8px;">
+                        <h1 style="color:var(--ml-gold); font-size:1.5rem;">About Me</h1>
                         <p>I am Ashlley. I enjoy watching anime, playing games, and learning new things.</p>
-                        <div class="quest-box">
-                            <h5 class="fw-bold" style="color:var(--ml-gold)">GOALS:</h5>
-                            <ul class="mb-0">
-                                <li>Graduate College</li>
-                                <li>Earn money for family</li>
-                                <li>Build dream house</li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
 
                 <div class="panel" id="portfolio">
-                    <div class="about-box"><h1>Portfolio</h1><p>Coming Soon...</p></div>
+                    <div style="background: #13223f; padding: 25px; border-radius: 8px;"><h1>Portfolio</h1><p>Coming Soon...</p></div>
                 </div>
 
                 <div class="panel" id="education">
-                    <div class="about-box">
-                        <h1>Education</h1>
-                        <div class="quest-box">
-                            <ul class="mb-0">
-                                <li>DIT 2-1 Student</li>
-                                <li>College Studies</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div style="background: #13223f; padding: 25px; border-radius: 8px;"><h1>Education</h1><p>DIT 2-1 Student</p></div>
                 </div>
             </div>
         </div>
