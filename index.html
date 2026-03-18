@@ -22,7 +22,6 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        /* --- THE MAGIC FIX FOR THE WHITE CIRCLE --- */
         .profile-frame {
             position: relative;
             width: 180px; 
@@ -31,30 +30,25 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            
-            /* 1. We force the container to be a circle to cut the square corners */
             border-radius: 50%;
             overflow: hidden;
-            
-            /* 2. We set the background to match the card so white doesn't peek through */
             background-color: var(--card-bg);
             box-shadow: 0 0 15px rgba(77, 166, 255, 0.5);
         }
 
+        /* ✅ FIXED HERE */
         .frame-border {
             position: absolute;
-            width: 110%; /* Slightly larger to push white edges out of view */
+            width: 110%;
             height: 110%;
             z-index: 1;
             object-fit: contain;
-            
-            /* 3. THE CODE FIX: This removes 'white' using a brightness filter */
-            /* It treats the white as 'too bright' and turns it transparent */
-            mix-blend-mode: screen; 
+
+            mix-blend-mode: multiply;
+            opacity: 0.95;
         }
 
         .profile-img {
-            /* 4. We size your face to cover the inner white ring exactly */
             width: 112px; 
             height: 112px;
             object-fit: cover;
@@ -63,7 +57,6 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* --- REST OF THE UI --- */
         .profile-card {
             background: var(--card-bg);
             border: 1px solid rgba(198, 163, 79, 0.3);
@@ -152,11 +145,15 @@
                 </div>
 
                 <div class="panel" id="portfolio">
-                    <div style="background: #13223f; padding: 25px; border-radius: 8px;"><h1>Portfolio</h1><p>Coming Soon...</p></div>
+                    <div style="background: #13223f; padding: 25px; border-radius: 8px;">
+                        <h1>Portfolio</h1><p>Coming Soon...</p>
+                    </div>
                 </div>
 
                 <div class="panel" id="education">
-                    <div style="background: #13223f; padding: 25px; border-radius: 8px;"><h1>Education</h1><p>DIT 2-1 Student</p></div>
+                    <div style="background: #13223f; padding: 25px; border-radius: 8px;">
+                        <h1>Education</h1><p>DIT 2-1 Student</p>
+                    </div>
                 </div>
             </div>
         </div>
