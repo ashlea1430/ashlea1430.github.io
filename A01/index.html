@@ -82,13 +82,6 @@ body {
   padding: 20px;
 }
 
-/* ================= IMAGE ================= */
-.carousel-item img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
 /* ================= TEXT ================= */
 .text-danger {
   color: #ff0000 !important;
@@ -113,7 +106,7 @@ h2 { font-size: clamp(18px, 3vw, 28px); }
   font-size: clamp(13px, 2vw, 15px);
 }
 
-/* ================= VIDEO (FIXED TO MATCH YOUR IMAGE) ================= */
+/* ================= VIDEO (FINAL FIX) ================= */
 .video-wrapper {
   width: 100%;
   border-radius: 16px;
@@ -123,22 +116,15 @@ h2 { font-size: clamp(18px, 3vw, 28px); }
   margin-top: 15px;
 }
 
-/* 🔥 THIS IS THE IMPORTANT CHANGE */
-.video-split {
-  display: flex;
+.video-single {
   width: 100%;
-  aspect-ratio: 16 / 6; /* was 16/7 → now matches your screenshot */
+  aspect-ratio: 16 / 6;
 }
 
-.video-split video {
-  width: 50%;
+.video-single video {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* cleaner center divider */
-.video-split video:first-child {
-  border-right: 2px solid #000;
 }
 
 /* LABELS */
@@ -159,20 +145,8 @@ h2 { font-size: clamp(18px, 3vw, 28px); }
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
-
-  .video-split {
-    flex-direction: column;
+  .video-single {
     aspect-ratio: auto;
-  }
-
-  .video-split video {
-    width: 100%;
-    height: auto;
-  }
-
-  .video-split video:first-child {
-    border-right: none;
-    border-bottom: 2px solid #000;
   }
 }
 
@@ -252,16 +226,10 @@ function updateContent(type) {
       </ul>
 
       <div class="video-wrapper">
-        <div class="video-split">
-
+        <div class="video-single">
           <video autoplay loop muted playsinline>
             <source src="https://eu.redmagic.gg/cdn/shop/videos/c/vp/818a5d08717540efadec2632ffc9727e/818a5d08717540efadec2632ffc9727e.HD-1080p-7.2Mbps-61607323.mp4?v=0">
           </video>
-
-          <video autoplay loop muted playsinline>
-            <source src="https://eu.redmagic.gg/cdn/shop/videos/c/vp/818a5d08717540efadec2632ffc9727e/818a5d08717540efadec2632ffc9727e.HD-1080p-7.2Mbps-61607323.mp4?v=0">
-          </video>
-
         </div>
       </div>
 
