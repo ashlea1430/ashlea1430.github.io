@@ -70,14 +70,12 @@
         font-weight: 600;
       }
 
-      /* FIXED LEFT BOX BORDER */
       .left-box {
         background-color: #111; 
         border-radius: 20px;
         overflow: hidden;
-        border: 1px solid #333; /* Matches the right side exactly */
+        border: 1px solid #333;
         height: 600px;
-        position: relative;
       }
 
       .content-box {
@@ -85,22 +83,26 @@
         border-radius: 20px;
         padding: 30px;
         border: 1px solid #333;
-        height: 600px;
+        height: fit-content;
+        max-height: 600px; 
         overflow-y: auto;  
       }
 
-      /* Custom scrollbar */
-      .content-box::-webkit-scrollbar { width: 5px; }
-      .content-box::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-
-      .carousel, .carousel-inner, .carousel-item { height: 100%; width: 100%; }
-      
-      /* Fixed Image Fitting */
-      .left-box img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain; 
-        padding: 20px; /* Slight padding to keep phone away from the border edge */
+      .video-wrapper {
+        margin-top: 15px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid #333;
+      }
+      .comparison-video { width: 100%; display: block; }
+      .video-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
 
       .text-danger { color: #ff0000 !important; }
@@ -111,22 +113,40 @@
       h2 { font-weight: 700; margin-bottom: 15px; font-size: 1.6rem; }
       h4 { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 
-      /* Video Comparison */
-      .video-wrapper { margin-top: 15px; border-radius: 10px; overflow: hidden; border: 1px solid #333; }
-      .comparison-video { width: 100%; display: block; }
-      .video-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-
-      /* Footer */
-      .custom-footer { background-color: #111; color: white; padding: 60px 0 30px 0; margin-top: 80px; border-top: 1px solid #222; }
-      .footer-section h5 { font-size: 0.9rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+      /* Footer Styling */
+      .custom-footer {
+        background-color: #111; /* Light Black */
+        color: white;
+        padding: 60px 0 30px 0;
+        margin-top: 80px;
+        border-top: 1px solid #222;
+      }
+      .footer-section h5 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
       .footer-links { list-style: none; padding: 0; }
       .footer-links li { margin-bottom: 10px; }
-      .footer-links a { color: #888; text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
+      .footer-links a { 
+        color: #888; 
+        text-decoration: none; 
+        font-size: 0.85rem; 
+        transition: 0.3s;
+      }
       .footer-links a:hover { color: white; }
       .social-icons { display: flex; gap: 15px; margin-top: 15px; }
       .social-icons i { font-size: 1.2rem; cursor: pointer; color: #888; transition: 0.3s; }
       .social-icons i:hover { color: red; }
-      .copyright-bar { border-top: 1px solid #222; margin-top: 40px; padding-top: 20px; font-size: 0.75rem; color: #555; }
+      .copyright-bar {
+        border-top: 1px solid #222;
+        margin-top: 40px;
+        padding-top: 20px;
+        font-size: 0.75rem;
+        color: #555;
+      }
     </style>
 </head>
 
@@ -158,18 +178,12 @@
           <div id="phoneCarousel" class="carousel slide h-100" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="https://img01.syf.com/resource/product/202412/19/67638843c08ca_920_920.png" alt="REDMAGIC 11 Pro Silver">
+                <img src="Phone1">
               </div>
               <div class="carousel-item">
-                <img src="https://img01.syf.com/resource/product/202412/19/6763884e8ec31_920_920.png" alt="REDMAGIC 11 Pro Black">
+                <img src="Phone2">
               </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#phoneCarousel" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#phoneCarousel" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
           </div>
         </div>
       </div>
@@ -200,6 +214,7 @@
             <li><a href="#">REDMAGIC 11 Pro</a></li>
             <li><a href="#">REDMAGIC 11 Pro Bundle</a></li>
             <li><a href="#">Accessories</a></li>
+            <li><a href="#">Apparel</a></li>
           </ul>
         </div>
         <div class="col-md-3 footer-section">
@@ -207,6 +222,7 @@
           <ul class="footer-links">
             <li><a href="#">Shipping Policy</a></li>
             <li><a href="#">Return Policy</a></li>
+            <li><a href="#">Track Your Order</a></li>
             <li><a href="#">Repair Center</a></li>
           </ul>
         </div>
@@ -215,20 +231,23 @@
           <ul class="footer-links">
             <li><a href="#">REDMAGIC News</a></li>
             <li><a href="#">Affiliate Program</a></li>
+            <li><a href="#">Student Discount</a></li>
           </ul>
         </div>
         <div class="col-md-3 footer-section">
           <h5>Connect With Us</h5>
+          <p style="font-size: 0.85rem; color: #888;">Join our mailing list for exclusive offers.</p>
           <div class="social-icons">
             <i class="bi bi-facebook"></i>
             <i class="bi bi-twitter-x"></i>
             <i class="bi bi-instagram"></i>
             <i class="bi bi-youtube"></i>
+            <i class="bi bi-discord"></i>
           </div>
         </div>
       </div>
       <div class="copyright-bar text-center">
-        &copy; 2026 REDMAGIC. All Rights Reserved.
+        &copy; 2026 REDMAGIC. All Rights Reserved. Privacy Policy | Terms of Service
       </div>
     </div>
   </footer>
@@ -304,12 +323,14 @@
             <h4 class="text-danger">Technical Specifications</h4>
             <h2>Full Hardware Details</h2>
             <ul class="spec-list">
-              <li><b>Main Camera:</b> 50MP Samsung GN5, 7P Lens, f/1.88, OIS</li>
-              <li><b>Ultra-Wide Camera:</b> 50MP Samsung JN1, 120°, f/2.2</li>
-              <li><b>Front Camera:</b> 16MP 4th Gen Under-Display Camera (UDC)</li>
-              <li><b>Audio:</b> Dual Stereo Speakers, DTS:X Ultra, 3 Mic Array</li>
-              <li><b>Connectivity:</b> Bluetooth 5.4, Wi-Fi 7 (802.11be)</li>
-              <li><b>Dimensions:</b> 163.98 x 76.35 x 9.47mm | 229g</li>
+            <li><b>Main Camera:</b> 50MP Samsung GN5, 7P Lens, f/1.88, OIS</li>
+            <li><b>Ultra-Wide Camera:</b> 50MP Samsung JN1, 120°, f/2.2</li>
+            <li><b>Front Camera:</b> 16MP 4th Gen Under-Display Camera (UDC)</li>
+            <li><b>Audio:</b> Dual Stereo Speakers, DTS:X Ultra, 3 Mic Array</li>
+            <li><b>Connectivity:</b> Bluetooth 5.4, Wi-Fi 7 (802.11be), Dual 5G SIM</li>
+            <li><b>Sensors:</b> Fingerprint (UD), G-sensor, Gyro, Proximity, Compass</li>
+            <li><b>Operating System:</b> REDMAGIC OS 10.0 (Android 15)</li>
+            <li><b>Dimensions:</b> 163.98 x 76.35 x 9.47mm | 229g</li>
             </ul>`;
         } else if (type === "experience") {
           content.innerHTML = `
