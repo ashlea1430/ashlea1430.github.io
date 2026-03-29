@@ -281,16 +281,91 @@ h2 {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-const tabs = document.querySelectorAll(".tab");
-const content = document.getElementById("contentText");
+ const tabs = document.querySelectorAll(".tab");
+    const content = document.getElementById("contentText");
 
-tabs.forEach(tab => {
-  tab.onclick = function () {
-    tabs.forEach(t => t.classList.remove("active"));
-    this.classList.add("active");
-    content.innerHTML = "<h4 class='text-danger'>" + this.innerText + "</h4><h2>Content Here</h2>";
-  };
-});
+    tabs.forEach(tab => {
+      tab.onclick = function() {
+        tabs.forEach(t => t.classList.remove("active"));
+        this.classList.add("active");
+        const type = this.getAttribute("data-tab");
+        updateContent(type);
+      };
+    });
+
+    function updateContent(type) {
+        if (type === "design") {
+          content.innerHTML = `
+            <h4 class="text-danger">Design</h4>
+            <h2>Transparent Aesthetics</h2>
+            <ul class="spec-list">
+              <li>See the advanced cooling in action.</li>
+              <li>Rear RGB frame strip and flat back design.</li>
+              <li>No camera bump for seamless comfort.</li>
+            </ul>`;
+        } else if (type === "performance") {
+          content.innerHTML = `
+            <h4 class="text-danger">Performance</h4>
+            <h2>Snapdragon 8 Elite Gen 5</h2>
+            <ul class="spec-list">
+              <li>CPU Clock Speed: 4.6 GHz.</li>
+              <li>33% Lower Latency with RedCore R4 chip.</li>
+            </ul>
+            <div class="video-wrapper">
+              <video class="comparison-video" autoplay loop muted playsinline>
+                <source src="https://eu.redmagic.gg/cdn/shop/videos/c/vp/818a5d08717540efadec2632ffc9727e/818a5d08717540efadec2632ffc9727e.HD-1080p-7.2Mbps-61607323.mp4?v=0" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-labels">
+              <span class="text-danger">REDMAGIC 11 Pro</span>
+              <span>Xphone 17 Pro Max</span>
+            </div>`;
+        } else if (type === "cooling") {
+          content.innerHTML = `
+            <h4 class="text-danger">Cooling</h4>
+            <h2>AquaCore System</h2>
+            <ul class="spec-list">
+              <li>24,000 RPM Signature Turbo Fan.</li>
+              <li>13,116 mm² Vapor Chamber (50% better dissipation).</li>
+            </ul>`;
+        } else if (type === "battery") {
+          content.innerHTML = `
+            <h4 class="text-danger">Battery</h4>
+            <h2>7,500mAh Endurance</h2>
+            <ul class="spec-list">
+              <li>Up to 34.1 hours of daily use.</li>
+              <li>80W Wired and Wireless Fast Charging.</li>
+            </ul>`;
+        } else if (type === "display") {
+          content.innerHTML = `
+            <h4 class="text-danger">Display</h4>
+            <h2>BOE X10 AMOLED</h2>
+            <ul class="spec-list">
+              <li>Industry-leading under-screen camera.</li>
+              <li>2688 x 1216 high-resolution visuals.</li>
+            </ul>`;
+        } else if (type === "specs") {
+          content.innerHTML = `
+            <h4 class="text-danger">Technical Specifications</h4>
+            <h2>Full Hardware Details</h2>
+            <ul class="spec-list">
+              <li><b>Main Camera:</b> 50MP Samsung GN5, 7P Lens, f/1.88, OIS</li>
+              <li><b>Ultra-Wide Camera:</b> 50MP Samsung JN1, 120°, f/2.2</li>
+              <li><b>Front Camera:</b> 16MP 4th Gen Under-Display Camera (UDC)</li>
+              <li><b>Audio:</b> Dual Stereo Speakers, DTS:X Ultra, 3 Mic Array</li>
+              <li><b>Connectivity:</b> Bluetooth 5.4, Wi-Fi 7 (802.11be)</li>
+              <li><b>Dimensions:</b> 163.98 x 76.35 x 9.47mm | 229g</li>
+            </ul>`;
+        } else if (type === "experience") {
+          content.innerHTML = `
+            <h4 class="text-danger">Experience</h4>
+            <h2>Gaming Redefined</h2>
+            <ul class="spec-list">
+              <li>520Hz Dual Shoulder Triggers.</li>
+              <li>X-Axis Linear Motor for 4D Haptics.</li>
+            </ul>`;
+        }
+    }
 </script>
 
 </body>
