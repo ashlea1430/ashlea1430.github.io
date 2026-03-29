@@ -113,21 +113,21 @@ h2 { font-size: clamp(18px, 3vw, 28px); }
   font-size: clamp(13px, 2vw, 15px);
 }
 
-/* ================= VIDEO (FIXED) ================= */
+/* ================= VIDEO (FIXED TO MATCH YOUR IMAGE) ================= */
 .video-wrapper {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   background: #000;
   border: 1px solid #222;
   margin-top: 15px;
 }
 
-/* 🔥 KEY FIX HERE */
+/* 🔥 THIS IS THE IMPORTANT CHANGE */
 .video-split {
   display: flex;
   width: 100%;
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 16 / 6; /* was 16/7 → now matches your screenshot */
 }
 
 .video-split video {
@@ -136,31 +136,25 @@ h2 { font-size: clamp(18px, 3vw, 28px); }
   object-fit: cover;
 }
 
+/* cleaner center divider */
 .video-split video:first-child {
-  border-right: 2px solid #111;
+  border-right: 2px solid #000;
 }
 
 /* LABELS */
 .video-labels {
   display: flex;
   justify-content: space-between;
-  margin-top: 8px;
-  font-size: 0.75rem;
+  margin-top: 6px;
+  font-size: 0.7rem;
+  letter-spacing: 0.5px;
   color: #aaa;
-  padding: 0 5px;
+  padding: 0 4px;
 }
 
 .video-labels span:first-child {
   color: red;
   font-weight: 600;
-}
-
-/* ================= FOOTER ================= */
-.custom-footer {
-  background-color: #111;
-  padding: 40px 0 20px;
-  margin-top: 50px;
-  border-top: 1px solid #222;
 }
 
 /* ================= MOBILE ================= */
@@ -178,7 +172,7 @@ h2 { font-size: clamp(18px, 3vw, 28px); }
 
   .video-split video:first-child {
     border-right: none;
-    border-bottom: 2px solid #111;
+    border-bottom: 2px solid #000;
   }
 }
 
@@ -272,8 +266,8 @@ function updateContent(type) {
       </div>
 
       <div class="video-labels">
-        <span>REDMAGIC 11 Pro</span>
-        <span>Xphone 17 Pro Max</span>
+        <span>REDMAGIC 11 PRO</span>
+        <span>XPHONE 17 PRO MAX</span>
       </div>
     `;
   }
