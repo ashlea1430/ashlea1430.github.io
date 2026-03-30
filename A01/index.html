@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>REDMAGIC 11 Pro</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -14,48 +13,39 @@
         .top-bar { height: 15px; background: red; }
         .header-bar { background: #1a1a1a; padding: 10px 0; }
         .brand-name { font-weight: 700; text-transform: uppercase; margin-right: 20px; font-size: clamp(14px, 2vw, 18px); }
-
         .nav-center { display: flex; gap: 15px; overflow-x: auto; scrollbar-width: none; }
-        .nav-center::-webkit-scrollbar { display: none; }
         .tab { cursor: pointer; color: #888; font-size: 0.85rem; position: relative; white-space: nowrap; }
         .tab.active { color: white; }
         .tab.active::after { content: ""; position: absolute; left: 0; bottom: -5px; width: 100%; height: 2px; background: red; }
-
-        .main-content { flex: 1; padding-bottom: 40px; }
-        
-        /* Box Styling - align-items-start in the row prevents the right box from stretching */
-        .left-box { background: #111; border-radius: 20px; border: 1px solid #333; padding: 10px; }
-        .content-box { background: #000; border-radius: 20px; padding: 20px; border: 1px solid #333; }
-        
+        .main-content { flex: 1; padding-bottom: 30px; }
+        .left-box, .content-box { background: #111; border-radius: 20px; border: 1px solid #333; padding: 10px; }
+        .content-box { background: #000; padding: 20px; }
         .carousel-item img { width: 100%; height: auto; object-fit: contain; }
-
         .text-danger { color: #ff0000 !important; text-transform: uppercase; font-weight: 700; font-size: 0.75rem; }
         h2 { font-size: clamp(18px, 3vw, 28px); margin-bottom: 15px; }
-
         .spec-list { list-style: none; padding: 0; margin: 0; }
         .spec-list li { margin-bottom: 10px; color: #ccc; border-bottom: 1px solid #222; padding-bottom: 6px; font-size: 0.9rem; }
         .spec-list li b { color: white; font-size: 0.75rem; display: inline-block; width: 110px; }
-
-        /* Video logic: single video for 2-side-by-side (using your split source) */
         .video-wrapper { border-radius: 15px; overflow: hidden; background: #000; border: 1px solid #222; margin-top: 15px; }
         .video-wrapper video { width: 100%; display: block; }
         .video-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.7rem; font-weight: 700; }
-
-        footer { background: #111; padding: 30px 0 20px; border-top: 1px solid #222; margin-top: auto; }
-        footer h6 { font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; }
-        .footer-links { list-style: none; padding: 0; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 0.8rem; }
-        .social-icons { display: flex; gap: 15px; font-size: 1.1rem; color: #888; }
-        .copyright-bar { margin-top: 25px; font-size: 0.65rem; color: #444; text-align: center; border-top: 1px solid #1a1a1a; padding-top: 15px; }
-
-        @media (max-width: 991px) {
-            .header-bar .container-fluid { flex-direction: column; align-items: flex-start !important; }
-        }
+        
+        /* TWEAKED FOOTER */
+        footer { background: #111; padding: 25px 0 15px; border-top: 1px solid #222; margin-top: auto; }
+        footer h6 { font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-links { list-style: none; padding: 0; margin-bottom: 0; }
+        .footer-links li { margin-bottom: 4px; }
+        .footer-links a { color: #777; text-decoration: none; font-size: 0.75rem; transition: 0.3s; }
+        .footer-links a:hover { color: #ff0000; }
+        .social-icons { display: flex; gap: 12px; font-size: 1.1rem; }
+        .social-icons i { color: #777; cursor: pointer; transition: 0.3s; }
+        .social-icons i:hover { color: #ff0000; }
+        .footer-desc { font-size: 0.7rem; color: #555; max-width: 200px; line-height: 1.3; margin-top: 8px; }
+        .copyright-bar { margin-top: 20px; font-size: 0.6rem; color: #444; text-align: center; border-top: 1px solid #1a1a1a; padding-top: 12px; }
     </style>
 </head>
 
 <body>
-
 <div class="main-content">
     <div class="top-bar"></div>
     <div class="header-bar">
@@ -75,25 +65,26 @@
     </div>
 
     <div class="container-fluid mt-3 px-3">
-        <div class="row g-3 align-items-start"> <div class="col-12 col-lg-6">
+        <div class="row g-3 align-items-start">
+            <div class="col-12 col-lg-6">
                 <div class="left-box">
                     <div id="phoneCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active"><img src="phone1.jpg"></div>
-                            <div class="carousel-item"><img src="phone2.jpg"></div>
+                            <div class="carousel-item active"><img src="phone1.jpg" alt="Front View"></div>
+                            <div class="carousel-item"><img src="phone2.jpg" alt="Back View"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-12 col-lg-6">
                 <div class="content-box" id="contentText">
                     <h4 class="text-danger">Design</h4>
                     <h2>Transparent Aesthetics</h2>
                     <ul class="spec-list">
-                        <li>See the advanced cooling in action.</li>
-                        <li>Rear RGB frame strip and flat back design.</li>
-                        <li>No camera bump for seamless comfort.</li>
+                        <li><b>Build</b> Metal Frame + Corning Glass Rear</li>
+                        <li><b>Durability</b> IPX8 Water Resistance Rating</li>
+                        <li><b>RGB</b> Fully customizable lighting effects</li>
+                        <li><b>Comfort</b> No camera bump for seamless grip</li>
                     </ul>
                 </div>
             </div>
@@ -103,22 +94,53 @@
 
 <footer>
     <div class="container-fluid px-4">
-        <div class="row">
-            <div class="col-3"><h6>Store</h6><ul class="footer-links"><li><a href="#">REDMAGIC 11 Pro</a></li></ul></div>
-            <div class="col-3"><h6>Support</h6><ul class="footer-links"><li><a href="#">Shipping</a></li></ul></div>
-            <div class="col-3"><h6>Community</h6><ul class="footer-links"><li><a href="#">News</a></li></ul></div>
-            <div class="col-3"><h6>Connect</h6><div class="social-icons"><i class="bi bi-facebook"></i><i class="bi bi-instagram"></i><i class="bi bi-youtube"></i><i class="bi bi- twitter-x"></div>></div></div</div>
+        <div class="row g-3">
+            <div class="col-6 col-md-3">
+                <h6>Store</h6>
+                <ul class="footer-links">
+                    <li><a href="#">REDMAGIC 11 Pro</a></li>
+                    <li><a href="#">Gaming Accessories</a></li>
+                    <li><a href="#">Phone Gaming Gear</a></li>
+                    <li><a href="#">Apparel</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <h6>Support</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Return Policy</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <h6>Community</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">REDMAGIC Forums</a></li>
+                    <li><a href="#">Affiliate Program</a></li>
+                    <li><a href="#">Education Discount</a></li>
+                </ul>
+            </div>
+            <div class="col-6 col-md-3">
+                <h6>Connect</h6>
+                <div class="social-icons">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-youtube"></i>
+                    <i class="bi bi-twitter-x"></i>
+                </div>
+                <p class="footer-desc">Stay updated with the latest gaming tech and exclusive offers.</p>
+            </div>
         </div>
-        <div class="copyright-bar">© 2026 REDMAGIC</div>
+        <div class="copyright-bar">© 2026 REDMAGIC. All Rights Reserved.</div>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <script>
     const tabs = document.querySelectorAll(".tab");
     const content = document.getElementById("contentText");
-
     tabs.forEach(tab => {
         tab.onclick = function() {
             tabs.forEach(t => t.classList.remove("active"));
@@ -133,17 +155,20 @@
                 <h4 class="text-danger">Design</h4>
                 <h2>Transparent Aesthetics</h2>
                 <ul class="spec-list">
-                    <li>See the advanced cooling in action.</li>
-                    <li>Rear RGB frame strip and flat back design.</li>
-                    <li>No camera bump for seamless comfort.</li>
+                    <li><b>Build</b> Metal Middle Frame + Corning Glass Rear</li>
+                    <li><b>Protection</b> IPX8 Water Resistance & Dust-Proof</li>
+                    <li><b>Colors</b> Matte Black, Transparent Silver/Black</li>
+                    <li><b>Dimensions</b> 163.82 x 76.54 x 8.9mm | 230g</li>
                 </ul>`;
         } else if (type === "performance") {
             content.innerHTML = `
                 <h4 class="text-danger">Performance</h4>
                 <h2>Snapdragon 8 Elite Gen 5</h2>
                 <ul class="spec-list">
-                    <li>CPU Clock Speed: 4.6 GHz.</li>
-                    <li>33% Lower Latency with RedCore R4 chip.</li>
+                    <li><b>Chipset</b> Snapdragon 8 Elite + RedCore R4</li>
+                    <li><b>CPU</b> Oryon™ Cores clocked at 4.6Ghz</li>
+                    <li><b>Memory</b> Up to 24GB LPDDR5T RAM</li>
+                    <li><b>Storage</b> Up to 1TB UFS 4.1 Pro</li>
                 </ul>
                 <div class="video-wrapper">
                     <video autoplay loop muted playsinline>
@@ -159,39 +184,44 @@
                 <h4 class="text-danger">Cooling</h4>
                 <h2>AquaCore System</h2>
                 <ul class="spec-list">
-                    <li>24,000 RPM Signature Turbo Fan.</li>
-                    <li>13,116 mm² Vapor Chamber (50% better dissipation).</li>
+                    <li><b>Fan</b> 24,000 RPM Waterproof Turbo Fan</li>
+                    <li><b>VC</b> 13,116 mm² 3D Vapor Chamber</li>
+                    <li><b>Liquid</b> Flowing Liquid Cooling Technology</li>
+                    <li><b>Material</b> Composite Liquid Metal 3.0</li>
                 </ul>`;
         } else if (type === "battery") {
             content.innerHTML = `
                 <h4 class="text-danger">Battery</h4>
                 <h2>7,500mAh Endurance</h2>
                 <ul class="spec-list">
-                    <li>Up to 34.1 hours of daily use.</li>
-                    <li>80W Wired and Wireless Fast Charging.</li>
+                    <li><b>Capacity</b> 7,500mAh Large Battery</li>
+                    <li><b>Charging</b> 80W Wired & Wireless Charging</li>
+                    <li><b>Ports</b> USB 3.2 Gen 2 Type-C (DP Support)</li>
+                    <li><b>Audio</b> 3.5mm Jack + Stereo Speakers</li>
                 </ul>`;
         } else if (type === "display") {
             content.innerHTML = `
                 <h4 class="text-danger">Display</h4>
                 <h2>BOE X10 AMOLED</h2>
                 <ul class="spec-list">
-                    <li>Industry-leading under-screen camera.</li>
-                    <li>2688 x 1216 high-resolution visuals.</li>
+                    <li><b>Specs</b> 6.85" FHD+ | 144Hz Refresh Rate</li>
+                    <li><b>Touch</b> 3000Hz Highest Sampling Rate</li>
+                    <li><b>Brightness</b> 1,800 Nits Max Peak</li>
+                    <li><b>Color</b> 100% DCI-P3 | Accuracy △E＜1</li>
                 </ul>`;
         } else if (type === "specs") {
             content.innerHTML = `
                 <h4 class="text-danger">Technical Specifications</h4>
                 <h2>Full Hardware Details</h2>
                 <ul class="spec-list">
-                    <li><b>Main Camera</b> 50MP Samsung GN5, OIS</li>
-                    <li><b>Ultra-Wide</b> 50MP Samsung JN1, 120°</li>
-                    <li><b>Front Camera</b> 16MP Under-Display (UDC)</li>
-                    <li><b>Audio</b> Dual Stereo, DTS:X Ultra</li>
-                    <li><b>Dimensions</b> 163.98 x 76.35 x 9.47mm | 229g</li>
+                    <li><b>Rear Cam</b> 50MP + 50MP + 2MP (OIS Support)</li>
+                    <li><b>Front Cam</b> 16MP Under-Display (AI Enhanced)</li>
+                    <li><b>Network</b> 5G SA+NSA | Wi-Fi 7 | BT 5.4</li>
+                    <li><b>Security</b> 3D Ultrasonic Fingerprint + Face ID</li>
+                    <li><b>OS</b> REDMAGIC OS 11 (Android 16.0)</li>
                 </ul>`;
         }
     }
 </script>
-
 </body>
 </html>
