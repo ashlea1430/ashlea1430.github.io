@@ -5,7 +5,7 @@
     --ml-gold: #c6a34f;
     --text-main: #e0e6ed;
     /* New ML Colors */
-    --ml-input-bg: #1b2636; /* Dark text box color from your image */
+    --ml-input-bg: #1b2636;
     --ml-border-silver: #8ba0b8;
 }
 
@@ -16,7 +16,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* --- ORIGINAL PROFILE & CARD STYLES --- */
+/* --- PROFILE --- */
 .profile-card {
     background: var(--card-bg);
     border: 1px solid rgba(198, 163, 79, 0.3);
@@ -27,56 +27,102 @@ body {
 
 .profile-frame {
     position: relative;
-    width: 180px; height: 180px;
+    width: 180px;
+    height: 180px;
     margin: 0 auto;
-    display: flex; justify-content: center; align-items: center;
-    border-radius: 50%; overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    overflow: hidden;
     background-color: var(--card-bg);
     box-shadow: 0 0 15px rgba(77, 166, 255, 0.5);
 }
 
-.profile-img {
-    width: 130px; height: 130px;
-    object-fit: cover; border-radius: 50%;
-    z-index: 2; border: 8px solid var(--card-bg);
+/* 🔥 FIXED BORDER (THIS WAS MISSING / BROKEN) */
+.frame-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    object-fit: contain;
+    pointer-events: none; /* prevents blocking clicks */
 }
 
-.profile-name { font-weight: bold; color: #fff; margin-top: 15px; }
+.profile-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+    border: 8px solid var(--card-bg);
+}
+
+.profile-name {
+    font-weight: bold;
+    color: #fff;
+    margin-top: 15px;
+}
 
 .level-box {
     background: linear-gradient(to right, #2b4b8d, #1a2c4d);
     border: 1px solid var(--ml-blue);
     color: var(--ml-blue);
-    display: inline-block; padding: 2px 15px;
-    border-radius: 4px; font-weight: bold; margin-top: 10px;
+    display: inline-block;
+    padding: 2px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
-.content-card { background: var(--card-bg); border-radius: 12px; padding: 20px; }
+/* --- CONTENT --- */
+.content-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+}
 
 .tab-btn {
-    background: #2c4169; border: none; color: #a0aec0;
-    padding: 10px 20px; font-weight: bold; flex-grow: 1;
+    background: #2c4169;
+    border: none;
+    color: #a0aec0;
+    padding: 10px 20px;
+    font-weight: bold;
+    flex-grow: 1;
     clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
     cursor: pointer;
 }
 
 .tab-btn.active {
     background: linear-gradient(to bottom, #4a6fa5, #2b4b8d);
-    color: white; border-bottom: 3px solid var(--ml-blue);
+    color: white;
+    border-bottom: 3px solid var(--ml-blue);
 }
 
 .panel { display: none; }
 .panel.active { display: block; animation: fadeIn 0.4s ease; }
 
-.inner-box { background: #13223f; padding: 25px; border-radius: 8px; }
-h1 { color: var(--ml-gold); font-size: 1.5rem; }
+.inner-box {
+    background: #13223f;
+    padding: 25px;
+    border-radius: 8px;
+}
 
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+h1 {
+    color: var(--ml-gold);
+    font-size: 1.5rem;
+}
 
-/* --- NEW MOBILE LEGENDS STYLE FOR PORTFOLIO --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
+/* --- PORTFOLIO --- */
 .ml-dialog {
-    background: #2b3a52; /* Main dialog blue-grey */
+    background: #2b3a52;
     border: 2px solid var(--ml-border-silver);
     padding: 15px;
     border-radius: 4px;
