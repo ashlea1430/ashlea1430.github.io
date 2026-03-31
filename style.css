@@ -15,7 +15,7 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* PROFILE */
+/* PROFILE SECTION FIXED */
 .profile-card {
     background: var(--card-bg);
     border: 1px solid rgba(198, 163, 79, 0.3);
@@ -26,7 +26,7 @@ body {
 
 .profile-frame {
     position: relative;
-    width: 180px; /* Adjust size to fit your card */
+    width: 180px; 
     height: 180px;
     margin: 0 auto 15px;
     display: flex;
@@ -35,12 +35,12 @@ body {
 }
 
 .profile-img {
-    width: 75%; /* Makes the photo slightly smaller than the frame */
-    height: 75%;
+    width: 135px; /* Adjust this number to make the photo fit your frame circle */
+    height: 135px;
     border-radius: 50%;
     object-fit: cover;
     position: absolute;
-    z-index: 1;
+    z-index: 1; /* Sits behind the frame */
 }
 
 .frame-border {
@@ -49,23 +49,15 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2; /* Put the frame on top of the photo */
-    pointer-events: none; /* Allows you to still click the photo if needed */
-}
-
-.profile-img {
-    width: 130px;
-    height: 130px;
-    object-fit: cover;
-    border-radius: 50%;
-    z-index: 2;
-    border: 8px solid var(--card-bg);
+    z-index: 2; /* Sits on top of the photo */
+    pointer-events: none;
 }
 
 .profile-name {
     font-weight: bold;
     color: #fff;
     margin-top: 15px;
+    text-transform: uppercase;
 }
 
 .level-box {
@@ -79,7 +71,7 @@ body {
     margin-top: 10px;
 }
 
-/* CONTENT */
+/* CONTENT SECTION */
 .content-card {
     background: var(--card-bg);
     border-radius: 12px;
@@ -122,7 +114,7 @@ h1 {
     to { opacity: 1; }
 }
 
-/* PORTFOLIO */
+/* PORTFOLIO SECTION */
 .ml-dialog {
     background: #2b3a52;
     border: 2px solid var(--ml-border-silver);
