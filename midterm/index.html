@@ -56,18 +56,18 @@
             justify-content: center; 
         }
 
-        /* UPDATED: BANNER IMAGE ADJUSTMENT ZONE */
+        /* BANNER IMAGE ADJUSTMENT ZONE */
         .banner-hero-render {
             position: absolute;
             right: 0;
             top: 0;
-            width: 50%; /* Adjust this to change how much space the hero takes */
+            width: 50%; 
             height: 100%;
             object-fit: cover;
-            object-position: 70% 13%; /* Adjust these % to move the hero left/right and up/down */
-            /* Mask creates the smooth fade into the blue background */
+            object-position: 70% 13%; 
             mask-image: linear-gradient(to left, black 75%, transparent 100%);
             -webkit-mask-image: linear-gradient(to left, black 75%, transparent 100%);
+            transition: opacity 0.3s ease-in-out;
         }
 
         /* LOWER CARDS */
@@ -90,7 +90,7 @@
         .attr-row { margin-bottom: 18px; }
         .attr-label { font-size: 0.85rem; color: #a0aec0; margin-bottom: 6px; }
         .attr-bar-bg { background: #1a3a6d; height: 14px; border-radius: 2px; }
-        .attr-bar-fill { height: 100%; background: linear-gradient(90deg, #5ce1e6, #38b2ac); border-radius: 2px; }
+        .attr-bar-fill { height: 100%; background: linear-gradient(90deg, #5ce1e6, #38b2ac); border-radius: 2px; transition: width 0.5s ease; }
 
         .btn-read-more {
             background: linear-gradient(to right, #3b82f6, #2563eb);
@@ -113,7 +113,7 @@
             <p class="text-info opacity-75 small mb-1">Crowd Control/Support</p>
             <h1 class="display-4 fw-bold mb-3" id="bannerName" style="line-height: 1;">Marcel</h1>
             <hr style="width: 200px; border-top: 2px solid white; opacity: 0.3; margin: 10px 0 20px 0;">
-            <p class="small opacity-75 mb-4" style="max-width: 380px;">
+            <p class="small opacity-75 mb-4" id="bannerQuote" style="max-width: 380px;">
                 "Hailing from House Paxley, he is an elegant, mysterious, and bizarre artist whose split soul has fused with his camera."
             </p>
             <button class="btn-read-more">Read More</button>
@@ -167,10 +167,42 @@
 </div>
 
 <script>
+    // EDIT QUOTES HERE
+    const heroQuotes = {
+        'Marcel': '"Hailing from House Paxley, he is an elegant, mysterious, and bizarre artist whose split soul has fused with his camera."',
+        'Obsidia': '"The shadow of the abyss will consume all who dare to oppose the dark sovereign."',
+        'Xavier': '"A former Arbiter of Light who defied the Monastery\'s corruption to protect the oppressed."',
+        'Zetian': '"The Celestial Empress uses the power of Yin and Yang to protect the Cadia Riverlands."'
+    };
+
+    // EDIT ATTRIBUTES HERE (Obsidia values matched to image_a8aabc.png)
+    const heroStats = {
+        'Marcel': { durability: '82%', offense: '48%', effects: '95%', difficulty: '65%' },
+        'Obsidia': { durability: '20%', offense: '85%', effects: '10%', difficulty: '35%' },
+        'Xavier': { durability: '30%', offense: '45%', effects: '90%', difficulty: '70%' },
+        'Zetian': { durability: '23%', offense: '73%', effects: '54%', difficulty: '17%' }
+    };
+
     function updateBanner(name, role, imgSrc) {
-        document.getElementById('bannerImg').src = imgSrc;
-        document.getElementById('bannerName').innerText = name;
-        document.getElementById('bannerRole').innerText = role;
+        const img = document.getElementById('bannerImg');
+        img.style.opacity = '0';
+        
+        setTimeout(() => {
+            img.src = imgSrc;
+            document.getElementById('bannerName').innerText = name;
+            document.getElementById('bannerRole').innerText = role;
+            document.getElementById('bannerQuote').innerText = heroQuotes[name] || '"Story details coming soon..."';
+            
+            // Update Attribute Bars dynamically
+            const stats = heroStats[name] || { durability: '50%', offense: '50%', effects: '50%', difficulty: '50%' };
+            const bars = document.querySelectorAll('.attr-bar-fill');
+            bars[0].style.width = stats.durability;
+            bars[1].style.width = stats.offense;
+            bars[2].style.width = stats.effects;
+            bars[3].style.width = stats.difficulty;
+            
+            img.style.opacity = '1';
+        }, 300);
     }
 </script>
 
