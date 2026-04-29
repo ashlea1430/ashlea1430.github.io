@@ -56,7 +56,6 @@
             justify-content: center; 
         }
 
-        /* BANNER IMAGE ADJUSTMENT ZONE */
         .banner-hero-render {
             position: absolute;
             right: 0;
@@ -71,11 +70,28 @@
         }
 
         /* LOWER CARDS */
-        .section-card { background: var(--card-blue); border-radius: 30px; padding: 25px; height: 350px; }
+        .section-card { 
+            background: var(--card-blue); 
+            border-radius: 30px; 
+            padding: 25px; 
+            height: 350px; 
+            display: flex;
+            flex-direction: column;
+        }
         .section-title { text-align: center; font-size: 1.1rem; margin-bottom: 20px; opacity: 0.9; }
 
-        /* FEATURED GRID */
-        .artwork-display { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        /* FEATURED GRID WITH SCROLL */
+        .artwork-display { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+        
+        .artwork-display::-webkit-scrollbar { width: 5px; }
+        .artwork-display::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 10px; }
+
         .artwork-item {
             border-radius: 8px; overflow: hidden; position: relative; aspect-ratio: 1/1;
             background: #000; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
@@ -138,6 +154,23 @@
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png">
                         <div class="hero-name-overlay">Zetian</div>
                     </div>
+
+                    <div class="artwork-item" onclick="updateBanner('Suyou', 'Fighter/Assassin', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png">
+                        <div class="hero-name-overlay">Suyou</div>
+                    </div>
+                    <div class="artwork-item" onclick="updateBanner('Lukas', 'Fighter', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png">
+                        <div class="hero-name-overlay">Lukas</div>
+                    </div>
+                    <div class="artwork-item" onclick="updateBanner('Kalea', 'Support/Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_64/100_9c5f2904026ba88b7aba8c9b2722f4ad.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_64/100_9c5f2904026ba88b7aba8c9b2722f4ad.png">
+                        <div class="hero-name-overlay">Kalea</div>
+                    </div>
+                    <div class="artwork-item" onclick="updateBanner('Sora', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png">
+                        <div class="hero-name-overlay">Sora</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -167,20 +200,26 @@
 </div>
 
 <script>
-    // EDIT QUOTES HERE
     const heroQuotes = {
         'Marcel': '"Hailing from House Paxley, he is an elegant, mysterious, and bizarre artist whose split soul has fused with his camera."',
         'Obsidia': '"The shadow of the abyss will consume all who dare to oppose the dark sovereign."',
         'Xavier': '"A former Arbiter of Light who defied the Monastery\'s corruption to protect the oppressed."',
-        'Zetian': '"The Celestial Empress uses the power of Yin and Yang to protect the Cadia Riverlands."'
+        'Zetian': '"The Celestial Empress uses the power of Yin and Yang to protect the Cadia Riverlands."',
+        'Suyou': '"The masked exorcist who balances the strength of a mortal and the grace of an immortal."',
+        'Lukas': '"A young fighter seeking his path through the trials of the arena."',
+        'Kalea': '"Harvester of the sea\'s secrets and protector of the hidden tides."',
+        'Sora': '"The wind-rider who strikes with the precision of a hawk from the clouds."'
     };
 
-    // EDIT ATTRIBUTES HERE (Obsidia values matched to image_a8aabc.png)
     const heroStats = {
-        'Marcel': { durability: '82%', offense: '48%', effects: '95%', difficulty: '65%' },
+        'Marcel': { durability: '82%', offense: '48%', effects: '190%', difficulty: '65%' },
         'Obsidia': { durability: '20%', offense: '85%', effects: '10%', difficulty: '35%' },
         'Xavier': { durability: '30%', offense: '45%', effects: '90%', difficulty: '70%' },
-        'Zetian': { durability: '23%', offense: '73%', effects: '54%', difficulty: '17%' }
+        'Zetian': { durability: '23%', offense: '73%', effects: '54%', difficulty: '17%' },
+        'Suyou': { durability: '65%', offense: '80%', effects: '40%', difficulty: '75%' },
+        'Lukas': { durability: '75%', offense: '70%', effects: '30%', difficulty: '45%' },
+        'Kalea': { durability: '58%', offense: '16%', effects: '90%', difficulty: '55%' },
+        'Sora': { durability: '55%', offense: '65%', effects: '47%', difficulty: '51%' }
     };
 
     function updateBanner(name, role, imgSrc) {
@@ -193,7 +232,6 @@
             document.getElementById('bannerRole').innerText = role;
             document.getElementById('bannerQuote').innerText = heroQuotes[name] || '"Story details coming soon..."';
             
-            // Update Attribute Bars dynamically
             const stats = heroStats[name] || { durability: '50%', offense: '50%', effects: '50%', difficulty: '50%' };
             const bars = document.querySelectorAll('.attr-bar-fill');
             bars[0].style.width = stats.durability;
