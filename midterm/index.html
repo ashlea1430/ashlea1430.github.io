@@ -86,7 +86,7 @@
             grid-template-columns: repeat(3, 1fr); 
             gap: 10px; 
             overflow-y: auto;
-            padding-right: 5px;
+            padding: 5px; 
         }
         
         .artwork-display::-webkit-scrollbar { width: 5px; }
@@ -94,13 +94,36 @@
 
         .artwork-item {
             border-radius: 8px; overflow: hidden; position: relative; aspect-ratio: 1/1;
-            background: #000; border: 1px solid rgba(255,255,255,0.1); cursor: pointer;
+            background: #000; border: 2px solid transparent; cursor: pointer;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
         }
+        
+        .artwork-item.selected {
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
         .artwork-item img { width: 100%; height: 100%; object-fit: cover; }
         .hero-name-overlay {
             position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.7);
             font-size: 0.65rem; padding: 2px 0; text-align: center;
         }
+
+        /* MODAL STYLING */
+        .modal-content {
+            background-color: var(--card-blue);
+            color: white;
+            border: 1px solid var(--accent-cyan);
+            border-radius: 20px;
+        }
+        .modal-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .skill-box {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .skill-title { color: var(--accent-cyan); font-weight: bold; font-size: 0.9rem; }
 
         /* ATTRIBUTES BAR */
         .attr-row { margin-bottom: 18px; }
@@ -125,16 +148,28 @@
 
     <div class="banner">
         <div class="banner-content">
-            <p class="text-info mb-0" id="bannerRole">Support</p>
-            <p class="text-info opacity-75 small mb-1">Crowd Control/Support</p>
-            <h1 class="display-4 fw-bold mb-3" id="bannerName" style="line-height: 1;">Marcel</h1>
+            <p class="text-info mb-0" id="bannerRole">Role</p>
+            <h1 class="display-4 fw-bold mb-3" id="bannerName" style="line-height: 1;">Hero</h1>
             <hr style="width: 200px; border-top: 2px solid white; opacity: 0.3; margin: 10px 0 20px 0;">
             <p class="small opacity-75 mb-4" id="bannerQuote" style="max-width: 380px;">
-                "Hailing from House Paxley, he is an elegant, mysterious, and bizarre artist whose split soul has fused with his camera."
+                "Loading hero data..."
             </p>
-            <button class="btn-read-more">Read More</button>
+            <button class="btn-read-more" onclick="showSkills()">Read More</button>
         </div>
-        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_dd980a8816698f1503cdb76201d17dd0.png" id="bannerImg" class="banner-hero-render">
+        <img src="" id="bannerImg" class="banner-hero-render">
+    </div>
+
+    <div class="modal fade" id="skillsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalHeroName">Hero Skills</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalHeroSkills">
+                    </div>
+            </div>
+        </div>
     </div>
 
     <div class="row g-4">
@@ -142,32 +177,35 @@
             <div class="section-card">
                 <h6 class="section-title">Featured Heroes</h6>
                 <div class="artwork-display">
-                    <div class="artwork-item" onclick="updateBanner('Obsidia', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png')">
-                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png">
-                        <div class="hero-name-overlay">Obsidia</div>
+                    <div class="artwork-item" id="item-Marcel" onclick="updateBanner('Marcel', 'Support', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_dd980a8816698f1503cdb76201d17dd0.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_dd980a8816698f1503cdb76201d17dd0.png">
+                        <div class="hero-name-overlay">Marcel</div>
                     </div>
-                    <div class="artwork-item" onclick="updateBanner('Xavier', 'Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18_2/100_50a5b0dd98ed2378d9f618e5ef0d47b2.png')">
+                    <div class="artwork-item" id="item-Xavier" onclick="updateBanner('Xavier', 'Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18_2/100_50a5b0dd98ed2378d9f618e5ef0d47b2.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18_2/100_50a5b0dd98ed2378d9f618e5ef0d47b2.png">
                         <div class="hero-name-overlay">Xavier</div>
                     </div>
-                    <div class="artwork-item" onclick="updateBanner('Zetian', 'Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png')">
+                    <div class="artwork-item" id="item-Zetian" onclick="updateBanner('Zetian', 'Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png">
                         <div class="hero-name-overlay">Zetian</div>
                     </div>
-
-                    <div class="artwork-item" onclick="updateBanner('Suyou', 'Fighter/Assassin', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png')">
+                    <div class="artwork-item" id="item-Suyou" onclick="updateBanner('Suyou', 'Fighter/Assassin', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png">
                         <div class="hero-name-overlay">Suyou</div>
                     </div>
-                    <div class="artwork-item" onclick="updateBanner('Lukas', 'Fighter', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png')">
+                    <div class="artwork-item" id="item-Lukas" onclick="updateBanner('Lukas', 'Fighter', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png">
                         <div class="hero-name-overlay">Lukas</div>
                     </div>
-                    <div class="artwork-item" onclick="updateBanner('Kalea', 'Support/Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_64/100_9c5f2904026ba88b7aba8c9b2722f4ad.png')">
+                    <div class="artwork-item" id="item-Kalea" onclick="updateBanner('Kalea', 'Support/Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_64/100_9c5f2904026ba88b7aba8c9b2722f4ad.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_64/100_9c5f2904026ba88b7aba8c9b2722f4ad.png">
                         <div class="hero-name-overlay">Kalea</div>
                     </div>
-                    <div class="artwork-item" onclick="updateBanner('Sora', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png')">
+                    <div class="artwork-item" id="item-Obsidia" onclick="updateBanner('Obsidia', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png">
+                        <div class="hero-name-overlay">Obsidia</div>
+                    </div>
+                    <div class="artwork-item" id="item-Sora" onclick="updateBanner('Sora', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png">
                         <div class="hero-name-overlay">Sora</div>
                     </div>
@@ -180,25 +218,26 @@
                 <h6 class="section-title">Attributes</h6>
                 <div class="attr-row">
                     <div class="attr-label">Durability</div>
-                    <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 82%;"></div></div>
+                    <div class="attr-bar-bg"><div class="attr-bar-fill" id="bar-durability" style="width: 0%;"></div></div>
                 </div>
                 <div class="attr-row">
                     <div class="attr-label">Offense</div>
-                    <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 48%;"></div></div>
+                    <div class="attr-bar-bg"><div class="attr-bar-fill" id="bar-offense" style="width: 0%;"></div></div>
                 </div>
                 <div class="attr-row">
                     <div class="attr-label">Ability Effects</div>
-                    <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 95%;"></div></div>
+                    <div class="attr-bar-bg"><div class="attr-bar-fill" id="bar-effects" style="width: 0%;"></div></div>
                 </div>
                 <div class="attr-row">
                     <div class="attr-label">Difficulty</div>
-                    <div class="attr-bar-bg"><div class="attr-bar-fill" style="width: 65%;"></div></div>
+                    <div class="attr-bar-bg"><div class="attr-bar-fill" id="bar-difficulty" style="width: 0%;"></div></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     const heroQuotes = {
         'Marcel': '"Hailing from House Paxley, he is an elegant, mysterious, and bizarre artist whose split soul has fused with his camera."',
@@ -212,19 +251,54 @@
     };
 
     const heroStats = {
-        'Marcel': { durability: '82%', offense: '48%', effects: '190%', difficulty: '65%' },
+        'Marcel': { durability: '82%', offense: '48%', effects: '95%', difficulty: '65%' },
         'Obsidia': { durability: '20%', offense: '85%', effects: '10%', difficulty: '35%' },
-        'Xavier': { durability: '30%', offense: '45%', effects: '90%', difficulty: '70%' },
-        'Zetian': { durability: '23%', offense: '73%', effects: '54%', difficulty: '17%' },
+        'Xavier': { durability: '35%', offense: '85%', effects: '90%', difficulty: '70%' },
+        'Zetian': { durability: '45%', offense: '75%', effects: '95%', difficulty: '60%' },
         'Suyou': { durability: '65%', offense: '80%', effects: '40%', difficulty: '75%' },
         'Lukas': { durability: '75%', offense: '70%', effects: '30%', difficulty: '45%' },
         'Kalea': { durability: '58%', offense: '16%', effects: '90%', difficulty: '55%' },
         'Sora': { durability: '55%', offense: '65%', effects: '47%', difficulty: '51%' }
     };
 
+    const heroSkills = {
+        'Marcel': {
+            passive: 'Flashlight: Blinds enemies in a cone for 1s.',
+            s1: 'Snapshot: Captures an image, slowing enemies hit.',
+            s2: 'Soul Fusion: Switches between artist and camera forms.',
+            ult: 'Masterpiece: A massive burst of light that stuns all enemies.'
+        },
+        'Obsidia': {
+            passive: 'Abyssal Corruption: Basic attacks deal extra Magic Damage.',
+            s1: 'Dark Void: Creates a zone that reduces enemy defense.',
+            s2: 'Shadow Step: Blinks forward and leaves a trail of slow.',
+            ult: 'Sovereign Shadow: Summons an abyss lord to fight alongside.'
+        },
+        'Xavier': {
+            passive: 'Transcendence: Skills gain more power as they hit enemies.',
+            s1: 'Infinite Extension: Shoots a beam that extends on hit.',
+            s2: 'Mystic Field: Creates a barrier that speeds up allies.',
+            ult: 'Dawning Light: Global laser beam across the map.'
+        },
+        'Zetian': {
+            passive: 'Empress Favor: Gains a shield when skills hit.',
+            s1: 'Yin Strike: Slows enemies and marks them.',
+            s2: 'Yang Blast: Detonates marks for burst damage.',
+            ult: 'Celestial Judgement: Large AOE knockup and damage.'
+        }
+        // ... Add more as needed
+    };
+
+    let currentHero = 'Marcel';
+
     function updateBanner(name, role, imgSrc) {
+        currentHero = name;
         const img = document.getElementById('bannerImg');
         img.style.opacity = '0';
+
+        document.querySelectorAll('.artwork-item').forEach(item => item.classList.remove('selected'));
+        const selectedItem = document.getElementById('item-' + name);
+        if(selectedItem) selectedItem.classList.add('selected');
         
         setTimeout(() => {
             img.src = imgSrc;
@@ -233,15 +307,34 @@
             document.getElementById('bannerQuote').innerText = heroQuotes[name] || '"Story details coming soon..."';
             
             const stats = heroStats[name] || { durability: '50%', offense: '50%', effects: '50%', difficulty: '50%' };
-            const bars = document.querySelectorAll('.attr-bar-fill');
-            bars[0].style.width = stats.durability;
-            bars[1].style.width = stats.offense;
-            bars[2].style.width = stats.effects;
-            bars[3].style.width = stats.difficulty;
+            document.getElementById('bar-durability').style.width = stats.durability;
+            document.getElementById('bar-offense').style.width = stats.offense;
+            document.getElementById('bar-effects').style.width = stats.effects;
+            document.getElementById('bar-difficulty').style.width = stats.difficulty;
             
             img.style.opacity = '1';
         }, 300);
     }
+
+    function showSkills() {
+        const skills = heroSkills[currentHero] || { passive: 'N/A', s1: 'N/A', s2: 'N/A', ult: 'N/A' };
+        document.getElementById('modalHeroName').innerText = currentHero + " - Skills Overview";
+        
+        const skillHtml = `
+            <div class="skill-box"><span class="skill-title">PASSIVE:</span><br>${skills.passive}</div>
+            <div class="skill-box"><span class="skill-title">SKILL 1:</span><br>${skills.s1}</div>
+            <div class="skill-box"><span class="skill-title">SKILL 2:</span><br>${skills.s2}</div>
+            <div class="skill-box"><span class="skill-title">ULTIMATE:</span><br>${skills.ult}</div>
+        `;
+        
+        document.getElementById('modalHeroSkills').innerHTML = skillHtml;
+        const myModal = new bootstrap.Modal(document.getElementById('skillsModal'));
+        myModal.show();
+    }
+
+    window.onload = () => {
+        updateBanner('Marcel', 'Support', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_dd980a8816698f1503cdb76201d17dd0.png');
+    };
 </script>
 
 </body>
