@@ -1,0 +1,313 @@
+:root {
+    --ml-bg: #041021;
+    --card-blue: #0b1a33;
+    --banner-blue: #133a75;
+    --accent-cyan: #5ce1e6;
+    --modal-bg: #08162b;
+}
+
+body {
+    background-color: var(--ml-bg);
+    background-image: radial-gradient(circle at 50% 0%, #0d325e 0%, #041021 80%);
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 30px;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.dashboard-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.nav-tabs-custom {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.nav-tab-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 35px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-tab-item.active {
+    background: #132e5e;
+    border-bottom: 3px solid white;
+}
+
+.banner {
+    background: var(--banner-blue);
+    border-radius: 35px;
+    height: 380px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.banner-content {
+    flex: 1;
+    padding: 50px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.banner-hero-render {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% 13%;
+    mask-image: linear-gradient(to left, black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to left, black 75%, transparent 100%);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.story-section {
+    display: none;
+    background: rgba(11, 26, 51, 0.95);
+    border-radius: 30px;
+    padding: 50px;
+    min-height: 450px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.story-header {
+    color: var(--accent-cyan);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.story-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #ced4da;
+    margin-bottom: 30px;
+    max-width: 85%;
+}
+
+.character-info-inline {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.info-item span:first-child {
+    color: var(--accent-cyan);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.section-card {
+    background: var(--card-blue);
+    border-radius: 30px;
+    padding: 25px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.artwork-display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.artwork-display::-webkit-scrollbar {
+    width: 5px;
+}
+
+.artwork-display::-webkit-scrollbar-thumb {
+    background: var(--accent-cyan);
+    border-radius: 10px;
+}
+
+.artwork-item {
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 1/1;
+    background: #000;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.artwork-item.selected {
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.artwork-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-name-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 0.65rem;
+    padding: 2px 0;
+    text-align: center;
+}
+
+.skill-entry {
+    margin-bottom: 15px;
+}
+
+.skill-type {
+    color: var(--accent-cyan);
+    font-weight: bold;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.skill-desc {
+    font-size: 0.85rem;
+    color: #adb5bd;
+    line-height: 1.3;
+}
+
+.attr-row {
+    margin-bottom: 18px;
+}
+
+.attr-label {
+    font-size: 0.85rem;
+    color: #a0aec0;
+    margin-bottom: 6px;
+}
+
+.attr-bar-bg {
+    background: #1a3a6d;
+    height: 14px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.attr-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #5ce1e6, #38b2ac);
+    transition: width 0.5s ease;
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    color: white;
+    border: 2px solid #133a75;
+    border-radius: 20px;
+}
+
+.wiki-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.wiki-header {
+    color: var(--accent-cyan);
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    border-bottom: 1px solid #133a75;
+}
+
+.wiki-table td {
+    padding: 8px 0;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wiki-label {
+    color: var(--accent-cyan);
+    width: 40%;
+    font-weight: 500;
+}
+
+.btn-read-more {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+    border: none;
+    color: white;
+    padding: 8px 35px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    width: fit-content;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .banner {
+        height: auto;
+        flex-direction: column;
+        border-radius: 20px;
+    }
+
+    .banner-content {
+        padding: 30px;
+        order: 2;
+        text-align: center;
+        align-items: center;
+    }
+
+    .banner-hero-render {
+        position: relative;
+        width: 100%;
+        height: 450px;
+        order: 1;
+        mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    }
+
+    #bannerQuote {
+        max-width: 100%;
+    }
+
+    .nav-tab-item {
+        padding: 10px 15px;
+        font-size: 0.75rem;
+        flex: 1;
+        text-align: center;
+    }
+
+    .section-card {
+        height: auto;
+        margin-bottom: 20px;
+    }
+}
