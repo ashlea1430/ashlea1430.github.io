@@ -11,6 +11,7 @@
             --card-blue: #0b1a33;
             --banner-blue: #133a75;
             --accent-cyan: #5ce1e6;
+            --modal-bg: #08162b;
         }
 
         body {
@@ -23,7 +24,6 @@
 
         .dashboard-container { max-width: 1000px; margin: auto; }
 
-        /* NAVBAR TABS */
         .nav-tabs-custom { display: flex; gap: 10px; margin-bottom: 25px; }
         .nav-tab-item {
             background: rgba(255,255,255,0.05);
@@ -36,7 +36,6 @@
         }
         .nav-tab-item.active { background: #132e5e; border-bottom: 3px solid white; }
 
-        /* BANNER */
         .banner {
             background: var(--banner-blue);
             border-radius: 35px;
@@ -69,18 +68,17 @@
             transition: opacity 0.3s ease-in-out;
         }
 
-        /* LOWER CARDS */
         .section-card { 
             background: var(--card-blue); 
             border-radius: 30px; 
             padding: 25px; 
-            height: 350px; 
+            height: 400px; 
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         .section-title { text-align: center; font-size: 1.1rem; margin-bottom: 20px; opacity: 0.9; }
 
-        /* FEATURED GRID WITH SCROLL */
         .artwork-display { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -88,7 +86,6 @@
             overflow-y: auto;
             padding: 5px; 
         }
-        
         .artwork-display::-webkit-scrollbar { width: 5px; }
         .artwork-display::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 10px; }
 
@@ -97,39 +94,29 @@
             background: #000; border: 2px solid transparent; cursor: pointer;
             transition: border 0.2s ease, box-shadow 0.2s ease;
         }
-        
-        .artwork-item.selected {
-            border: 2px solid white;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
+        .artwork-item.selected { border: 2px solid white; box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); }
         .artwork-item img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-name-overlay {
-            position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.7);
-            font-size: 0.65rem; padding: 2px 0; text-align: center;
-        }
+        .hero-name-overlay { position: absolute; bottom: 0; width: 100%; background: rgba(0,0,0,0.7); font-size: 0.65rem; padding: 2px 0; text-align: center; }
 
-        /* MODAL STYLING */
-        .modal-content {
-            background-color: var(--card-blue);
-            color: white;
-            border: 1px solid var(--accent-cyan);
-            border-radius: 20px;
-        }
-        .modal-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .skill-box {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .skill-title { color: var(--accent-cyan); font-weight: bold; font-size: 0.9rem; }
+        .skill-entry { margin-bottom: 15px; }
+        .skill-type { color: var(--accent-cyan); font-weight: bold; font-size: 0.75rem; text-transform: uppercase; display: block; margin-bottom: 2px; }
+        .skill-desc { font-size: 0.85rem; color: #adb5bd; line-height: 1.3; }
 
-        /* ATTRIBUTES BAR */
         .attr-row { margin-bottom: 18px; }
         .attr-label { font-size: 0.85rem; color: #a0aec0; margin-bottom: 6px; }
-        .attr-bar-bg { background: #1a3a6d; height: 14px; border-radius: 2px; }
-        .attr-bar-fill { height: 100%; background: linear-gradient(90deg, #5ce1e6, #38b2ac); border-radius: 2px; transition: width 0.5s ease; }
+        .attr-bar-bg { background: #1a3a6d; height: 14px; border-radius: 10px; overflow: hidden; }
+        .attr-bar-fill { height: 100%; background: linear-gradient(90deg, #5ce1e6, #38b2ac); transition: width 0.5s ease; }
+
+        .modal-content {
+            background-color: var(--modal-bg);
+            color: white;
+            border: 2px solid #133a75;
+            border-radius: 20px;
+        }
+        .wiki-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .wiki-header { color: var(--accent-cyan); font-weight: bold; padding-bottom: 10px; text-transform: uppercase; font-size: 1rem; border-bottom: 1px solid #133a75; }
+        .wiki-table td { padding: 8px 0; font-size: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .wiki-label { color: var(--accent-cyan); width: 40%; font-weight: 500; }
 
         .btn-read-more {
             background: linear-gradient(to right, #3b82f6, #2563eb);
@@ -151,23 +138,35 @@
             <p class="text-info mb-0" id="bannerRole">Role</p>
             <h1 class="display-4 fw-bold mb-3" id="bannerName" style="line-height: 1;">Hero</h1>
             <hr style="width: 200px; border-top: 2px solid white; opacity: 0.3; margin: 10px 0 20px 0;">
-            <p class="small opacity-75 mb-4" id="bannerQuote" style="max-width: 380px;">
-                "Loading hero data..."
-            </p>
-            <button class="btn-read-more" onclick="showSkills()">Read More</button>
+            <p class="small opacity-75 mb-4" id="bannerQuote" style="max-width: 380px;">"Loading..."</p>
+            <button class="btn-read-more" data-bs-toggle="modal" data-bs-target="#infoModal">Read More</button>
         </div>
         <img src="" id="bannerImg" class="banner-hero-render">
     </div>
 
-    <div class="modal fade" id="skillsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalHeroName">Hero Skills</h5>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="modalHeroName">Hero Profile</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="modalHeroSkills">
-                    </div>
+                <div class="modal-body">
+                    <table class="wiki-table">
+                        <tr><th colspan="2" class="wiki-header">In-story information</th></tr>
+                        <tr><td class="wiki-label">Full Name</td><td id="info-fullname">-</td></tr>
+                        <tr><td class="wiki-label">Species</td><td id="info-species">-</td></tr>
+                        <tr><td class="wiki-label">Alias</td><td id="info-alias">-</td></tr>
+                        <tr><td class="wiki-label">Internal Name</td><td id="info-internal">-</td></tr>
+                        <tr><td class="wiki-label">Birthday</td><td id="info-birthday">-</td></tr>
+                        <tr><td class="wiki-label">Origin</td><td id="info-origin">-</td></tr>
+                        <tr><td class="wiki-label">Age</td><td id="info-age">-</td></tr>
+                        <tr><td class="wiki-label">Gender</td><td id="info-gender">-</td></tr>
+                        <tr><td class="wiki-label">Occupation</td><td id="info-occupation">-</td></tr>
+                        <tr><td class="wiki-label">Affiliation</td><td id="info-affiliation">-</td></tr>
+                        <tr><td class="wiki-label">Abilities</td><td id="info-abilities">-</td></tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -185,13 +184,13 @@
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18_2/100_50a5b0dd98ed2378d9f618e5ef0d47b2.png">
                         <div class="hero-name-overlay">Xavier</div>
                     </div>
+                    <div class="artwork-item" id="item-Obsidia" onclick="updateBanner('Obsidia', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png">
+                        <div class="hero-name-overlay">Obsidia</div>
+                    </div>
                     <div class="artwork-item" id="item-Zetian" onclick="updateBanner('Zetian', 'Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png">
                         <div class="hero-name-overlay">Zetian</div>
-                    </div>
-                    <div class="artwork-item" id="item-Suyou" onclick="updateBanner('Suyou', 'Fighter/Assassin', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png')">
-                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png">
-                        <div class="hero-name-overlay">Suyou</div>
                     </div>
                     <div class="artwork-item" id="item-Lukas" onclick="updateBanner('Lukas', 'Fighter', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_454c13b2de7b7d1a20fbf553c620510d.png">
@@ -201,9 +200,9 @@
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_64/100_9c5f2904026ba88b7aba8c9b2722f4ad.png">
                         <div class="hero-name-overlay">Kalea</div>
                     </div>
-                    <div class="artwork-item" id="item-Obsidia" onclick="updateBanner('Obsidia', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png')">
-                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_18/100_92bcc9ad2c4c8165a888d34f086a4d28.png">
-                        <div class="hero-name-overlay">Obsidia</div>
+                    <div class="artwork-item" id="item-Suyou" onclick="updateBanner('Suyou', 'Fighter/Assassin', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png')">
+                        <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_20/100_422ffc7849e8bb01629d2423054ed410.png">
+                        <div class="hero-name-overlay">Suyou</div>
                     </div>
                     <div class="artwork-item" id="item-Sora" onclick="updateBanner('Sora', 'Marksman', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png')">
                         <img src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png">
@@ -213,7 +212,31 @@
             </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-4">
+            <div class="section-card overflow-auto">
+                <h6 class="section-title">Hero Skills</h6>
+                <div id="skillContent">
+                    <div class="skill-entry">
+                        <span class="skill-type">Passive</span>
+                        <div class="skill-desc" id="box-passive">-</div>
+                    </div>
+                    <div class="skill-entry">
+                        <span class="skill-type">Skill 1</span>
+                        <div class="skill-desc" id="box-s1">-</div>
+                    </div>
+                    <div class="skill-entry">
+                        <span class="skill-type">Skill 2</span>
+                        <div class="skill-desc" id="box-s2">-</div>
+                    </div>
+                    <div class="skill-entry">
+                        <span class="skill-type text-warning">Ultimate</span>
+                        <div class="skill-desc" id="box-ult">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
             <div class="section-card">
                 <h6 class="section-title">Attributes</h6>
                 <div class="attr-row">
@@ -239,26 +262,146 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    const heroQuotes = {
-        'Marcel': '"Hailing from House Paxley, he is an elegant, mysterious, and bizarre artist whose split soul has fused with his camera."',
-        'Obsidia': '"The shadow of the abyss will consume all who dare to oppose the dark sovereign."',
-        'Xavier': '"A former Arbiter of Light who defied the Monastery\'s corruption to protect the oppressed."',
-        'Zetian': '"The Celestial Empress uses the power of Yin and Yang to protect the Cadia Riverlands."',
-        'Suyou': '"The masked exorcist who balances the strength of a mortal and the grace of an immortal."',
-        'Lukas': '"A young fighter seeking his path through the trials of the arena."',
-        'Kalea': '"Harvester of the sea\'s secrets and protector of the hidden tides."',
-        'Sora': '"The wind-rider who strikes with the precision of a hawk from the clouds."'
-    };
-
     const heroStats = {
-        'Marcel': { durability: '82%', offense: '48%', effects: '95%', difficulty: '65%' },
-        'Obsidia': { durability: '20%', offense: '85%', effects: '10%', difficulty: '35%' },
-        'Xavier': { durability: '35%', offense: '85%', effects: '90%', difficulty: '70%' },
-        'Zetian': { durability: '45%', offense: '75%', effects: '95%', difficulty: '60%' },
-        'Suyou': { durability: '65%', offense: '80%', effects: '40%', difficulty: '75%' },
-        'Lukas': { durability: '75%', offense: '70%', effects: '30%', difficulty: '45%' },
-        'Kalea': { durability: '58%', offense: '16%', effects: '90%', difficulty: '55%' },
-        'Sora': { durability: '55%', offense: '65%', effects: '47%', difficulty: '51%' }
+        'Marcel': { 
+            durability: '70%', offense: '48%', effects: '100%', difficulty: '30%', 
+            quote: '"Alas, to be feared is better than to be loved. This is the Paxley way."',
+            lore: { 
+                fullname: "Marcel Paxley", 
+                alias: "Soul Photographer", 
+                internal: "marcel", 
+                birthday: "June 9 (Gemini)", 
+                origin: "Castle Aberleen, Moniyan Empire", 
+                age: "21", 
+                gender: "Male", 
+                species: "Human",
+                occupation: "Photographer", 
+                affiliation: "House Paxley", 
+                abilities: "Dark Magic" 
+            } 
+        },
+        'Xavier': { 
+            durability: '35%', 
+            offense: '75%', 
+            effects: '70%', 
+            difficulty: '45%', 
+            quote: '"Higher-ups? [scoffs] Just a bunch of hypocrites."',
+            lore: { 
+                fullname: "Xavier", 
+                alias: "\n • Defier of Light \n • Arbiter of Light", 
+                internal: "xavier", 
+                birthday: "October 12 (Libra)", 
+                origin: "Lumina City, Moniyan Empire", 
+                age: "28",
+                gender: "Male", 
+                species: "Human",
+                occupation: "\n • Former member of the Knights of Light \n • Former Arbiter of Light", 
+                affiliation: "\n • Forsaken Light \n • Monastery of Light", 
+                abilities: "Mystic magic \n • Fires mystic bullets \n • Summons mystic barriers \n • Unleashes powerful beam"
+            } 
+        },
+        'Obsidia': { 
+            durability: '20%', offense: '85%', effects: '10%', difficulty: '35%', 
+            quote: '"The shadow of the abyss will consume all who oppose the dark sovereign."',
+            lore: { 
+                fullname: "Obsidia", 
+                alias: "Sovereign of Dark's End", 
+                internal: "shenyuan", 
+                birthday: "November 13 (Scorpio)", 
+                origin: "Night Palace, Abyss", 
+                age: "Unknown", 
+                gender: "Female",
+                species: "Dark Elf", 
+                occupation: "N/A", 
+                affiliation: "The Abyss", 
+                abilities: "Return to Bone \n • Abyssal Bone Needle \n • Phantom Shadowmeld \n • Hunt of Bone" 
+            } 
+        },
+        'Zetian': { 
+            durability: '45%', offense: '75%', effects: '95%', difficulty: '60%', 
+            quote: '"The Celestial Empress uses the power of Yin and Yang to protect the Riverlands."',
+            lore: { 
+                fullname: "Wu Zetian", 
+                alias: "Celestial Empress", 
+                internal: "wuzetian", 
+                birthday: "February 17", 
+                origin: "Cadia Riverlands", 
+                age: "Adult",
+                gender: "Female", 
+                species: "Human",
+                occupation: "Empress", 
+                affiliation: "Cadia Riverlands", 
+                abilities: "Imperial Phoenix Power" 
+            } 
+        },
+        'Lukas': { 
+            durability: '80%', offense: '70%', effects: '40%', difficulty: '50%', 
+            quote: '"A young fighter seeking his path through the trials of the arena."',
+            lore: { 
+                fullname: "Lukas", 
+                alias: "Beast of Light", 
+                internal: "Lukas", 
+                birthday: "June 1", 
+                origin: "Moniyan Empire", 
+                age: "19",
+                gender: "Male", 
+                species: "Human / Lycan",
+                occupation: "Gladiator", 
+                affiliation: "Moniyan Empire", 
+                abilities: "Beast Transformation" 
+            } 
+        },
+        'Kalea': { 
+            durability: '40%', offense: '30%', effects: '90%', difficulty: '40%', 
+            quote: '"Harvester of the sea\'s secrets and protector of the hidden tides."',
+            lore: { 
+                fullname: "Kalea", 
+                alias: "Surging Wave", 
+                internal: "Baolishaonv", 
+                birthday: "December 2", 
+                origin: "Vonetis Sea", 
+                age: "16",
+                gender: "Female", 
+                species: "Sea-dweller",
+                occupation: "Guardian", 
+                affiliation: "Vonetis Sea", 
+                abilities: "Child of the Sea" 
+            } 
+        },
+        'Suyou': { 
+            durability: '65%', offense: '90%', effects: '60%', difficulty: '75%', 
+            quote: '"The masked exorcist who balances mortal strength and immortal grace."',
+            lore: { 
+                fullname: "Suyou", 
+                alias: "Mask of the Immortal", 
+                internal: "kaijiacike", 
+                birthday: "October 23", 
+                origin: "Zhu'an", 
+                age: "24",
+                gender: "Male", 
+                species: "Human",
+                occupation: "Exorcist", 
+                affiliation: "Cadia Riverlands", 
+                abilities: "Ritual Blade" 
+            } 
+        },
+        'Sora': { 
+            durability: '65%', offense: '90%', effects: '60%', difficulty: '75%', 
+            quote: '"Walking the line between the sky and the blade."',
+            lore: { 
+                fullname: "Sora", 
+                alias: "Sky Blade", 
+                internal: "sora", 
+                birthday: "October 23", 
+                origin: "Zhu'an", 
+                age: "22",
+                gender: "Male", 
+                species: "Human",
+                occupation: "Exorcist", 
+                affiliation: "Cadia Riverlands", 
+                abilities: "Ritual Blade" 
+            } 
+        }
     };
 
     const heroSkills = {
@@ -268,31 +411,51 @@
             s2: 'Soul Fusion: Switches between artist and camera forms.',
             ult: 'Masterpiece: A massive burst of light that stuns all enemies.'
         },
-        'Obsidia': {
-            passive: 'Abyssal Corruption: Basic attacks deal extra Magic Damage.',
-            s1: 'Dark Void: Creates a zone that reduces enemy defense.',
-            s2: 'Shadow Step: Blinks forward and leaves a trail of slow.',
-            ult: 'Sovereign Shadow: Summons an abyss lord to fight alongside.'
-        },
         'Xavier': {
             passive: 'Transcendence: Skills gain more power as they hit enemies.',
             s1: 'Infinite Extension: Shoots a beam that extends on hit.',
             s2: 'Mystic Field: Creates a barrier that speeds up allies.',
             ult: 'Dawning Light: Global laser beam across the map.'
         },
+        'Obsidia': {
+            passive: 'Abyssal Corruption: Basic attacks deal extra Magic Damage.',
+            s1: 'Dark Void: Creates a zone that reduces enemy defense.',
+            s2: 'Shadow Step: Blinks forward.',
+            ult: 'Sovereign Shadow: Summons an abyss lord.'
+        },
         'Zetian': {
-            passive: 'Empress Favor: Gains a shield when skills hit.',
-            s1: 'Yin Strike: Slows enemies and marks them.',
-            s2: 'Yang Blast: Detonates marks for burst damage.',
-            ult: 'Celestial Judgement: Large AOE knockup and damage.'
+            passive: 'Celestial Favor: Increases magic power over time.',
+            s1: 'Yin Yang Burst: Explosive magic in a targeted area.',
+            s2: 'Empress Guard: Knocks back enemies with a pulse.',
+            ult: 'Imperial Glory: Calls down massive pillars of fire.'
+        },
+        'Lukas': {
+            passive: 'Primal Mark: Basic attacks mark targets for bonus damage.',
+            s1: 'Tonfa Strike: Rapid strikes with high impact.',
+            s2: 'Beast Leap: Jumps toward a target location.',
+            ult: 'Sacred Awakening: Transforms into a massive beast.'
+        },
+        'Kalea': {
+            passive: 'Tide Caller: Skills apply a slow effect.',
+            s1: 'Water Bubble: Traps enemies in a floating prison.',
+            s2: 'Serpent Dance: Summons waves to heal allies.',
+            ult: 'Great Serpent Call: Massive AOE stun and damage.'
+        },
+        'Suyou': {
+            passive: 'Immortal Mask: Gains damage reduction based on missing HP.',
+            s1: 'Blade Dash: Quick strike through enemies.',
+            s2: 'Exorcist Seal: Puts a mark on enemies that explodes.',
+            ult: 'Spirit Slash: A wide arc strike with the Ritual Blade.'
+        },
+        'Sora': {
+            passive: 'Airborne: Sora takes reduced damage while moving.',
+            s1: 'Blade Dash: Quick strike through enemies.',
+            s2: 'Exorcist Seal: Puts a mark on enemies that explodes.',
+            ult: 'Spirit Slash: A wide arc strike with the Ritual Blade.'
         }
-        // ... Add more as needed
     };
 
-    let currentHero = 'Marcel';
-
     function updateBanner(name, role, imgSrc) {
-        currentHero = name;
         const img = document.getElementById('bannerImg');
         img.style.opacity = '0';
 
@@ -302,40 +465,44 @@
         
         setTimeout(() => {
             img.src = imgSrc;
+            const data = heroStats[name];
+            const skills = heroSkills[name];
+
             document.getElementById('bannerName').innerText = name;
             document.getElementById('bannerRole').innerText = role;
-            document.getElementById('bannerQuote').innerText = heroQuotes[name] || '"Story details coming soon..."';
-            
-            const stats = heroStats[name] || { durability: '50%', offense: '50%', effects: '50%', difficulty: '50%' };
-            document.getElementById('bar-durability').style.width = stats.durability;
-            document.getElementById('bar-offense').style.width = stats.offense;
-            document.getElementById('bar-effects').style.width = stats.effects;
-            document.getElementById('bar-difficulty').style.width = stats.difficulty;
+            document.getElementById('bannerQuote').innerText = data.quote;
+            document.getElementById('modalHeroName').innerText = name + " - Profile";
+
+            document.getElementById('box-passive').innerText = skills.passive;
+            document.getElementById('box-s1').innerText = skills.s1;
+            document.getElementById('box-s2').innerText = skills.s2;
+            document.getElementById('box-ult').innerText = skills.ult;
+
+            document.getElementById('bar-durability').style.width = data.durability;
+            document.getElementById('bar-offense').style.width = data.offense;
+            document.getElementById('bar-effects').style.width = data.effects;
+            document.getElementById('bar-difficulty').style.width = data.difficulty;
+
+            // Mapping Modal Content
+            document.getElementById('info-fullname').innerText = data.lore.fullname;
+            document.getElementById('info-species').innerText = data.lore.species; // NEW
+            document.getElementById('info-alias').innerText = data.lore.alias;
+            document.getElementById('info-internal').innerText = data.lore.internal;
+            document.getElementById('info-birthday').innerText = data.lore.birthday;
+            document.getElementById('info-origin').innerText = data.lore.origin;
+            document.getElementById('info-age').innerText = data.lore.age;
+            document.getElementById('info-gender').innerText = data.lore.gender;
+            document.getElementById('info-occupation').innerText = data.lore.occupation;
+            document.getElementById('info-affiliation').innerText = data.lore.affiliation;
+            document.getElementById('info-abilities').innerText = data.lore.abilities;
             
             img.style.opacity = '1';
         }, 300);
-    }
-
-    function showSkills() {
-        const skills = heroSkills[currentHero] || { passive: 'N/A', s1: 'N/A', s2: 'N/A', ult: 'N/A' };
-        document.getElementById('modalHeroName').innerText = currentHero + " - Skills Overview";
-        
-        const skillHtml = `
-            <div class="skill-box"><span class="skill-title">PASSIVE:</span><br>${skills.passive}</div>
-            <div class="skill-box"><span class="skill-title">SKILL 1:</span><br>${skills.s1}</div>
-            <div class="skill-box"><span class="skill-title">SKILL 2:</span><br>${skills.s2}</div>
-            <div class="skill-box"><span class="skill-title">ULTIMATE:</span><br>${skills.ult}</div>
-        `;
-        
-        document.getElementById('modalHeroSkills').innerHTML = skillHtml;
-        const myModal = new bootstrap.Modal(document.getElementById('skillsModal'));
-        myModal.show();
     }
 
     window.onload = () => {
         updateBanner('Marcel', 'Support', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_dd980a8816698f1503cdb76201d17dd0.png');
     };
 </script>
-
 </body>
 </html>
