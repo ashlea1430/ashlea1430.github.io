@@ -4,8 +4,6 @@
     --ml-blue: #4da6ff;
     --ml-gold: #c6a34f;
     --text-main: #e0e6ed;
-    --ml-input-bg: #1b2636;
-    --ml-border-silver: #8ba0b8;
 }
 
 body {
@@ -15,54 +13,52 @@ body {
     font-family: 'Segoe UI', sans-serif;
 }
 
+.profile-frame {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+}
+
+.profile-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 1;
+    position: absolute;
+    top: 32px;
+}
+
+.frame-border {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    object-fit: contain;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    filter: invert(1) hue-rotate(180deg);
+}
+
 .profile-card {
     background: var(--card-bg);
     border: 1px solid rgba(198, 163, 79, 0.3);
     border-radius: 12px;
     padding: 30px 20px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile-frame {
-    position: relative;
-    width: 180px; 
-    height: 180px;
-    margin: 0 auto 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent; /* Ensures no background blocks the photo */
-}
-
-.profile-img {
-    width: 130px;   /* ⬅️ increased from 112px */
-    height: 130px;
-    object-fit: cover;
-    border-radius: 50%;
-    z-index: 2;
-
-    /* cover the white ring */
-    border: 8px solid var(--card-bg);
-}
-
-.frame-border {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2; /* Sits on top */
-    pointer-events: none;
+    text-align: cente
 }
 
 .profile-name {
     font-weight: bold;
     color: #fff;
-    margin-top: 15px;
+    font-size: 1rem;
     text-transform: uppercase;
+    margin-top: 15px;
 }
 
 .level-box {
@@ -76,7 +72,6 @@ body {
     margin-top: 10px;
 }
 
-/* CONTENT SECTION */
 .content-card {
     background: var(--card-bg);
     border-radius: 12px;
@@ -100,65 +95,21 @@ body {
     border-bottom: 3px solid var(--ml-blue);
 }
 
-.panel { display: none; }
-.panel.active { display: block; animation: fadeIn 0.4s ease; }
-
-.inner-box {
-    background: #13223f;
-    padding: 25px;
-    border-radius: 8px;
+.panel {
+    display: none;
 }
 
-h1 {
-    color: var(--ml-gold);
-    font-size: 1.5rem;
+.panel.active {
+    display: block;
+    animation: fadeIn 0.4s eas
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+    from {
+        opacity: 0;
+    }
 
-/* PORTFOLIO SECTION */
-.ml-dialog {
-    background: #2b3a52;
-    border: 2px solid var(--ml-border-silver);
-    padding: 15px;
-    border-radius: 4px;
-}
-
-.ml-input-box {
-    background-color: var(--ml-input-bg);
-    border: 1px solid #3d4d63;
-    padding: 15px;
-    border-radius: 2px;
-    text-align: center;
-}
-
-.quest-name {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 1rem;
-}
-
-.quest-objective {
-    color: #a0aec0;
-    font-size: 0.85rem;
-    margin-top: 5px;
-}
-
-.ml-btn-okay {
-    background: linear-gradient(to bottom, #f7d794 0%, #d4a017 50%, #b8860b 100%);
-    color: #1a202c !important;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 6px 40px;
-    border-radius: 4px;
-    border: 1px solid #634a12;
-    display: inline-block;
-    transition: transform 0.1s;
-}
-
-.ml-btn-okay:active {
-    transform: scale(0.95);
+    to {
+        opacity: 1;
+    }
 }
