@@ -176,88 +176,58 @@ async function loadHeroRoster() {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
         const proxy = 'https://corsproxy.io/?';
 
-        const urls = [
-            ${proxy}${encodeURIComponent(baseUrl + '/heroes')},
-            ${proxy}${encodeURIComponent(baseUrl + '/heroes/rank')},
-            ${proxy}${encodeURIComponent(baseUrl + '/academy/heroes')}, // Original Academy endpoint
-            ${proxy}${encodeURIComponent(baseUrl + '/academy/heroes/catalog')} // Comprehensive Catalog endpoint
-        ];
+        const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
+        const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
 
-        const [resList, resRank, resAcademy, resCatalog] = await Promise.all(urls.map(url => fetch(url)));
+        // Fetch all data in parallel
+        const responses = await Promise.all(urls.map(url => fetch(url)));
+        const results = await Promise.all(responses.map(res => res.json()));
 
-        if (!resList.ok || !resRank.ok || !resAcademy.ok || !resCatalog.ok) throw new Error("API connection failed");
+        // Flatten all records into one array
+        const allRecords = results.flatMap(res => res.data?.records || []);
 
-        const dataList = await resList.json();
-        const dataRank = await resRank.json();
-        const dataAcademy = await resAcademy.json();
-        const dataCatalog = await resCatalog.json();
+        // Filter for unique heroes and format the data
+        const uniqueHeroes = [];
+        const seenNames = new Set();
 
-        const heroMap = new Map();
+        allRecords.forEach(item => {
+            const info = item.data || {};
+            const name = info.hero?.data?.name || info.name;
 
-        const addToMap = (records, isMeta = false) => {
-            records.forEach(item => {
-                const info = item.data || {};
-                
-                // 1. Identify ID and Name
-                const id = info.hero_id || info.main_heroid || item.id;
-                const name = info.hero?.data?.name || info.name;
-                
-                // 2. Identify Image (Head icon)
-                const headImg = info.head || info.hero?.data?.head;
-
-                // 3. Extract Lane (Handles both Catalog 'roadsort' and Academy 'lane')[cite: 1]
-                let primaryLane = "Unknown";
+            if (name && !seenNames.has(name)) {
+                seenNames.add(name);
+                let lane = info.lane || "Unknown";
                 const roadsort = info.hero?.data?.roadsort;
-                
-                if (Array.isArray(roadsort) && roadsort.length > 0 && roadsort[0].data) {
-                    // Catalog style path[cite: 1]
-                    primaryLane = roadsort[0].data.road_sort_title; 
-                } else if (info.lane) {
-                    // Standard Academy style path
-                    primaryLane = info.lane;
+                if (Array.isArray(roadsort) && roadsort.length > 0) {
+                    lane = roadsort[0].data.road_sort_title;
                 }
 
-                if (name && id) {
-                    const existing = heroMap.get(id) || {};
-                    heroMap.set(id, {
-                        ...existing,
-                        id,
-                        name,
-                        img: headImg || existing.img,
-                        lane: primaryLane !== "Unknown" ? primaryLane : (existing.lane || "Unknown"),
-                        isMeta: isMeta || existing.isMeta
-                    });
-                }
-            });
-        };
-
-        // Sync all four endpoints to ensure maximum coverage[cite: 1]
-        addToMap(dataList.data?.records || []);
-        addToMap(dataRank.data?.records || [], true);
-        addToMap(dataAcademy.data?.records || []);
-        addToMap(dataCatalog.data?.records || []); 
+                uniqueHeroes.push({
+                    name: name,
+                    img: info.head || info.hero?.data?.head,
+                    lane: lane,
+                    isMeta: !!info.hero_id
+                });
+            }
+        });
 
         grid.innerHTML = '';
-        heroMap.forEach(hero => {
+        uniqueHeroes.forEach(hero => {
             const card = document.createElement('div');
             card.className = 'artwork-item';
-            
+
             const metaBadge = hero.isMeta ? '<span class="meta-tag" style="position:absolute; top:5px; right:5px; background:rgba(0,255,255,0.8); color:#000; font-size:10px; padding:2px 5px; border-radius:3px; font-weight:bold; box-shadow: 0 0 5px #0ff;">META</span>' : '';
 
             card.onclick = () => {
-                // Pass the merged lane data to your banner update[cite: 1]
-                updateBanner(hero.name, { ...heroPositionsData, [hero.name]: hero.lane });
+                updateBanner(hero.name, { lane: hero.lane });
                 switchTab('home');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
             card.innerHTML = `
                 <div style="position:relative; overflow:hidden; border-radius:8px; background: #1a1a1a;">
-                    <img src="${hero.img}" 
-                         alt="${hero.name}" 
-                         referrerpolicy="no-referrer"
-                         style="width:100%; display:block;"
-                         onerror="this.onerror=null; this.src='https://placehold.jp/24/1a1a1a/ffffff/150x150.png?text=Not+Found';">
+                    <img src="${hero.img}" alt="${hero.name}" referrerpolicy="no-referrer" style="width:100%;"
+                         onerror="this.src='https://placehold.jp/150x150.png?text=Not+Found';">
                     ${metaBadge}
                     <div class="hero-name-overlay">${hero.name}</div>
                 </div>
@@ -265,11 +235,11 @@ async function loadHeroRoster() {
             grid.appendChild(card);
         });
 
-        if (countBadge) countBadge.innerText = ${heroMap.size} Heroes Synced;
+        if (countBadge) countBadge.innerText = `${uniqueHeroes.length} Heroes Synced`;
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = <div class="error-msg">The system could not synchronize the hero database.</div>;
+        grid.innerHTML = `<div class="error-msg">The system could not synchronize.</div>`;
     }
 }
 
