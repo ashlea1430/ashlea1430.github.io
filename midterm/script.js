@@ -1,8 +1,10 @@
+const API_BASE = 'https://openmlbb.fastapicloud.dev/api';
+
 const heroStats = {
     'Marcel': {
         durability: '70%', offense: '48%', effects: '100%', difficulty: '30%',
         quote: '"Alas, to be feared is better than to be loved."',
-        fullStory:  "Marcel Paxley, the elegant yet mysterious talent from Castle Aberleen. He himself is a masterfully composed double exposure: the first exposure captured the refined character of House Paxley—Marcel, the boy; the second exposure captured a torn soul, fragmented by dark magic—Clemar, his camera. Since then, they have gazed at the world through two viewfinders. One maintains an impeccable veneer of elegance; the other carefully documents reality. Together, they believe pain is the best chemical for development, while imperfection defines true depth of field. Yet a completed work always stands as its own individual 'self.' Across the entire Moniyan art circle, if you ask whose name is most sought-after today, the answer is undoubtedly—Marcel! This darling of the art world boasts talent and a mysterious background. Our reporters dug deep and finally found the face behind the lens. On the coffee shop counter, a black magic camera shuddered wildly, its lens focused on the newspaper below—the front page of Lumina City Entertainment Weekly. And his soul-capturing lens, comes from his gift of dark magic. Naturally, Marcel became Duke Aamon\'s right-hand man. This is undoubtedly a perfect tale of \"hand and glove\"! After Marcel's mother left, the 'discipline' intensified, but he no longer desired to resist, letting the torment and mockery berate him like falling rain. That is, until one near-death moment, consciousness fading, Marcel glanced at the camera hanging on the wall. His mother hadn't taken it. It had been watching him—watching his struggle, his madness, his pain beneath the surface—Marcel felt himself detach and enter its lens, looking on coldly as the little boy named Marcel Paxley stood up elegantly with a bloodied face. This objective perspective was clear and indifferent; all pain had been sealed off by the lens. When his consciousness returned to his body, his hand was already gripping the camera beside him! The camera shrieked, and dark magic poured out, freezing everything around him. Marcel's powers had fully awakened. Simultaneously, a soul named 'Clemar' had been born inside the camera. Unlike the elegant Marcel, Clemar was direct and volatile, yet the two became inseparable. Relying on dark magic, Marcel became an aid to his distant cousin, Aamon, clearing a path to become head of Paxley. Those who bullied him in the past now dared not to look this terrifying 'enforcer' in the eye, fearful of his camera. Alas, to be feared is better than to be loved. This is the Paxley way. Great art is often born of profound love. After his mother died, Marcel channeled his grief into creation. Behold, a true flourishing of talent! It is as if his camera possesses a mind. In the years that followed, Marcel never felt that he had lost anything. Indeed, he felt neither pain nor anger. His emotions had long been sealed away within his camera, Clemar. That is, until the news of his mother's death arrived. He had learned the truth: after leaving House Paxley, his mother remarried, opened a tailor shop, and gave birth to a daughter named <b>Melissa</b>, before passing away from illness seven years ago.<br><br>It was old news from years past, but fate had kept it from him. Clemar roared in Marcel's ear—'She had a new life! A new child! What am I?! What was all my suffering for?!' Marcel believed himself unmoved, yet the dark magic within him spiraled further out of control. Clemar was no longer content to reside within the camera, frequently attempting to seize Marcel's body. Marcel began to suffer memory loss and blackouts. He would wake up unpredictably on street corners near Castle Aberleen, surrounded by crowds frozen in time.<br><br>Even Aamon was left helpless, until Marcel, having investigated every clue, turned the lens around and aimed it at himself! The moment the shutter clicked, Marcel entered the camera. Inside was chaotic and desolate, with floating film rolls sweeping through like tidal waves, inflicting endless pain. Walking past all his memories, a scarred figure stood alone, deep within the corridor—Marcel saw himself.<br><br>It had been a means of escape, but also one of self-protection. Years ago, Marcel split his soul, naming the new entity 'Clemar'. Two sides of the same soul were isolated inside and outside the camera, experiencing their own pain and sorrow. Marcel stripped the pain from himself time and again, storing it inside the camera, Clemar. The pain did not vanish; it was merely borne by another, in solitude.<br><br>At last, the camera snapped upon the tragic news, sparking chaos inside Castle Aberleen. Years ago, step by step, his mother faded into the distance, never looking back. Now, Marcel gazed at Clemar and walked towards him, step by step. He reached out and embraced the self that was 'frozen' in the past. ... His reminiscing ended, and Marcel gently pushed the newspaper aside.<br><br>After their episode inside the camera, Marcel and Clemar became reacquainted. Today, Clemar is no longer just Marcel's camera, but his witness, companion, and peer. He is his other half. 'They don't understand our art at all!' Marcel patted Clemar: 'It matters not. We know what \"we\" are... and what art is. Snap— The shutter froze the moment: warm lights shining on the bleak stone streets of Castle Aberleen. This world has many flaws, but precisely because of them, it appears incredibly real. His mother chose freedom, even if it meant leaving him. He understood her limitations and learned to accept his half-sister, Melissa. They had their own lives, and how could the photographer who understood art best brood over life's incompleteness? Now, he stands with Clemar, looking through the viewfinder, ready to step forward into their future.",
+        fullStory: "Marcel Paxley, the elegant yet mysterious talent from Castle Aberleen. He himself is a masterfully composed double exposure: the first exposure captured the refined character of House Paxley—Marcel, the boy; the second exposure captured a torn soul, fragmented by dark magic—Clemar, his camera. Since then, they have gazed at the world through two viewfinders. One maintains an impeccable veneer of elegance; the other carefully documents reality. Together, they believe pain is the best chemical for development, while imperfection defines true depth of field. Yet a completed work always stands as its own individual 'self.' Across the entire Moniyan art circle, if you ask whose name is most sought-after today, the answer is undoubtedly—Marcel! This darling of the art world boasts talent and a mysterious background. Our reporters dug deep and finally found the face behind the lens. On the coffee shop counter, a black magic camera shuddered wildly, its lens focused on the newspaper below—the front page of Lumina City Entertainment Weekly. And his soul-capturing lens, comes from his gift of dark magic. Naturally, Marcel became Duke Aamon\'s right-hand man. This is undoubtedly a perfect tale of \"hand and glove\"! After Marcel's mother left, the 'discipline' intensified, but he no longer desired to resist, letting the torment and mockery berate him like falling rain. That is, until one near-death moment, consciousness fading, Marcel glanced at the camera hanging on the wall. His mother hadn't taken it. It had been watching him—watching his struggle, his madness, his pain beneath the surface—Marcel felt himself detach and enter its lens, looking on coldly as the little boy named Marcel Paxley stood up elegantly with a bloodied face. This objective perspective was clear and indifferent; all pain had been sealed off by the lens. When his consciousness returned to his body, his hand was already gripping the camera beside him! The camera shrieked, and dark magic poured out, freezing everything around him. Marcel's powers had fully awakened. Simultaneously, a soul named 'Clemar' had been born inside the camera. Unlike the elegant Marcel, Clemar was direct and volatile, yet the two became inseparable. Relying on dark magic, Marcel became an aid to his distant cousin, Aamon, clearing a path to become head of Paxley. Those who bullied him in the past now dared not to look this terrifying 'enforcer' in the eye, fearful of his camera. Alas, to be feared is better than to be loved. This is the Paxley way. Great art is often born of profound love. After his mother died, Marcel channeled his grief into creation. Behold, a true flourishing of talent! It is as if his camera possesses a mind. In the years that followed, Marcel never felt that he had lost anything. Indeed, he felt neither pain nor anger. His emotions had long been sealed away within his camera, Clemar. That is, until the news of his mother's death arrived. He had learned the truth: after leaving House Paxley, his mother remarried, opened a tailor shop, and gave birth to a daughter named <b>Melissa</b>, before passing away from illness seven years ago.<br><br>It was old news from years past, but fate had kept it from him. Clemar roared in Marcel's ear—'She had a new life! A new child! What am I?! What was all my suffering for?!' Marcel believed himself unmoved, yet the dark magic within him spiraled further out of control. Clemar was no longer content to reside within the camera, frequently attempting to seize Marcel's body. Marcel began to suffer memory loss and blackouts. He would wake up unpredictably on street corners near Castle Aberleen, surrounded by crowds frozen in time.<br><br>Even Aamon was left helpless, until Marcel, having investigated every clue, turned the lens around and aimed it at himself! The moment the shutter clicked, Marcel entered the camera. Inside was chaotic and desolate, with floating film rolls sweeping through like tidal waves, inflicting endless pain. Walking past all his memories, a scarred figure stood alone, deep within the corridor—Marcel saw himself.<br><br>It had been a means of escape, but also one of self-protection. Years ago, Marcel split his soul, naming the new entity 'Clemar'. Two sides of the same soul were isolated inside and outside the camera, experiencing their own pain and sorrow. Marcel stripped the pain from himself time and again, storing it inside the camera, Clemar. The pain did not vanish; it was merely borne by another, in solitude.<br><br>At last, the camera snapped upon the tragic news, sparking chaos inside Castle Aberleen. Years ago, step by step, his mother faded into the distance, never looking back. Now, Marcel gazed at Clemar and walked towards him, step by step. He reached out and embraced the self that was 'frozen' in the past. ... His reminiscing ended, and Marcel gently pushed the newspaper aside.<br><br>After their episode inside the camera, Marcel and Clemar became reacquainted. Today, Clemar is no longer just Marcel's camera, but his witness, companion, and peer. He is his other half. 'They don't understand our art at all!' Marcel patted Clemar: 'It matters not. We know what \"we\" are... and what art is. Snap— The shutter froze the moment: warm lights shining on the bleak stone streets of Castle Aberleen. This world has many flaws, but precisely because of them, it appears incredibly real. His mother chose freedom, even if it meant leaving him. He understood her limitations and learned to accept his half-sister, Melissa. They had their own lives, and how could the photographer who understood art best brood over life's incompleteness? Now, he stands with Clemar, looking through the viewfinder, ready to step forward into their future.",
         lore: { fullname: "Marcel Paxley", alias: "Soul Photographer", internal: "marcel", birthday: "June 9", origin: "Castle Aberleen", age: "21", gender: "Male", species: "Human", lane: "Roam", affiliation: "House Paxley", abilities: "Dark Magic" }
     },
     'Xavier': {
@@ -142,11 +144,133 @@ const heroSkills = {
     'Sora': { passive: 'Mystic Surge', s1: 'Sundering Strike', s2: 'Windstride', ult: 'Windstride' }
 };
 
-function switchTab(tabName) {
+async function switchTab(tabName) {
+    // 1. Manage Active Tab UI
     document.querySelectorAll('.nav-tab-item').forEach(tab => tab.classList.remove('active'));
-    document.getElementById('tab-' + tabName).classList.add('active');
-    document.getElementById('home-view').style.display = (tabName === 'home') ? 'block' : 'none';
-    document.getElementById('story-view').style.display = (tabName === 'story') ? 'block' : 'none';
+    const currentTab = document.getElementById('tab-' + tabName);
+    if (currentTab) currentTab.classList.add('active');
+
+    // 2. Manage View Visibility
+    const views = ['home-view', 'story-view', 'heroes-view', 'skills-view'];
+    views.forEach(id => {
+        const view = document.getElementById(id);
+        if (view) {
+            view.style.display = (id === tabName + '-view') ? 'block' : 'none';
+        }
+    });
+
+    // 3. Trigger API load if HEROES is selected
+    if (tabName === 'heroes') {
+        loadHeroRoster();
+    }
+}
+
+async function loadHeroRoster() {
+    const grid = document.getElementById('apiHeroGrid');
+    const countBadge = document.getElementById('heroCount');
+    if (!grid) return;
+
+    grid.innerHTML = '<div class="loading-state">Syncing Hero Database...</div>';
+
+    try {
+        const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
+        const proxy = 'https://corsproxy.io/?';
+
+        const urls = [
+            ${proxy}${encodeURIComponent(baseUrl + '/heroes')},
+            ${proxy}${encodeURIComponent(baseUrl + '/heroes/rank')},
+            ${proxy}${encodeURIComponent(baseUrl + '/academy/heroes')}, // Original Academy endpoint
+            ${proxy}${encodeURIComponent(baseUrl + '/academy/heroes/catalog')} // Comprehensive Catalog endpoint
+        ];
+
+        const [resList, resRank, resAcademy, resCatalog] = await Promise.all(urls.map(url => fetch(url)));
+
+        if (!resList.ok || !resRank.ok || !resAcademy.ok || !resCatalog.ok) throw new Error("API connection failed");
+
+        const dataList = await resList.json();
+        const dataRank = await resRank.json();
+        const dataAcademy = await resAcademy.json();
+        const dataCatalog = await resCatalog.json();
+
+        const heroMap = new Map();
+
+        const addToMap = (records, isMeta = false) => {
+            records.forEach(item => {
+                const info = item.data || {};
+                
+                // 1. Identify ID and Name
+                const id = info.hero_id || info.main_heroid || item.id;
+                const name = info.hero?.data?.name || info.name;
+                
+                // 2. Identify Image (Head icon)
+                const headImg = info.head || info.hero?.data?.head;
+
+                // 3. Extract Lane (Handles both Catalog 'roadsort' and Academy 'lane')[cite: 1]
+                let primaryLane = "Unknown";
+                const roadsort = info.hero?.data?.roadsort;
+                
+                if (Array.isArray(roadsort) && roadsort.length > 0 && roadsort[0].data) {
+                    // Catalog style path[cite: 1]
+                    primaryLane = roadsort[0].data.road_sort_title; 
+                } else if (info.lane) {
+                    // Standard Academy style path
+                    primaryLane = info.lane;
+                }
+
+                if (name && id) {
+                    const existing = heroMap.get(id) || {};
+                    heroMap.set(id, {
+                        ...existing,
+                        id,
+                        name,
+                        img: headImg || existing.img,
+                        lane: primaryLane !== "Unknown" ? primaryLane : (existing.lane || "Unknown"),
+                        isMeta: isMeta || existing.isMeta
+                    });
+                }
+            });
+        };
+
+        // Sync all four endpoints to ensure maximum coverage[cite: 1]
+        addToMap(dataList.data?.records || []);
+        addToMap(dataRank.data?.records || [], true);
+        addToMap(dataAcademy.data?.records || []);
+        addToMap(dataCatalog.data?.records || []); 
+
+        grid.innerHTML = '';
+        heroMap.forEach(hero => {
+            const card = document.createElement('div');
+            card.className = 'artwork-item';
+            
+            const metaBadge = hero.isMeta ? '<span class="meta-tag" style="position:absolute; top:5px; right:5px; background:rgba(0,255,255,0.8); color:#000; font-size:10px; padding:2px 5px; border-radius:3px; font-weight:bold; box-shadow: 0 0 5px #0ff;">META</span>' : '';
+
+            card.onclick = () => {
+                // Pass the merged lane data to your banner update[cite: 1]
+                updateBanner(hero.name, { ...heroPositionsData, [hero.name]: hero.lane });
+                switchTab('home');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            card.innerHTML = `
+                <div style="position:relative; overflow:hidden; border-radius:8px; background: #1a1a1a;">
+                    <img src="${hero.img}" 
+                         alt="${hero.name}" 
+                         referrerpolicy="no-referrer"
+                         style="width:100%; display:block;"
+                         onerror="this.onerror=null; this.src='https://placehold.jp/24/1a1a1a/ffffff/150x150.png?text=Not+Found';">
+                    ${metaBadge}
+                    <div class="hero-name-overlay">${hero.name}</div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        if (countBadge) countBadge.innerText = ${heroMap.size} Heroes Synced;
+
+    } catch (error) {
+        console.error("Roster Sync Error:", error);
+        grid.innerHTML = <div class="error-msg">The system could not synchronize the hero database.</div>;
+    }
 }
 
 function updateBanner(name, role, imgSrc) {
@@ -166,19 +290,19 @@ function updateBanner(name, role, imgSrc) {
         document.getElementById('bannerQuote').innerText = data.quote;
         document.getElementById('modalHeroName').innerText = name + " - Profile";
 
-        
+
         document.getElementById('box-passive').innerText = skills.passive;
         document.getElementById('box-s1').innerText = skills.s1;
         document.getElementById('box-s2').innerText = skills.s2;
         document.getElementById('box-ult').innerText = skills.ult;
 
-        
+
         document.getElementById('bar-durability').style.width = data.durability;
         document.getElementById('bar-offense').style.width = data.offense;
         document.getElementById('bar-effects').style.width = data.effects;
         document.getElementById('bar-difficulty').style.width = data.difficulty;
 
-        
+
         document.getElementById('story-title').innerText = name + "'s Tale";
         document.getElementById('story-body').innerText = data.fullStory;
         document.getElementById('story-alias').innerHTML = data.lore.alias;

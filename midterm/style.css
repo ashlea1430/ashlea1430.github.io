@@ -273,6 +273,7 @@ body {
         padding: 15px;
     }
 
+    /* Banner adjustments */
     .banner {
         height: auto;
         flex-direction: column;
@@ -281,7 +282,7 @@ body {
 
     .banner-content {
         padding: 30px;
-        order: 2;
+        order: 2; /* Text moves below the image */
         text-align: center;
         align-items: center;
     }
@@ -299,6 +300,7 @@ body {
         max-width: 100%;
     }
 
+    /* Navigation adjustments */
     .nav-tab-item {
         padding: 10px 15px;
         font-size: 0.75rem;
@@ -306,7 +308,45 @@ body {
         text-align: center;
     }
 
+    /* Section Card & Hero Grid adjustments */
     .section-card {
         height: auto;
         margin-bottom: 20px;
     }
+
+    /* Merged: Hero Grid specific mobile look */
+    .hero-grid-layout {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
+        gap: 10px;
+        padding: 15px;
+    }
+
+    .hero-name-overlay {
+        font-size: 0.7rem;
+        padding: 4px 0;
+    }
+}
+
+.filter-btn {
+    border-radius: 20px;
+    font-size: 0.75rem;
+    padding: 5px 15px;
+    transition: all 0.3s ease;
+    border-color: rgba(0, 255, 255, 0.3);
+    color: #0ff;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: #0ff !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Custom Scrollbar for the Hero Grid */
+#apiHeroGrid::-webkit-scrollbar {
+    width: 5px;
+}
+#apiHeroGrid::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.2);
+    border-radius: 10px;
+}
