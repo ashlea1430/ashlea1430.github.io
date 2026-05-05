@@ -176,100 +176,64 @@ async function loadHeroRoster() {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
         const proxy = 'https://corsproxy.io/?';
 
-        const urls = [
-            ${proxy}${encodeURIComponent(baseUrl + '/heroes')},
-            ${proxy}${encodeURIComponent(baseUrl + '/heroes/rank')},
-            ${proxy}${encodeURIComponent(baseUrl + '/academy/heroes')}, // Original Academy endpoint
-            ${proxy}${encodeURIComponent(baseUrl + '/academy/heroes/catalog')} // Comprehensive Catalog endpoint
-        ];
+        const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
+        const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
 
-        const [resList, resRank, resAcademy, resCatalog] = await Promise.all(urls.map(url => fetch(url)));
+        const responses = await Promise.all(urls.map(url => fetch(url)));
+        const results = await Promise.all(responses.map(res => res.json()));
 
-        if (!resList.ok || !resRank.ok || !resAcademy.ok || !resCatalog.ok) throw new Error("API connection failed");
+        const allRecords = results.flatMap(res => res.data?.records || []);
 
-        const dataList = await resList.json();
-        const dataRank = await resRank.json();
-        const dataAcademy = await resAcademy.json();
-        const dataCatalog = await resCatalog.json();
+        const uniqueHeroes = [];
+        const seenNames = new Set();
 
-        const heroMap = new Map();
-
-        const addToMap = (records, isMeta = false) => {
-            records.forEach(item => {
-                const info = item.data || {};
+        allRecords.forEach(item => {
+            const info = item.data || {};
+            const name = info.hero?.data?.name || info.name;
+            
+            if (name && !seenNames.has(name)) {
+                seenNames.add(name);
                 
-                // 1. Identify ID and Name
-                const id = info.hero_id || info.main_heroid || item.id;
-                const name = info.hero?.data?.name || info.name;
-                
-                // 2. Identify Image (Head icon)
-                const headImg = info.head || info.hero?.data?.head;
-
-                // 3. Extract Lane (Handles both Catalog 'roadsort' and Academy 'lane')[cite: 1]
-                let primaryLane = "Unknown";
+                let lane = info.lane || "Unknown";
                 const roadsort = info.hero?.data?.roadsort;
-                
-                if (Array.isArray(roadsort) && roadsort.length > 0 && roadsort[0].data) {
-                    // Catalog style path[cite: 1]
-                    primaryLane = roadsort[0].data.road_sort_title; 
-                } else if (info.lane) {
-                    // Standard Academy style path
-                    primaryLane = info.lane;
+                if (Array.isArray(roadsort) && roadsort.length > 0) {
+                    lane = roadsort[0].data.road_sort_title;
                 }
 
-                if (name && id) {
-                    const existing = heroMap.get(id) || {};
-                    heroMap.set(id, {
-                        ...existing,
-                        id,
-                        name,
-                        img: headImg || existing.img,
-                        lane: primaryLane !== "Unknown" ? primaryLane : (existing.lane || "Unknown"),
-                        isMeta: isMeta || existing.isMeta
-                    });
-                }
-            });
-        };
-
-        // Sync all four endpoints to ensure maximum coverage[cite: 1]
-        addToMap(dataList.data?.records || []);
-        addToMap(dataRank.data?.records || [], true);
-        addToMap(dataAcademy.data?.records || []);
-        addToMap(dataCatalog.data?.records || []); 
+                uniqueHeroes.push({
+                    name: name,
+                    img: info.head || info.hero?.data?.head,
+                    lane: lane
+                });
+            }
+        });
 
         grid.innerHTML = '';
-        heroMap.forEach(hero => {
+        uniqueHeroes.forEach(hero => {
             const card = document.createElement('div');
             card.className = 'artwork-item';
             
-            const metaBadge = hero.isMeta ? '<span class="meta-tag" style="position:absolute; top:5px; right:5px; background:rgba(0,255,255,0.8); color:#000; font-size:10px; padding:2px 5px; border-radius:3px; font-weight:bold; box-shadow: 0 0 5px #0ff;">META</span>' : '';
-
             card.onclick = () => {
-                // Pass the merged lane data to your banner update[cite: 1]
-                updateBanner(hero.name, { ...heroPositionsData, [hero.name]: hero.lane });
+                updateBanner(hero.name, { lane: hero.lane });
                 switchTab('home');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
             card.innerHTML = `
                 <div style="position:relative; overflow:hidden; border-radius:8px; background: #1a1a1a;">
-                    <img src="${hero.img}" 
-                         alt="${hero.name}" 
-                         referrerpolicy="no-referrer"
-                         style="width:100%; display:block;"
-                         onerror="this.onerror=null; this.src='https://placehold.jp/24/1a1a1a/ffffff/150x150.png?text=Not+Found';">
-                    ${metaBadge}
+                    <img src="${hero.img}" alt="${hero.name}" referrerpolicy="no-referrer" style="width:100%; display:block;"
+                         onerror="this.src='https://placehold.jp/150x150.png?text=Not+Found';">
                     <div class="hero-name-overlay">${hero.name}</div>
                 </div>
             `;
             grid.appendChild(card);
         });
 
-        if (countBadge) countBadge.innerText = ${heroMap.size} Heroes Synced;
+        if (countBadge) countBadge.innerText = `${uniqueHeroes.length} Heroes Synced`;
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = <div class="error-msg">The system could not synchronize the hero database.</div>;
+        grid.innerHTML = `<div class="error-msg">The system could not synchronize.</div>`;
     }
 }
 
@@ -279,7 +243,26 @@ function updateBanner(name, role, imgSrc) {
     document.querySelectorAll('.artwork-item').forEach(item => item.classList.remove('selected'));
     const selectedItem = document.getElementById('item-' + name);
     if (selectedItem) selectedItem.classList.add('selected');
+// New modal fields
+document.getElementById('modal-hero-img').src = imgSrc;
+document.getElementById('modal-hero-name').innerText = name;
+document.getElementById('modal-nation').innerText = data.lore.origin.replace(/<[^>]*>/g, '');
+document.getElementById('modal-affiliation-tag').innerText = data.lore.affiliation.replace(/<[^>]*>/g, '');
+document.getElementById('modal-tag-role').innerText = role;
+document.getElementById('modal-tag-species').innerText = data.lore.species;
+document.getElementById('modal-profile-text').innerText = data.fullStory.replace(/<[^>]*>/g, '');
+document.getElementById('modal-skill-passive').innerText = skills.passive;
+document.getElementById('modal-skill-s1').innerText = skills.s1;
+document.getElementById('modal-skill-s2').innerText = skills.s2;
+document.getElementById('modal-skill-ult').innerText = skills.ult;
+document.getElementById('modal-bar-durability').style.width = data.durability;
+document.getElementById('modal-bar-offense').style.width = data.offense;
+document.getElementById('modal-bar-effects').style.width = data.effects;
+document.getElementById('modal-bar-difficulty').style.width = data.difficulty;
 
+// Reset tabs to Profile on each open
+document.querySelectorAll('.modal-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+document.querySelectorAll('.modal-tab-content').forEach((c, i) => c.style.display = i === 0 ? 'block' : 'none');
     setTimeout(() => {
         img.src = imgSrc;
         const data = heroStats[name];
@@ -323,6 +306,12 @@ function updateBanner(name, role, imgSrc) {
 
         img.style.opacity = '1';
     }, 300);
+}
+function switchModalTab(tabName, el) {
+    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.modal-tab-content').forEach(c => c.style.display = 'none');
+    document.getElementById('modal-tab-' + tabName).style.display = 'block';
 }
 
 window.onload = () => {
