@@ -179,23 +179,21 @@ async function loadHeroRoster() {
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
         const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
 
-        // Fetch all data in parallel
         const responses = await Promise.all(urls.map(url => fetch(url)));
         const results = await Promise.all(responses.map(res => res.json()));
 
-        // Flatten all records into one array
         const allRecords = results.flatMap(res => res.data?.records || []);
 
-        // Filter for unique heroes and format the data
         const uniqueHeroes = [];
         const seenNames = new Set();
 
         allRecords.forEach(item => {
             const info = item.data || {};
             const name = info.hero?.data?.name || info.name;
-
+            
             if (name && !seenNames.has(name)) {
                 seenNames.add(name);
+                
                 let lane = info.lane || "Unknown";
                 const roadsort = info.hero?.data?.roadsort;
                 if (Array.isArray(roadsort) && roadsort.length > 0) {
@@ -205,8 +203,7 @@ async function loadHeroRoster() {
                 uniqueHeroes.push({
                     name: name,
                     img: info.head || info.hero?.data?.head,
-                    lane: lane,
-                    isMeta: !!info.hero_id
+                    lane: lane
                 });
             }
         });
@@ -215,9 +212,7 @@ async function loadHeroRoster() {
         uniqueHeroes.forEach(hero => {
             const card = document.createElement('div');
             card.className = 'artwork-item';
-
-            const metaBadge = hero.isMeta ? '<span class="meta-tag" style="position:absolute; top:5px; right:5px; background:rgba(0,255,255,0.8); color:#000; font-size:10px; padding:2px 5px; border-radius:3px; font-weight:bold; box-shadow: 0 0 5px #0ff;">META</span>' : '';
-
+            
             card.onclick = () => {
                 updateBanner(hero.name, { lane: hero.lane });
                 switchTab('home');
@@ -226,9 +221,8 @@ async function loadHeroRoster() {
 
             card.innerHTML = `
                 <div style="position:relative; overflow:hidden; border-radius:8px; background: #1a1a1a;">
-                    <img src="${hero.img}" alt="${hero.name}" referrerpolicy="no-referrer" style="width:100%;"
+                    <img src="${hero.img}" alt="${hero.name}" referrerpolicy="no-referrer" style="width:100%; display:block;"
                          onerror="this.src='https://placehold.jp/150x150.png?text=Not+Found';">
-                    ${metaBadge}
                     <div class="hero-name-overlay">${hero.name}</div>
                 </div>
             `;
