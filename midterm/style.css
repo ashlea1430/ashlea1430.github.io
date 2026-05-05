@@ -351,6 +351,7 @@ body {
     background: rgba(0, 255, 255, 0.2);
     border-radius: 10px;
 }
+<<<<<<< HEAD
 /* Hero Modal - New Layout */
 .hero-modal-content {
     background-color: #0d1e38;
@@ -469,3 +470,5 @@ body {
     flex: 1;
     overflow-y: auto;
 }
+=======
+>>>>>>> 8036d705dc041646a79e1621b1d93faaa2c3063b
