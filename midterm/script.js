@@ -254,20 +254,17 @@ function toggleTheme() {
     
     localStorage.setItem('mlbb-theme', isLight ? 'light' : 'dark');
 }
-(function() {
-    if (localStorage.getItem('mlbb-theme') === 'light') {
-        document.body.classList.add('light-mode');
-        // Button text will be set after DOM loads
-        window.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('themeToggle');
-            if (btn) {
-                btn.querySelector('.theme-icon').textContent = '🌙';
-                btn.querySelector('.theme-label').textContent = 'Dark Mode';
-            }
-        });
-    }
-})();
+function toggleTheme() {
+    const isLight = document.body.classList.toggle('light-mode');
+    const btn = document.getElementById('themeToggle');
+    btn.textContent = isLight ? '🌙 Dark Mode' : '☀️ Light Mode';
+    localStorage.setItem('mlbb-theme', isLight ? 'light' : 'dark');
+}
 
+if (localStorage.getItem('mlbb-theme') === 'light') {
+    document.body.classList.add('light-mode');
+    document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
+}
     setTimeout(() => {
         img.src = imgSrc;
         const data = heroStats[name];
