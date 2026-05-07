@@ -285,33 +285,36 @@ function updateBanner(name, role, imgSrc) {
         document.getElementById('info-affiliation').innerHTML = data.lore.affiliation;
         document.getElementById('info-abilities').innerHTML = data.lore.abilities;
 
+        // Force-check theme function
+        function applyTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        const btn = document.getElementById('theme-toggle');
+           if (btn) {
+               btn.innerHTML = theme === 'light' ? '☀️' : '🌙';
+    }
+}
+
+// Initial Setup
 document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+    const btn = document.getElementById('theme-toggle');
+    
+    // Load saved or default
+    const currentSaved = localStorage.getItem('theme') || 'dark';
+    applyTheme(currentSaved);
 
-    // 1. Check for saved preference in LocalStorage
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    body.setAttribute('data-theme', savedTheme);
-    themeToggle.textContent = savedTheme === 'light' ? '☀' : '🌙';
-
-    // 2. Listen for clicks
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        // Apply the theme to the body tag
-        body.setAttribute('data-theme', newTheme);
-        
-        // Save it so it stays on refresh
-        localStorage.setItem('theme', newTheme);
-        
-        // Update the button icon
-        themeToggle.textContent = newTheme === 'light' ? '☀' : '🌙';
-        
-        console.log("Theme switched to:", newTheme); // Debugging line
-    });
-});
-
+    if (btn) {
+        btn.onclick = function() {
+            const current = document.body.getAttribute('data-theme');
+            const target = current === 'light' ? 'dark' : 'light';
+            
+            applyTheme(target);
+            localStorage.setItem('theme', target);
+            console.log("Theme is now: " + target);
+        };
+    } else {
+        console.error("Theme button not found! Check your HTML ID.");
+    }
+});         
         img.style.opacity = '1';
     }, 300);
 }

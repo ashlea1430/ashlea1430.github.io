@@ -1,23 +1,55 @@
 :root {
-    /* Dark Mode (Default) */
-    --bg-color: #0f1219;
-    --card-bg: #1a1e29;
+    /* DARK MODE (Default - MLBB Style) */
+    --ml-bg: #000000; 
+    --ml-gradient: radial-gradient(circle at 50% 0%, #0d2a5e 0%, #000000 85%);
+    --card-blue: #0b1a33;
+    --banner-blue: #133a75;
+    --accent-cyan: #5ce1e6;
     --text-main: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.7);
-    --accent-color: #0dcaf0;
+    --text-muted: #adb5bd;
+    --nav-item-bg: rgba(255, 255, 255, 0.05);
     --border-color: rgba(255, 255, 255, 0.1);
-    --nav-bg: rgba(26, 30, 41, 0.95);
 }
 
 [data-theme="light"] {
-    /* Light Mode */
-    --bg-color: #f0f2f5;
-    --card-bg: #ffffff;
-    --text-main: #1a1e29;
-    --text-muted: #555555;
-    --accent-color: #007bff;
+    /* LIGHT MODE (White & Blue) */
+    --ml-bg: #ffffff;
+    --ml-gradient: radial-gradient(circle at 50% 0%, #ffffff 0%, #e6f0ff 100%);
+    --card-blue: #f8faff;
+    --banner-blue: #2563eb;
+    --accent-cyan: #1d4ed8;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    --nav-item-bg: #e2e8f0;
     --border-color: rgba(0, 0, 0, 0.1);
-    --nav-bg: rgba(255, 255, 255, 0.95);
+}
+
+body {
+    background-color: var(--ml-bg);
+    background-image: var(--ml-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: 'Segoe UI', sans-serif;
+    padding: 30px;
+    min-height: 100vh;
+    margin: 0;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Update these existing classes to use the variables */
+.nav-tab-item {
+    background: var(--nav-item-bg);
+    color: var(--text-main);
+}
+
+.section-card, .story-section, .modal-content {
+    background: var(--card-blue);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.story-text, .skill-desc, .attr-label {
+    color: var(--text-muted);
 }
 
 body {
