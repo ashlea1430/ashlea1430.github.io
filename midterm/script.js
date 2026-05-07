@@ -198,6 +198,7 @@ async function switchTab(tabName) {
     });
 
     // 3. Trigger API load only if HEROES is selected
+<<<<<<< HEAD
     if (tabName === 'heroes') {
         loadHeroRoster();
     }
@@ -216,6 +217,8 @@ async function switchTab(tabName) {
         }
     });
 
+=======
+>>>>>>> 6c98a716108b96fcda00134580609c544a0e1f35
     if (tabName === 'heroes') {
         loadHeroRoster();
     }
@@ -294,6 +297,26 @@ async function loadHeroRoster() {
     }
 }
 
+<<<<<<< HEAD
+=======
+function openHeroCard(heroName, imgSrc) {
+    const data = heroStats[heroName];
+    if (!data) return;
+
+    document.getElementById('heroCardName').innerText = heroName;
+    document.getElementById('heroCardImg').src = imgSrc;
+
+    // Use optional chaining (?.) to prevent errors if lore is missing
+    document.getElementById('heroCardRole').innerText = data.lore?.lane || 'Unknown';
+    document.getElementById('heroCardSpecies').innerText = data.lore?.species || '-';
+    document.getElementById('heroCardOrigin').innerHTML = data.lore?.origin || '-';
+    document.getElementById('heroCardAffiliation').innerHTML = data.lore?.affiliation || '-';
+    document.getElementById('heroCardDesc').innerHTML = data.fullStory ? data.fullStory.slice(0, 300) + '...' : 'No story available.';
+
+    document.getElementById('heroCard').style.display = 'flex';
+}
+
+>>>>>>> 6c98a716108b96fcda00134580609c544a0e1f35
 function updateBanner(name, role, imgSrc) {
     const img = document.getElementById('bannerImg');
     if (!img) return;
