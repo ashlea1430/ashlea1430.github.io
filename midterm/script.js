@@ -133,6 +133,7 @@ const heroStats = {
         }
     }
 };
+
 const heroSkills = {
     'Marcel': { passive: 'Platinum Snap', s1: 'Framed Moment', s2: 'Tracking Shot', ult: 'Golden Hour' },
     'Xavier': { passive: 'Transcendence', s1: 'Infinite Extension', s2: 'Mystic Field', ult: 'Dawning Light' },
@@ -177,7 +178,7 @@ async function loadHeroRoster() {
         const proxy = 'https://corsproxy.io/?';
 
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
-        const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
+        const urls = endpoints.map(ep => ${proxy}${encodeURIComponent(baseUrl + ep)});
 
         const responses = await Promise.all(urls.map(url => fetch(url)));
         const results = await Promise.all(responses.map(res => res.json()));
@@ -190,10 +191,10 @@ async function loadHeroRoster() {
         allRecords.forEach(item => {
             const info = item.data || {};
             const name = info.hero?.data?.name || info.name;
-            
+
             if (name && !seenNames.has(name)) {
                 seenNames.add(name);
-                
+
                 let lane = info.lane || "Unknown";
                 const roadsort = info.hero?.data?.roadsort;
                 if (Array.isArray(roadsort) && roadsort.length > 0) {
@@ -212,11 +213,13 @@ async function loadHeroRoster() {
         uniqueHeroes.forEach(hero => {
             const card = document.createElement('div');
             card.className = 'artwork-item';
-            
+
             card.onclick = () => {
-                updateBanner(hero.name, { lane: hero.lane });
-                switchTab('home');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (heroStats[hero.name]) {
+                    openHeroCard(hero.name, hero.img);
+                } else {
+                    console.log("Details for " + hero.name + " are not yet available in the database.");
+                }
             };
 
             card.innerHTML = `
@@ -229,12 +232,29 @@ async function loadHeroRoster() {
             grid.appendChild(card);
         });
 
-        if (countBadge) countBadge.innerText = `${uniqueHeroes.length} Heroes Synced`;
+        if (countBadge) countBadge.innerText = ${uniqueHeroes.length} Heroes Synced;
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = `<div class="error-msg">The system could not synchronize.</div>`;
+        grid.innerHTML = <div class="error-msg">The system could not synchronize.</div>;
     }
+}
+
+function openHeroCard(heroName, imgSrc) {
+  const data = heroStats[heroName];
+  if (!data) return;
+
+  document.getElementById('heroCardName').innerText = heroName;
+  document.getElementById('heroCardImg').src = imgSrc;
+  
+  // Use optional chaining (?.) to prevent errors if lore is missing
+  document.getElementById('heroCardRole').innerText = data.lore?.lane || 'Unknown';
+  document.getElementById('heroCardSpecies').innerText = data.lore?.species || '-';
+  document.getElementById('heroCardOrigin').innerHTML = data.lore?.origin || '-';
+  document.getElementById('heroCardAffiliation').innerHTML = data.lore?.affiliation || '-';
+  document.getElementById('heroCardDesc').innerHTML = data.fullStory ? data.fullStory.slice(0, 300) + '...' : 'No story available.';
+
+  document.getElementById('heroCard').style.display = 'flex';
 }
 
 function updateBanner(name, role, imgSrc) {
@@ -290,22 +310,22 @@ function updateBanner(name, role, imgSrc) {
 }
 
 function openHeroCard(heroName, imgSrc) {
-  const data = heroStats[heroName];
-  if (!data) return;
+    const data = heroStats[heroName];
+    if (!data) return;
 
-  document.getElementById('heroCardName').innerText = heroName;
-  document.getElementById('heroCardImg').src = imgSrc;
-  document.getElementById('heroCardRole').innerText = data.lore.lane || 'Unknown';
-  document.getElementById('heroCardSpecies').innerText = data.lore.species || '-';
-  document.getElementById('heroCardOrigin').innerHTML = data.lore.origin || '-';
-  document.getElementById('heroCardAffiliation').innerHTML = data.lore.affiliation || '-';
-  document.getElementById('heroCardDesc').innerHTML = data.fullStory.slice(0, 300) + '...';
+    document.getElementById('heroCardName').innerText = heroName;
+    document.getElementById('heroCardImg').src = imgSrc;
+    document.getElementById('heroCardRole').innerText = data.lore.lane || 'Unknown';
+    document.getElementById('heroCardSpecies').innerText = data.lore.species || '-';
+    document.getElementById('heroCardOrigin').innerHTML = data.lore.origin || '-';
+    document.getElementById('heroCardAffiliation').innerHTML = data.lore.affiliation || '-';
+    document.getElementById('heroCardDesc').innerHTML = data.fullStory.slice(0, 300) + '...';
 
-  document.getElementById('heroCard').style.display = 'flex';
+    document.getElementById('heroCard').style.display = 'flex';
 }
 
 function closeHeroCard() {
-  document.getElementById('heroCard').style.display = 'none';
+    document.getElementById('heroCard').style.display = 'none';
 }
 
 window.onload = () => {
