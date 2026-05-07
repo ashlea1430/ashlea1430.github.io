@@ -236,25 +236,25 @@ async function loadHeroRoster() {
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = `<div class="error-msg">The system could not synchronize.</div>`;
+        grid.innerHTML = '<div class="error-msg">The system could not synchronize.</div>';
     }
 }
 
 function openHeroCard(heroName, imgSrc) {
-  const data = heroStats[heroName];
-  if (!data) return;
+    const data = heroStats[heroName];
+    if (!data) return;
 
-  document.getElementById('heroCardName').innerText = heroName;
-  document.getElementById('heroCardImg').src = imgSrc;
-  
-  // Use optional chaining (?.) to prevent errors if lore is missing
-  document.getElementById('heroCardRole').innerText = data.lore?.lane || 'Unknown';
-  document.getElementById('heroCardSpecies').innerText = data.lore?.species || '-';
-  document.getElementById('heroCardOrigin').innerHTML = data.lore?.origin || '-';
-  document.getElementById('heroCardAffiliation').innerHTML = data.lore?.affiliation || '-';
-  document.getElementById('heroCardDesc').innerHTML = data.fullStory ? data.fullStory.slice(0, 300) + '...' : 'No story available.';
+    document.getElementById('heroCardName').innerText = heroName;
+    document.getElementById('heroCardImg').src = imgSrc;
 
-  document.getElementById('heroCard').style.display = 'flex';
+    // Use optional chaining (?.) to prevent errors if lore is missing
+    document.getElementById('heroCardRole').innerText = data.lore?.lane || 'Unknown';
+    document.getElementById('heroCardSpecies').innerText = data.lore?.species || '-';
+    document.getElementById('heroCardOrigin').innerHTML = data.lore?.origin || '-';
+    document.getElementById('heroCardAffiliation').innerHTML = data.lore?.affiliation || '-';
+    document.getElementById('heroCardDesc').innerHTML = data.fullStory ? data.fullStory.slice(0, 300) + '...' : 'No story available.';
+
+    document.getElementById('heroCard').style.display = 'flex';
 }
 
 function updateBanner(name, role, imgSrc) {
