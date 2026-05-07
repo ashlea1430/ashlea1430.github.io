@@ -285,14 +285,31 @@ function updateBanner(name, role, imgSrc) {
         document.getElementById('info-affiliation').innerHTML = data.lore.affiliation;
         document.getElementById('info-abilities').innerHTML = data.lore.abilities;
 
-        // Force-check theme function
-        function applyTheme(theme) {
-        document.body.setAttribute('data-theme', theme);
-        const btn = document.getElementById('theme-toggle');
-           if (btn) {
-               btn.innerHTML = theme === 'light' ? '☀️' : '🌙';
-    }
+       function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('themeToggle');
+    const isLight = body.classList.toggle('light-mode');
+    
+    btn.querySelector('.theme-icon').textContent = isLight ? '🌙' : '☀️';
+    btn.querySelector('.theme-label').textContent = isLight ? 'Dark Mode' : 'Light Mode';
+    
+    localStorage.setItem('mlbb-theme', isLight ? 'light' : 'dark');
 }
+
+// Restore saved theme on load
+(function() {
+    if (localStorage.getItem('mlbb-theme') === 'light') {
+        document.body.classList.add('light-mode');
+        // Button text will be set after DOM loads
+        window.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('themeToggle');
+            if (btn) {
+                btn.querySelector('.theme-icon').textContent = '🌙';
+                btn.querySelector('.theme-label').textContent = 'Dark Mode';
+            }
+        });
+    }
+})();
 
 // Initial Setup
 document.addEventListener('DOMContentLoaded', () => {

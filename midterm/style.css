@@ -1,27 +1,39 @@
+/* ============ DARK MODE (default) ============ */
 :root {
-    /* DARK MODE (Default - MLBB Style) */
-    --ml-bg: #000000; 
-    --ml-gradient: radial-gradient(circle at 50% 0%, #0d2a5e 0%, #000000 85%);
-    --card-blue: #0b1a33;
-    --banner-blue: #133a75;
+    --ml-bg: #04091a;
+    --card-blue: #070f20;
+    --banner-blue: #0d2a5e;
     --accent-cyan: #5ce1e6;
-    --text-main: #ffffff;
+    --modal-bg: #060d1e;
+    --text-primary: #ffffff;
     --text-muted: #adb5bd;
-    --nav-item-bg: rgba(255, 255, 255, 0.05);
-    --border-color: rgba(255, 255, 255, 0.1);
+    --nav-tab-bg: rgba(255, 255, 255, 0.05);
+    --nav-tab-active: #132e5e;
+    --section-border: rgba(255, 255, 255, 0.05);
+    --attr-bar-bg: #1a3a6d;
+    --story-bg: rgba(7, 15, 32, 0.95);
+    --story-border: rgba(255, 255, 255, 0.1);
+    --modal-border: #133a75;
+    --wiki-border: rgba(255, 255, 255, 0.05);
 }
 
-[data-theme="light"] {
-    /* LIGHT MODE (White & Blue) */
-    --ml-bg: #ffffff;
-    --ml-gradient: radial-gradient(circle at 50% 0%, #ffffff 0%, #e6f0ff 100%);
-    --card-blue: #f8faff;
+/* ============ LIGHT MODE ============ */
+body.light-mode {
+    --ml-bg: #e8f0fc;
+    --card-blue: #dce8fb;
     --banner-blue: #2563eb;
     --accent-cyan: #1d4ed8;
-    --text-main: #0f172a;
-    --text-muted: #475569;
-    --nav-item-bg: #e2e8f0;
-    --border-color: rgba(0, 0, 0, 0.1);
+    --modal-bg: #f0f6ff;
+    --text-primary: #0a1628;
+    --text-muted: #3d5a8a;
+    --nav-tab-bg: rgba(37, 99, 235, 0.08);
+    --nav-tab-active: #bfdbfe;
+    --section-border: rgba(37, 99, 235, 0.15);
+    --attr-bar-bg: #bfdbfe;
+    --story-bg: rgba(220, 232, 251, 0.97);
+    --story-border: rgba(37, 99, 235, 0.2);
+    --modal-border: #3b82f6;
+    --wiki-border: rgba(37, 99, 235, 0.1);
 }
 
 body {
