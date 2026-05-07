@@ -1,3 +1,4 @@
+
 const API_BASE = 'https://openmlbb.fastapicloud.dev/api';
 
 const heroStats = {
@@ -244,27 +245,6 @@ function updateBanner(name, role, imgSrc) {
     const selectedItem = document.getElementById('item-' + name);
     if (selectedItem) selectedItem.classList.add('selected');
 
-function toggleTheme() {
-    const body = document.body;
-    const btn = document.getElementById('themeToggle');
-    const isLight = body.classList.toggle('light-mode');
-    
-    btn.querySelector('.theme-icon').textContent = isLight ? '🌙' : '☀️';
-    btn.querySelector('.theme-label').textContent = isLight ? 'Dark Mode' : 'Light Mode';
-    
-    localStorage.setItem('mlbb-theme', isLight ? 'light' : 'dark');
-}
-function toggleTheme() {
-    const isLight = document.body.classList.toggle('light-mode');
-    const btn = document.getElementById('themeToggle');
-    btn.textContent = isLight ? '🌙 Dark Mode' : '☀️ Light Mode';
-    localStorage.setItem('mlbb-theme', isLight ? 'light' : 'dark');
-}
-
-if (localStorage.getItem('mlbb-theme') === 'light') {
-    document.body.classList.add('light-mode');
-    document.getElementById('themeToggle').textContent = '🌙 Dark Mode';
-}
     setTimeout(() => {
         img.src = imgSrc;
         const data = heroStats[name];
