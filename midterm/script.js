@@ -178,7 +178,7 @@ async function loadHeroRoster() {
         const proxy = 'https://corsproxy.io/?';
 
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
-        const urls = endpoints.map(ep => ${proxy}${encodeURIComponent(baseUrl + ep)});
+        const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
 
         const responses = await Promise.all(urls.map(url => fetch(url)));
         const results = await Promise.all(responses.map(res => res.json()));
@@ -232,7 +232,7 @@ async function loadHeroRoster() {
             grid.appendChild(card);
         });
 
-        if (countBadge) countBadge.innerText = ${uniqueHeroes.length} Heroes Synced;
+        if (countBadge) countBadge.innerText = `${uniqueHeroes.length} Heroes Synced`;
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
