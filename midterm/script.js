@@ -131,45 +131,8 @@ const heroStats = {
             affiliation: "Nature Spirits",
             abilities: "Mystic Magic"
         }
-    },
-     'Zhuxin': {
-        durability: '45%', offense: '80%', effects: '80%', difficulty: '45%',
-        quote: '"Butterflies, born by thy wish, guided by lantern’s light."',
-        fullstory: "The city of Zhu'an, a dreamlike place where the supernatural can be found in every nook and cranny. Divination rituals, dancing paper dolls, dream-inducing incense... there's no shortage of strange wonders, and no end to the tall tales that originate from this enchanted city. Among them, the most enigmatic is perhaps \"her\" story. Legend has it that a mysterious young woman named Zhuxin can often be seen wandering the night in Zhu'an with a lantern in hand. She possesses the ability to summon ember butterflies, which she uses as a medium to fulfill the deepest desires of mortals. Zhuxin cared neither for wealth nor power, only the purest wishes held any value to her.<br><br>It is said that anyone who accepts her help will be subject to her trials, which can range from wagering entire fortunes to walking the line between life and death. Some attempt to get in her good graces, while others curse her as a malevolent witch, but she has never minded what others think. When people say she is capricious, she's the first to nod in agreement. However, once a pact has been made and the butterflies begin to dance, neither heaven nor earth, life nor death can stop her from fulfilling a wish.<br><br>No one knew where she came from or what her purpose was, only that she was always searching for something. Her existence was as enigmatic as the night itself. But Zhuxin did not always like the night. A thousand years ago, Zhuxin was just an orphan wandering the streets of Zhu'an. For her, the night only represented danger. In the darkness, the wickedness of human nature emerged to dance with the devil. But Little Zhuxin loved the bright flames. Every year during the midsummer festivals, the townsfolk would light countless braziers all over the city. Their warm glow made the smiles of every passerby seem more radiant and welcoming, but Zhuxin always kept her distance.<br><br>The elders say Zhuxin was born an orphan. According to the stories, she was found crawling out of the coffin after her parents had passed. She possessed such extreme Yin energy that the people regarded her as an ill omen. Little Zhuxin could only approach the warmth of the lingering embers after the crowds had gone home. On lucky nights, she could even find a flower pastry in the discarded leftovers. And on those nights, under the glowing embers, Zhuxin held her pastry tightly in her little soot-covered hands and felt warmth in her heart.<br><br>But even these small comforts would not last. When the balance between Yin and Yang was shattered, war broke out across the Cadia Riverlands. Monsters emerged from the shadows and terrorized the continent. The entire city was engulfed by fear. People hid in their homes and no one dared go out to light the braziers. Little Zhuxin endured many freezing nights until she finally exhausted the last bit of her warmth. Surrounded by darkness, she breathed her last breath.<br><br>But Zhuxin's Yin energy prevented her soul from dissipating. Was she still alive or had she become an apparition? What should she do? Where should she go? She tried to find answers, but couldn't escape the night no matter how much her little legs tried. It was a strange feeling; she no longer had to breathe, yet had never felt so suffocated. Whether in life or death, light or darkness, was there anyone who had an answer? Was there anyone who could light a flicker of hope?<br><br>A light pierced through the darkness. Little Zhuxin opened her eyes as a pure light descended from the heavens—it was the Great Dragon, the guardian deity of the Cadia Riverlands and one of the twin dragons. \"Are you here to drive me away?\" The Great Dragon did not answer. Instead he manifested a flowerlike lantern which gently fell towards Zhuxin. Just as it touched her hand, butterflies of ember flew out of the lantern and illuminated the night.<br><br>Little Zhuxin suddenly found herself floating among the cosmos with the Great Dragon. In the sea of tranquil clouds, the lantern's candle lit up the sky, and they conversed in the clouds. The Great Dragon explained that Zhuxin could not pass into the afterlife because she had no wish. If one lives and dies without a wish, what meaning is there to life? But if one can pass on without regrets, then there would be naught to fear. Only by finding her wish could she embark on the next journey. \"My wish? What could it be?\" \"Child, I have given you this lantern to light the way, but your wish is something you must seek on your own.\" \"Will I... be able to have something to wish for?\" \"Naturally. Your existence is proof of that.\" Zhuxin bid farewell to the dragon and departed with the lantern.<br><br>In the beginning, she wandered aimlessly, unsure of what she was even searching for. Eventually, she thought that if she still could not find her wish, perhaps she should fulfill the wishes of others first. Thus, she summoned her ember butterflies as her messengers, seeking, listening, and fulfilling countless wishes. Night after night, Zhuxin listened to the hearts of strangers. Sometimes she fell for their schemes; other times she exposed their true intentions with schemes of her own. Until one day, by chance, she fulfilled a wish so sincere that it made her lantern bright enough to warm her heart; it was the same feeling from her childhood. Zhuxin realized then that only these genuine wishes were worth seeking.<br><br>However, mortals are complicated creatures, and their hearts are too easily led astray by wealth and power. So, she began to set various trials to test the worth of people's wishes. Even when her trials caused people to misunderstand her, fear her, and curse her, she never defended herself, for none of that was important. What truly mattered was finding those forgotten wishes, buried in the ashes, and giving them a gentle blow to ignite their flames anew.<br><br>When she helped a young man bring a flower to his blind sister, Zhuxin was able to experience the sweet fragrance of flowers for the first time. When Zhuxin helped a weeping soul who perished in a foreign land to deliver a letter to his wife, she understood that death could not separate true love. Each precious wish made her lantern burn brighter, and the world in her eyes became more vivid. Although Zhuxin has yet to find her own wish, she understood now that it must be something bright enough to bring warmth to the long night; enough to make this journey worthwhile. Her existence was undoubtedly worthy of such a wish.",            
-        lore: { 
-            fullname: "Zhuxin",  
-            alias: "Beacon of Spirits",
-            internal: "Zhuxin",
-            birthday: "December 17 (Sagittarius)",
-            origin: "Zhu'an, Cadia Riverlands",
-            age: "About 3000 years",
-            gender: "Female",
-            species: "Unknown",
-            lane: "MidLane / Roam",
-            affiliation: "Cadia Riverlands",
-            abilities: "Butterfly Magic"
-        }
-    }, 
-    'Chip': {
-        durability: '65%', offense: '60%', effects: '50%', difficulty: '55%',
-        quote: '"Walking the line between the sky and the blade."',
-        fullStory: "Dear Dr. Baker: You must be shocked that, I, the carefree Chip, would ever write a letter, right? After all, normally I just recline in my hover chair and snack on potato chips all day. But I can no longer do that, my old friend, because your indecisiveness has been interfering with my carefree life, so we need to have a long chat. Once upon a time, before I met you, I was just an ordinary little fox, no different than the thousands of other foxes across Agelta. I slept in my burrow under the sand every day and foraged for food when I had to, until that day when I came upon a bag of half-eaten potato chips graciously left behind by a traveler. My world was never the same after that. That unique taste and crispy texture was surely the pinnacle of human ingenuity I thought; their miracle to the world of us chip-less peasants. After that divine experience, I waited along the trade routes day in and day out, but never got another taste of that golden delicacy. I even stole some potatoes from a village and was almost mauled by their mangy mutts, but what are potatoes compared to potato chips! Alas, the gods did not send down a second bag of potato chips, but calamity instead - an earthquake threatening to collapse my burrow. I did not panic like the rest of my kin. I made the softest bed with hay, put the empty bag of chips over my head, and was ready for whatever came next. But as it turns out, you just happened to be passing by my burrow at that very moment. The sight of my calmness, or perhaps the bag over my head, must have piqued your curiosity, so you took me back to your laboratory. When I woke up, I found that I had been altered by your strange science. I had gained extraordinary intelligence and was soon tasked with testing the lab's portal technology. I was so naive back then. The great Dr. Baker had granted this little fox the ability to get his own potato chips! From that day on, I became a being of higher intelligence, named myself \"Chip\", and was free to enjoy a lifetime of potato chips that I could reach from anywhere. Surely the portal I was testing was for reaching the snack rack while lounging at home, right? I was thankful, Dr. Baker. But if only things were that simple. You later informed me that in addition to eating potato chips, we intelligent \"scholars\" must also perform endless scientific research, record experimental data, assemble robots, and even catch those slimy energy jellyfish in the sea around the island. In other words... work. What a dreadful concept! Wasting my life away is what it is! I was devastated by this revelation, and from then on, all I could do at work was find ways to slack off and eat potato chips. I know you blame yourself, thinking it was some error in your calculations that caused me to become this lazy... but you're wrong. I was always lazy. Now don't get mad, I've finished my rant. What follows is just a recount of some events. Soon after, Dr. Octavius became the new head of the lab. He transformed it into an arms factory and used your technology intended to benefit the world to make weapons of war and sell them to Los Pecados. At that time, you couldn't accept what was happening and ran off. I originally thought you were taking a break on the island, but turns out you were secretly working on an android, Angela! Once Octavius found out, he had all of us work overtime to develop an even better android; to surpass you, he wanted to mass-produce weapons with artificial souls. The workload for all of us increased tenfold... we worked from dawn till dusk, without any breaks to enjoy even a single potato chip. That's no working condition for man or fox. I couldn't bear another second of it, so I was forced to do something drastic. I took the initiative and volunteered to lead the search and retrieval team for you. I used the portals to find your residence and brought you back. I hope you're not too angry. It's not that potato chips are more important than you, but I had to bring you back so everyone could finally take a break. Anyway, you were captured and brought back to the lab, but Angela escaped. You were so worried about her that you fell into a depression, while I received a hundred bags of original flavored potato chips as a bonus. But life likes to play cruel tricks, as I've learned. That blasted Octavius gave me a promotion and a raise, but most importantly gave me even more work and responsibilities! Will this nightmare ever end? I want to retire with my stash of potato chips! So, you gotta get back on your feet, my friend. Think of those suffering from war, the victims of the weapons made in this lab, and the poor little fox forced to work overtime! Listen, I'll help you retake control of your lab. I thought it didn't matter who ran this lab as long as it wasn't me, but now I know it must be you! Otherwise, people will expect me to work! As for your \"daughter\" Angela, don't worry, I'll find her and bring her back but promise you'll keep her away from me. She forced me to wear a frilly pink dress in our last encounter... Truly one of your most terrifying creations. In conclusion, pull yourself together, Dr. Baker! I know that your technology will bring joy to all living creatures, and I should be first on that list! I can already see the golden beaches of the Agelta coast. I've stashed all my chips there, waiting for that day. One last thing. You didn't think I actually wrote this letter myself, did you? I hope the ChipBot AI program I developed has done a good job of conveying my thoughts... or thoughts the real Chip should have according to my algor... Never mind. If you miss me, just contact ChipBot. Although it will only reply that it's off duty. - Your good friend, Chip",        lore: {
-        lore: {
-            fullname: "Chi[",
-            alias: "Shifting Cloud",
-            internal: "chip",
-            birthday: "July 3 (Cancer)",
-            origin: "Laboratory 1718",
-            age: "N/A",
-            gender: "Male",
-            species: "Genetically enhanced fox",
-            lane: "Roam",
-            affiliation: "None",
-            abilities: "Human-like intelligence"
-        }
-   }
+    }
 };
-
 const heroSkills = {
     'Marcel': { passive: 'Platinum Snap', s1: 'Framed Moment', s2: 'Tracking Shot', ult: 'Golden Hour' },
     'Xavier': { passive: 'Transcendence', s1: 'Infinite Extension', s2: 'Mystic Field', ult: 'Dawning Light' },
@@ -178,10 +141,9 @@ const heroSkills = {
     'Lukas': { passive: 'Hero\'s Resolve', s1: 'Flash Combo', s2: 'Flash Step', ult: 'Unleash the Beast' },
     'Kalea': { passive: 'Surge of Life', s1: 'Wavebreaker', s2: 'Tidal Strike', ult: 'Tsunami Slam' },
     'Suyou': { passive: 'Transient Immortal', s1: 'Blade Surge', s2: 'Soul Sever', ult: 'Evil Queller' },
-    'Sora': { passive: 'Cloud Walker', s1: 'Skyward Strike', s2: 'Misty Step', ult: 'Storm Surge' },
-    'Zhuxin': { passive: 'Crimson Butterflies', s1: 'Fluttering Grace', s2: 'Lantern Flare', ult: 'Crimson Beacon' },
-    'Chip': { passive: 'Snack Time', s1: 'Chipping In', s2: 'Overtime', ult: 'Shortcut' }
+    'Sora': { passive: 'Mystic Surge', s1: 'Sundering Strike', s2: 'Windstride', ult: 'Windstride' }
 };
+
 async function switchTab(tabName) {
     // 1. Manage Active Tab UI
     document.querySelectorAll('.nav-tab-item').forEach(tab => tab.classList.remove('active'));
@@ -197,28 +159,7 @@ async function switchTab(tabName) {
         }
     });
 
-    // 3. Trigger API load only if HEROES is selected
-<<<<<<< HEAD
-    if (tabName === 'heroes') {
-        loadHeroRoster();
-    }
-}
-
-async function switchTab(tabName) {
-    document.querySelectorAll('.nav-tab-item').forEach(tab => tab.classList.remove('active'));
-    const currentTab = document.getElementById('tab-' + tabName);
-    if (currentTab) currentTab.classList.add('active');
-
-    const views = ['home-view', 'story-view', 'heroes-view', 'skills-view'];
-    views.forEach(id => {
-        const view = document.getElementById(id);
-        if (view) {
-            view.style.display = (id === tabName + '-view') ? 'block' : 'none';
-        }
-    });
-
-=======
->>>>>>> 6c98a716108b96fcda00134580609c544a0e1f35
+    // 3. Trigger API load if HEROES is selected
     if (tabName === 'heroes') {
         loadHeroRoster();
     }
@@ -234,11 +175,13 @@ async function loadHeroRoster() {
     try {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
         const proxy = 'https://corsproxy.io/?';
+
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
         const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
 
         const responses = await Promise.all(urls.map(url => fetch(url)));
         const results = await Promise.all(responses.map(res => res.json()));
+
         const allRecords = results.flatMap(res => res.data?.records || []);
 
         const uniqueHeroes = [];
@@ -247,9 +190,10 @@ async function loadHeroRoster() {
         allRecords.forEach(item => {
             const info = item.data || {};
             const name = info.hero?.data?.name || info.name;
-
+            
             if (name && !seenNames.has(name)) {
                 seenNames.add(name);
+                
                 let lane = info.lane || "Unknown";
                 const roadsort = info.hero?.data?.roadsort;
                 if (Array.isArray(roadsort) && roadsort.length > 0) {
@@ -268,15 +212,11 @@ async function loadHeroRoster() {
         uniqueHeroes.forEach(hero => {
             const card = document.createElement('div');
             card.className = 'artwork-item';
-            card.id = 'item-' + hero.name;
-
+            
             card.onclick = () => {
-                // Ensure heroStats (your big data object) exists
-                if (typeof heroStats !== 'undefined' && heroStats[hero.name]) {
-                    openHeroCard(hero.name, hero.img);
-                } else {
-                    console.log(`Details for ${hero.name} not in local database.`);
-                }
+                updateBanner(hero.name, { lane: hero.lane });
+                switchTab('home');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
             card.innerHTML = `
@@ -293,37 +233,14 @@ async function loadHeroRoster() {
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = '<div class="error-msg">The system could not synchronize.</div>';
+        grid.innerHTML = `<div class="error-msg">The system could not synchronize.</div>`;
     }
 }
 
-<<<<<<< HEAD
-=======
-function openHeroCard(heroName, imgSrc) {
-    const data = heroStats[heroName];
-    if (!data) return;
-
-    document.getElementById('heroCardName').innerText = heroName;
-    document.getElementById('heroCardImg').src = imgSrc;
-
-    // Use optional chaining (?.) to prevent errors if lore is missing
-    document.getElementById('heroCardRole').innerText = data.lore?.lane || 'Unknown';
-    document.getElementById('heroCardSpecies').innerText = data.lore?.species || '-';
-    document.getElementById('heroCardOrigin').innerHTML = data.lore?.origin || '-';
-    document.getElementById('heroCardAffiliation').innerHTML = data.lore?.affiliation || '-';
-    document.getElementById('heroCardDesc').innerHTML = data.fullStory ? data.fullStory.slice(0, 300) + '...' : 'No story available.';
-
-    document.getElementById('heroCard').style.display = 'flex';
-}
-
->>>>>>> 6c98a716108b96fcda00134580609c544a0e1f35
 function updateBanner(name, role, imgSrc) {
     const img = document.getElementById('bannerImg');
-    if (!img) return;
-    
     img.style.opacity = '0';
     document.querySelectorAll('.artwork-item').forEach(item => item.classList.remove('selected'));
-    
     const selectedItem = document.getElementById('item-' + name);
     if (selectedItem) selectedItem.classList.add('selected');
 
@@ -332,67 +249,46 @@ function updateBanner(name, role, imgSrc) {
         const data = heroStats[name];
         const skills = heroSkills[name];
 
-        if (!data || !skills) return;
-
         document.getElementById('bannerName').innerText = name;
         document.getElementById('bannerRole').innerText = role;
-        document.getElementById('bannerQuote').innerText = data.quote || "";
+        document.getElementById('bannerQuote').innerText = data.quote;
         document.getElementById('modalHeroName').innerText = name + " - Profile";
+
 
         document.getElementById('box-passive').innerText = skills.passive;
         document.getElementById('box-s1').innerText = skills.s1;
         document.getElementById('box-s2').innerText = skills.s2;
         document.getElementById('box-ult').innerText = skills.ult;
 
+
         document.getElementById('bar-durability').style.width = data.durability;
         document.getElementById('bar-offense').style.width = data.offense;
         document.getElementById('bar-effects').style.width = data.effects;
         document.getElementById('bar-difficulty').style.width = data.difficulty;
 
-        // Story Section
+
         document.getElementById('story-title').innerText = name + "'s Tale";
-        document.getElementById('story-body').innerText = data.fullStory || "Story coming soon...";
-        
-        // Use Optional Chaining for lore
-        const lore = data.lore || {};
-        document.getElementById('story-alias').innerHTML = lore.alias || "-";
-        document.getElementById('info-fullname').innerHTML = lore.fullname || name;
-        document.getElementById('info-species').innerHTML = lore.species || "-";
-        document.getElementById('info-birthday').innerHTML = lore.birthday || "-";
-        document.getElementById('info-origin').innerHTML = lore.origin || "-";
-        document.getElementById('info-abilities').innerHTML = lore.abilities || "-";
+        document.getElementById('story-body').innerText = data.fullStory;
+        document.getElementById('story-alias').innerHTML = data.lore.alias;
+        document.getElementById('story-origin').innerHTML = data.lore.origin;
+        document.getElementById('story-affiliation').innerHTML = data.lore.affiliation;
+
+        document.getElementById('info-fullname').innerHTML = data.lore.fullname;
+        document.getElementById('info-species').innerHTML = data.lore.species;
+        document.getElementById('info-alias').innerHTML = data.lore.alias;
+        document.getElementById('info-internal').innerHTML = data.lore.internal;
+        document.getElementById('info-birthday').innerHTML = data.lore.birthday;
+        document.getElementById('info-origin').innerHTML = data.lore.origin;
+        document.getElementById('info-age').innerHTML = data.lore.age;
+        document.getElementById('info-gender').innerHTML = data.lore.gender;
+        document.getElementById('info-occupation').innerHTML = data.lore.lane;
+        document.getElementById('info-affiliation').innerHTML = data.lore.affiliation;
+        document.getElementById('info-abilities').innerHTML = data.lore.abilities;
 
         img.style.opacity = '1';
     }, 300);
 }
 
-// Removed the duplicate openHeroCard function and merged logic
-function openHeroCard(heroName, imgSrc) {
-    const data = heroStats[heroName];
-    if (!data) return;
-
-    const modal = document.getElementById('heroCard');
-    document.getElementById('heroCardName').innerText = heroName;
-    document.getElementById('heroCardImg').src = imgSrc;
-    
-    const lore = data.lore || {};
-    document.getElementById('heroCardRole').innerText = lore.lane || 'Unknown';
-    document.getElementById('heroCardSpecies').innerText = lore.species || '-';
-    document.getElementById('heroCardOrigin').innerHTML = lore.origin || '-';
-    document.getElementById('heroCardAffiliation').innerHTML = lore.affiliation || '-';
-    
-    const storySnippet = data.fullStory ? data.fullStory.slice(0, 300) + '...' : 'No story available.';
-    document.getElementById('heroCardDesc').innerHTML = storySnippet;
-
-    if (modal) modal.style.display = 'flex';
-}
-
-function closeHeroCard() {
-    const modal = document.getElementById('heroCard');
-    if (modal) modal.style.display = 'none';
-}
-
 window.onload = () => {
-    // Ensure you call this with a hero that exists in your local heroStats
     updateBanner('Marcel', 'Support', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_60_2/100_dd980a8816698f1503cdb76201d17dd0.png');
 };
