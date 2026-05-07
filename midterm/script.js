@@ -243,26 +243,7 @@ function updateBanner(name, role, imgSrc) {
     document.querySelectorAll('.artwork-item').forEach(item => item.classList.remove('selected'));
     const selectedItem = document.getElementById('item-' + name);
     if (selectedItem) selectedItem.classList.add('selected');
-// New modal fields
-document.getElementById('modal-hero-img').src = imgSrc;
-document.getElementById('modal-hero-name').innerText = name;
-document.getElementById('modal-nation').innerText = data.lore.origin.replace(/<[^>]*>/g, '');
-document.getElementById('modal-affiliation-tag').innerText = data.lore.affiliation.replace(/<[^>]*>/g, '');
-document.getElementById('modal-tag-role').innerText = role;
-document.getElementById('modal-tag-species').innerText = data.lore.species;
-document.getElementById('modal-profile-text').innerText = data.fullStory.replace(/<[^>]*>/g, '');
-document.getElementById('modal-skill-passive').innerText = skills.passive;
-document.getElementById('modal-skill-s1').innerText = skills.s1;
-document.getElementById('modal-skill-s2').innerText = skills.s2;
-document.getElementById('modal-skill-ult').innerText = skills.ult;
-document.getElementById('modal-bar-durability').style.width = data.durability;
-document.getElementById('modal-bar-offense').style.width = data.offense;
-document.getElementById('modal-bar-effects').style.width = data.effects;
-document.getElementById('modal-bar-difficulty').style.width = data.difficulty;
 
-// Reset tabs to Profile on each open
-document.querySelectorAll('.modal-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
-document.querySelectorAll('.modal-tab-content').forEach((c, i) => c.style.display = i === 0 ? 'block' : 'none');
     setTimeout(() => {
         img.src = imgSrc;
         const data = heroStats[name];
@@ -307,11 +288,24 @@ document.querySelectorAll('.modal-tab-content').forEach((c, i) => c.style.displa
         img.style.opacity = '1';
     }, 300);
 }
-function switchModalTab(tabName, el) {
-    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    document.querySelectorAll('.modal-tab-content').forEach(c => c.style.display = 'none');
-    document.getElementById('modal-tab-' + tabName).style.display = 'block';
+
+function openHeroCard(heroName, imgSrc) {
+  const data = heroStats[heroName];
+  if (!data) return;
+
+  document.getElementById('heroCardName').innerText = heroName;
+  document.getElementById('heroCardImg').src = imgSrc;
+  document.getElementById('heroCardRole').innerText = data.lore.lane || 'Unknown';
+  document.getElementById('heroCardSpecies').innerText = data.lore.species || '-';
+  document.getElementById('heroCardOrigin').innerHTML = data.lore.origin || '-';
+  document.getElementById('heroCardAffiliation').innerHTML = data.lore.affiliation || '-';
+  document.getElementById('heroCardDesc').innerHTML = data.fullStory.slice(0, 300) + '...';
+
+  document.getElementById('heroCard').style.display = 'flex';
+}
+
+function closeHeroCard() {
+  document.getElementById('heroCard').style.display = 'none';
 }
 
 window.onload = () => {

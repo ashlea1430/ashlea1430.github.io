@@ -9,6 +9,29 @@
     <link href="style.css" rel="stylesheet">
 </head>
 
+<div id="heroCard" class="hero-card-overlay" style="display:none;">
+  <div class="hero-card">
+    <button class="hero-card-close" onclick="closeHeroCard()">×</button>
+    <div class="hero-card-content">
+      <div class="hero-card-img">
+        <img id="heroCardImg" src="" alt="Hero Image">
+      </div>
+      <div class="hero-card-details">
+        <h2 id="heroCardName">Hero Name</h2>
+        <div class="hero-tags">
+          <span id="heroCardRole" class="tag"></span>
+          <span id="heroCardSpecies" class="tag"></span>
+        </div>
+        <div class="hero-meta">
+          <div><strong>Origin:</strong> <span id="heroCardOrigin">-</span></div>
+          <div><strong>Affiliation:</strong> <span id="heroCardAffiliation">-</span></div>
+        </div>
+        <p id="heroCardDesc" class="hero-desc"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <body>
 
     <div class="dashboard-container">
@@ -178,70 +201,60 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content hero-modal-content">
-      <button type="button" class="btn-close btn-close-white modal-close-btn" data-bs-dismiss="modal" aria-label="Close"></button>
-      <div class="hero-modal-body">
-
-        <!-- LEFT: Hero Image -->
-        <div class="hero-modal-img-wrap">
-          <img id="modal-hero-img" src="" alt="Hero">
-        </div>
-
-        <!-- RIGHT: Info -->
-        <div class="hero-modal-info">
-          <h2 class="hero-modal-name" id="modal-hero-name">Hero</h2>
-
-          <div class="hero-modal-meta">
-            <div>
-              <div class="meta-label">NATION</div>
-              <div class="meta-value" id="modal-nation">-</div>
+                <div class="modal-body">
+                    <table class="wiki-table">
+                        <tr>
+                            <th colspan="2" class="wiki-header">information</th>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Full Name</td>
+                            <td id="info-fullname">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Species</td>
+                            <td id="info-species">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Alias</td>
+                            <td id="info-alias">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Internal Name</td>
+                            <td id="info-internal">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Birthday</td>
+                            <td id="info-birthday">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Origin</td>
+                            <td id="info-origin">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Age</td>
+                            <td id="info-age">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Gender</td>
+                            <td id="info-gender">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Lane</td>
+                            <td id="info-occupation">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Affiliation</td>
+                            <td id="info-affiliation">-</td>
+                        </tr>
+                        <tr>
+                            <td class="wiki-label">Abilities</td>
+                            <td id="info-abilities">-</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div>
-              <div class="meta-label">AFFILIATION</div>
-              <div class="meta-value" id="modal-affiliation-tag">-</div>
-            </div>
-          </div>
-
-          <div class="hero-modal-tags">
-            <span class="hero-tag tag-role" id="modal-tag-role">-</span>
-            <span class="hero-tag tag-species" id="modal-tag-species">-</span>
-          </div>
-
-          <!-- Tabs -->
-          <div class="modal-tabs">
-            <span class="modal-tab active" onclick="switchModalTab('profile', this)">Profile</span>
-            <span class="modal-tab" onclick="switchModalTab('skills', this)">Skills</span>
-            <span class="modal-tab" onclick="switchModalTab('attributes', this)">Attributes</span>
-          </div>
-
-          <!-- Tab: Profile -->
-          <div class="modal-tab-content" id="modal-tab-profile">
-            <p id="modal-profile-text" style="font-size:0.85rem; color:#ced4da; line-height:1.6;">-</p>
-          </div>
-
-          <!-- Tab: Skills -->
-          <div class="modal-tab-content" id="modal-tab-skills" style="display:none;">
-            <div class="skill-entry"><span class="skill-type">Passive</span><div class="skill-desc" id="modal-skill-passive">-</div></div>
-            <div class="skill-entry"><span class="skill-type">Skill 1</span><div class="skill-desc" id="modal-skill-s1">-</div></div>
-            <div class="skill-entry"><span class="skill-type">Skill 2</span><div class="skill-desc" id="modal-skill-s2">-</div></div>
-            <div class="skill-entry"><span class="skill-type text-warning">Ultimate</span><div class="skill-desc" id="modal-skill-ult">-</div></div>
-          </div>
-
-          <!-- Tab: Attributes -->
-          <div class="modal-tab-content" id="modal-tab-attributes" style="display:none;">
-            <div class="attr-row"><div class="attr-label">Durability</div><div class="attr-bar-bg"><div class="attr-bar-fill" id="modal-bar-durability" style="width:0%"></div></div></div>
-            <div class="attr-row"><div class="attr-label">Offense</div><div class="attr-bar-bg"><div class="attr-bar-fill" id="modal-bar-offense" style="width:0%"></div></div></div>
-            <div class="attr-row"><div class="attr-label">Ability Effects</div><div class="attr-bar-bg"><div class="attr-bar-fill" id="modal-bar-effects" style="width:0%"></div></div></div>
-            <div class="attr-row"><div class="attr-label">Difficulty</div><div class="attr-bar-bg"><div class="attr-bar-fill" id="modal-bar-difficulty" style="width:0%"></div></div></div>
-          </div>
-
         </div>
-      </div>
     </div>
-  </div>
-</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
