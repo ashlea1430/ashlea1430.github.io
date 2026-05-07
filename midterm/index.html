@@ -18,7 +18,8 @@
             <div class="nav-tab-item" id="tab-heroes" onclick="switchTab('heroes')">HEROES</div>
             <div class="nav-tab-item" id="tab-skills" onclick="switchTab('skills')">SKILLS</div>
         </div>
-
+    <button id="theme-toggle" class="theme-btn">🌙</button>
+    </div>
         <div id="home-view">
             <div class="banner">
                 <div class="banner-content">
@@ -83,6 +84,13 @@
                                 <img
                                     src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_2_1_40/100_4749a1f7fe99cbedfc5ef23fc1287d6c.png">
                                 <div class="hero-name-overlay">Sora</div>
+
+                                 <div class="artwork-item" id="item-Zetian"
+                                onclick="updateBanner('Zhuxin', 'Mage', 'https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png')">
+                                <img
+                                    src="https://akmweb.youngjoygame.com/web/svnres/img/mlbb/homepage_1_9_90/100_22dc8b16ea98a735027c3141b74ef841.png">
+                                <div class="hero-name-overlay">Zhuxin</div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -228,29 +236,6 @@
                             <td id="info-abilities">-</td>
                         </tr>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="heroCard" class="hero-card-overlay" style="display:none;">
-        <div class="hero-card">
-            <button class="hero-card-close" onclick="closeHeroCard()">×</button>
-            <div class="hero-card-content">
-                <div class="hero-card-img">
-                    <img id="heroCardImg" src="" alt="Hero Image">
-                </div>
-                <div class="hero-card-details">
-                    <h2 id="heroCardName">Hero Name</h2>
-                    <div class="hero-tags">
-                        <span id="heroCardRole" class="tag"></span>
-                        <span id="heroCardSpecies" class="tag"></span>
-                    </div>
-                    <div class="hero-meta">
-                        <div><strong>Origin:</strong> <span id="heroCardOrigin">-</span></div>
-                        <div><strong>Affiliation:</strong> <span id="heroCardAffiliation">-</span></div>
-                    </div>
-                    <p id="heroCardDesc" class="hero-desc"></p>
                 </div>
             </div>
         </div>
