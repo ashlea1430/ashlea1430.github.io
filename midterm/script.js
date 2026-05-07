@@ -285,6 +285,33 @@ function updateBanner(name, role, imgSrc) {
         document.getElementById('info-affiliation').innerHTML = data.lore.affiliation;
         document.getElementById('info-abilities').innerHTML = data.lore.abilities;
 
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    // 1. Check for saved preference in LocalStorage
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'light' ? '☀' : '🌙';
+
+    // 2. Listen for clicks
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        // Apply the theme to the body tag
+        body.setAttribute('data-theme', newTheme);
+        
+        // Save it so it stays on refresh
+        localStorage.setItem('theme', newTheme);
+        
+        // Update the button icon
+        themeToggle.textContent = newTheme === 'light' ? '☀' : '🌙';
+        
+        console.log("Theme switched to:", newTheme); // Debugging line
+    });
+});
+
         img.style.opacity = '1';
     }, 300);
 }

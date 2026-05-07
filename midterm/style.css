@@ -290,3 +290,14 @@ td { padding: 8px; border-bottom: 1px solid var(--border-color); }
     align-items: center;
     width: 100%;
 }
+
+/* Example of how your cards should look now */
+.section-card {
+    background-color: var(--card-bg); /* Instead of #1a1e29 */
+    color: var(--text-main);         /* Instead of white */
+    border: 1px solid var(--border-color);
+}
+
+.dashboard-container {
+    background-color: var(--bg-color);
+}
