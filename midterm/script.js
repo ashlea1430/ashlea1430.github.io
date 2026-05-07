@@ -160,7 +160,7 @@ async function switchTab(tabName) {
         }
     });
 
-    // 3. Trigger API load if HEROES is selected
+    // 3. Trigger API load only if HEROES is selected
     if (tabName === 'heroes') {
         loadHeroRoster();
     }
@@ -236,7 +236,7 @@ async function loadHeroRoster() {
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = <div class="error-msg">The system could not synchronize.</div>;
+        grid.innerHTML = `<div class="error-msg">The system could not synchronize.</div>`;
     }
 }
 
