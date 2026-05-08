@@ -191,10 +191,10 @@ async function loadHeroRoster() {
         allRecords.forEach(item => {
             const info = item.data || {};
             const name = info.hero?.data?.name || info.name;
-            
+
             if (name && !seenNames.has(name)) {
                 seenNames.add(name);
-                
+
                 let lane = info.lane || "Unknown";
                 const roadsort = info.hero?.data?.roadsort;
                 if (Array.isArray(roadsort) && roadsort.length > 0) {
@@ -213,12 +213,6 @@ async function loadHeroRoster() {
         uniqueHeroes.forEach(hero => {
             const card = document.createElement('div');
             card.className = 'artwork-item';
-            
-            card.onclick = () => {
-                updateBanner(hero.name, { lane: hero.lane });
-                switchTab('home');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
 
             card.innerHTML = `
                 <div style="position:relative; overflow:hidden; border-radius:8px; background: #1a1a1a;">
@@ -288,6 +282,23 @@ function updateBanner(name, role, imgSrc) {
 
         img.style.opacity = '1';
     }, 300);
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const themeBtn = document.getElementById('themeToggle');
+    
+    // Toggle the dark-mode class
+    body.classList.toggle('dark-mode');
+    
+    // Update the button appearance
+    if (body.classList.contains('dark-mode')) {
+        themeBtn.innerHTML = "☀️ Light Mode";
+        themeBtn.classList.replace('btn-primary', 'btn-outline-info');
+    } else {
+        themeBtn.innerHTML = "🌙 Dark Mode";
+        themeBtn.classList.replace('btn-outline-info', 'btn-primary');
+    }
 }
 
 window.onload = () => {
