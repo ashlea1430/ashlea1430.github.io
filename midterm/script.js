@@ -1,4 +1,3 @@
-script.js
 
 const API_BASE = 'https://openmlbb.fastapicloud.dev/api';
 
@@ -216,7 +215,7 @@ async function loadHeroRoster() {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
         const proxy = 'https://corsproxy.io/?';
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
-        const urls = endpoints.map(ep => ${proxy}${encodeURIComponent(baseUrl + ep)});
+        const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
 
         const responses = await Promise.all(urls.map(url => fetch(url)));
         const results = await Promise.all(responses.map(res => res.json()));
@@ -274,11 +273,11 @@ async function loadHeroRoster() {
             grid.appendChild(heroCol);
         });
 
-        if (countBadge) countBadge.innerText = ${uniqueHeroes.length} HEROES LOADED;
+        if (countBadge) countBadge.innerText = `${uniqueHeroes.length} HEROES LOADED`;
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to sync hero database.</div>;
+        grid.innerHTML = `<div class="error-msg p-5 text-center w-100">Failed to sync hero database.</div>`;
     }
 }
 
@@ -291,12 +290,12 @@ async function loadMLBBSpells() {
     try {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api/academy/spells';
         const proxy = 'https://corsproxy.io/?';
-        const url = ${proxy}${encodeURIComponent(baseUrl)};
+        const url = `${proxy}${encodeURIComponent(baseUrl)}`;
 
         console.log("Fetching spells from:", url); // Debugging line
 
         const response = await fetch(url);
-        if (!response.ok) throw new Error(HTTP Error: ${response.status});
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
 
         const json = await response.json();
         console.log("API Response received:", json); // Debugging line
@@ -367,8 +366,8 @@ async function loadMLBBEquipment() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
-        const expandedUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment/expanded')};
-        const generalUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment')};
+        const expandedUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment/expanded')}`;
+        const generalUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment')}`;
         const [resExpanded, resGeneral] = await Promise.all([
             fetch(expandedUrl).then(r => r.json()),
             fetch(generalUrl).then(r => r.json())
@@ -419,7 +418,7 @@ async function loadMLBBEquipment() {
                         </div>
                     </div>
                     
-                    ${cleanStats ? <div class="item-stats my-2" style="font-size: 0.75rem; color: #ffeb3b; font-weight: 500;">${cleanStats}</div> : ''}
+                    ${cleanStats ? `<div class="item-stats my-2" style="font-size: 0.75rem; color: #ffeb3b; font-weight: 500;">${cleanStats}</div>` : ''}
 
                     <p class="skill-desc mb-0" style="font-size: 0.75rem; line-height: 1.4; color: #e0faff; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">
                         ${cleanDesc}
@@ -431,7 +430,7 @@ async function loadMLBBEquipment() {
 
     } catch (error) {
         console.error("Equip Sync Error:", error);
-        container.innerHTML = <div class="error-msg p-5 text-center w-100">Armory sync failed.</div>;
+        container.innerHTML = `<div class="error-msg p-5 text-center w-100">Armory sync failed.</div>`;
     }
 }
 
@@ -443,7 +442,7 @@ async function loadMLBBEmblems() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
-        const emblemUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/emblems')};
+        const emblemUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/emblems')}`;
 
         const response = await fetch(emblemUrl);
         const json = await response.json();
@@ -496,7 +495,7 @@ async function loadMLBBEmblems() {
 
     } catch (error) {
         console.error("Emblem Sync Error:", error);
-        container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load talents.</div>;
+        container.innerHTML = `<div class="error-msg p-5 text-center w-100">Failed to load talents.</div>`;
     }
 }
 
@@ -506,7 +505,7 @@ async function loadMLBBRanks() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
-        const rankUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/ranks')};
+        const rankUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/ranks')}`;
 
         const response = await fetch(rankUrl);
         const json = await response.json();
@@ -551,7 +550,7 @@ async function loadMLBBRanks() {
 
     } catch (error) {
         console.error("Rank Sync Error:", error);
-        container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load rank tiers.</div>;
+        container.innerHTML = `<div class="error-msg p-5 text-center w-100">Failed to load rank tiers.</div>`;
     }
 }
 
