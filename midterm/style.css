@@ -507,7 +507,7 @@ body {
 
 [data-bs-theme="dark"] #bannerName {
     color: #00d9ff;
-    text-shadow: 0 0 15px rgba(0, 217, 255, 0.😎, 0 0 30px rgba(0, 217, 255, 0.4);
+    text-shadow: 0 0 15px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 217, 255, 0.4);
 }
 
 [data-bs-theme="dark"] #bannerQuote {
