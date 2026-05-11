@@ -22,10 +22,60 @@ body {
     margin: auto;
 }
 
+.navbar-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-bottom: 25px;
+    background: transparent;
+    border: none;
+}
+
 .nav-tabs-custom {
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.nav-tabs-custom::-webkit-scrollbar {
+    display: none;
+}
+
+.nav-tab-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px 25px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-tab-item:hover {
+    color: var(--accent-cyan);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-tab-item.active {
+    background: #132e5e;
+    color: #fff;
+    border-bottom: 3px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure the Theme Button aligns correctly */
+#themeToggle {
+    margin-left: 15px;
+    height: fit-content;
+    white-space: nowrap;
+    border-radius: 20px;
+    padding: 8px 20px;
 }
 
 #themeToggle {
@@ -35,22 +85,6 @@ body {
     color: #000;
     font-weight: bold;
     transition: all 0.3s ease;
-}
-
-.nav-tab-item {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px 35px;
-    border-radius: 4px;
-    font-weight: bold;
-    font-size: 0.85rem;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
-}
-
-.nav-tab-item.active {
-    background: #132e5e;
-    border-bottom: 3px solid white;
 }
 
 .banner {
@@ -291,7 +325,8 @@ body {
 
     .banner-content {
         padding: 30px;
-        order: 2; /* Text moves below the image */
+        order: 2;
+        /* Text moves below the image */
         text-align: center;
         align-items: center;
     }
@@ -325,12 +360,12 @@ body {
 
     /* Merged: Hero Grid specific mobile look */
     .hero-grid-layout {
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); 
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
         gap: 10px;
         padding: 15px;
     }
 
-    .hero-name-overlay {
+    zz .hero-name-overlay {
         font-size: 0.7rem;
         padding: 4px 0;
     }
@@ -345,7 +380,8 @@ body {
     color: #0ff;
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
     background: #0ff !important;
     color: #000 !important;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
@@ -360,46 +396,131 @@ body {
     background: rgba(0, 255, 255, 0.2);
     border-radius: 10px;
 }
-/* Neon Dark Mode Overrides */
-body.dark-mode {
+
+/* Spell Card Styles */
+.spell-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 15px;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.spell-card:hover {
+    background: rgba(92, 225, 230, 0.05);
+    transform: translateY(-3px);
+}
+
+.spell-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.spell-name {
+    color: var(--accent-cyan);
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.spell-short {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Unified Hover Effects for Spells, Equipment, Emblems, and Ranks */
+#spellsContainer .section-card,
+#equipContainer .section-card,
+#emblemContainer .section-card,
+#rankContainer .section-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    z-index: 1;
+    cursor: default;
+}
+
+#spellsContainer .section-card,
+#equipContainer .section-card,
+#emblemContainer .section-card,
+#rankContainer .section-card,
+#apiHeroGrid .section-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    z-index: 1;
+    cursor: default;
+}
+
+#spellsContainer .section-card:hover,
+#equipContainer .section-card:hover,
+#emblemContainer .section-card:hover,
+#rankContainer .section-card:hover,
+#apiHeroGrid .section-card:hover {
+    transform: scale(1.1) rotate(0.5deg);
+    filter: drop-shadow(0 0 10px var(--accent-cyan));
+    z-index: 10;
+    border-color: var(--accent-cyan) !important;
+}
+
+.theme-btn-light {
+    background-color: #00d9ff !important;
+    color: #000 !important;
+    border: none;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+
+.theme-btn-dark {
+    background-color: #000b1a !important;
+    color: #00d9ff !important;
+    border: 2px solid #00d9ff;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+
+/* Neon Dark Mode */
+[data-bs-theme="dark"] body {
     background-color: #000000;
     background-image: radial-gradient(circle at 50% 0%, #001a33 0%, #000000 90%);
     color: #ffffff;
 }
 
-/* Container & Cards - Pitch Black with Neon Border */
-body.dark-mode .section-card, 
-body.dark-mode .modal-content,
-body.dark-mode .nav-tab-item {
+[data-bs-theme="dark"] .section-card,
+[data-bs-theme="dark"] .modal-content,
+[data-bs-theme="dark"] .nav-tab-item {
     background: #0a0a0a;
     color: #ffffff;
     border: 1px solid #00d9ff;
-    box-shadow: 0 0 10px rgba(0, 217, 255, 0.2); /* Soft outer glow */
+    box-shadow: 0 0 10px rgba(0, 217, 255, 0.2);
 }
 
-/* Banner Appearance - High Contrast */
-body.dark-mode .banner {
+[data-bs-theme="dark"] .banner {
     background: linear-gradient(135deg, #000000 0%, #001a33 100%);
     border: 1px solid #00d9ff;
     box-shadow: inset 0 0 20px rgba(0, 217, 255, 0.1);
 }
 
-body.dark-mode #bannerName {
+[data-bs-theme="dark"] #bannerName {
     color: #00d9ff;
-    text-shadow: 0 0 15px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 217, 255, 0.4);
+    text-shadow: 0 0 15px rgba(0, 217, 255, 0.😎, 0 0 30px rgba(0, 217, 255, 0.4);
 }
 
-body.dark-mode #bannerQuote {
-    color: #b3f0ff; /* Very light blue text */
+[data-bs-theme="dark"] #bannerQuote {
+    color: #b3f0ff;
 }
 
-body.dark-mode hr {
+[data-bs-theme="dark"] hr {
     border-top: 2px solid #00d9ff !important;
+    opacity: 1;
     box-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
 }
 
-/* Navigation Items */
-body.dark-mode .nav-tab-item.active {
+[data-bs-theme="dark"] .nav-tab-item.active {
     background-color: #00d9ff;
     color: #000000;
     border-color: #00d9ff;
@@ -407,43 +528,44 @@ body.dark-mode .nav-tab-item.active {
     font-weight: 900;
 }
 
-body.dark-mode .nav-tab-item:not(.active):hover {
+[data-bs-theme="dark"] .nav-tab-item:not(.active):hover {
     background: rgba(0, 217, 255, 0.1);
     color: #00d9ff;
 }
 
 /* Tables & Lists */
-body.dark-mode .wiki-table {
+[data-bs-theme="dark"] .wiki-table {
     border-color: #00d9ff;
 }
 
-body.dark-mode .wiki-label {
+[data-bs-theme="dark"] .wiki-label {
     background: rgba(0, 217, 255, 0.1);
     color: #00d9ff;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-body.dark-mode .skill-entry {
+[data-bs-theme="dark"] .skill-entry {
     border-bottom: 1px solid rgba(0, 217, 255, 0.2);
 }
 
-body.dark-mode .skill-desc {
+[data-bs-theme="dark"] .skill-desc {
     color: #e0faff;
 }
 
 /* Hero Catalog Grid */
-body.dark-mode .hero-name-overlay {
+[data-bs-theme="dark"] .hero-name-overlay {
     background: rgba(0, 0, 0, 0.85);
     color: #00d9ff;
     border-top: 1px solid #00d9ff;
 }
 
 /* Scrollbar for Dark Mode */
-body.dark-mode ::-webkit-scrollbar-track {
+[data-bs-theme="dark"] ::-webkit-scrollbar-track {
     background: #000;
 }
-body.dark-mode ::-webkit-scrollbar-thumb {
+
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
     background: #00d9ff;
     border-radius: 10px;
 }

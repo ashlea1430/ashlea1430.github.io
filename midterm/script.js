@@ -1,3 +1,4 @@
+script.js
 
 const API_BASE = 'https://openmlbb.fastapicloud.dev/api';
 
@@ -152,7 +153,7 @@ async function switchTab(tabName) {
     if (currentTab) currentTab.classList.add('active');
 
     // 2. Manage View Visibility
-    const views = ['home-view', 'story-view', 'heroes-view', 'skills-view'];
+    const views = ['home-view', 'story-view', 'heroes-view', 'spells-view', 'equipments-view', 'emblems-view', 'ranks-view'];
     views.forEach(id => {
         const view = document.getElementById(id);
         if (view) {
@@ -162,7 +163,47 @@ async function switchTab(tabName) {
 
     // 3. Trigger API load if HEROES is selected
     if (tabName === 'heroes') {
-        loadHeroRoster();
+        const container = document.getElementById('apiHeroGrid');
+        const isLoading = container.querySelector('.spinner-border') || container.innerText.includes('Loading');
+        if (container && (container.children.length === 0 || isLoading)) {
+            loadHeroRoster();
+        }
+    }
+
+    // 4. Trigger API load if SPELLS is selected
+    if (tabName === 'spells') {
+        const container = document.getElementById('spellsContainer');
+        const isLoading = container.querySelector('.spinner-border') || container.innerText.includes('Fetching');
+        if (container && (container.children.length === 0 || isLoading)) {
+            loadMLBBSpells();
+        }
+    }
+
+    // 5. Trigger API load if EQUIPMENTS is selected
+    if (tabName === 'equipments') {
+        const container = document.getElementById('equipContainer');
+        const isLoading = container.querySelector('.spinner-border') || container.innerText.includes('Loading');
+        if (container && (container.children.length === 0 || isLoading)) {
+            loadMLBBEquipment();
+        }
+    }
+
+    // 6. Trigger API load if EMBLEMS is selected
+    if (tabName === 'emblems') {
+        const container = document.getElementById('emblemContainer');
+        const isLoading = container.querySelector('.spinner-border') || container.innerText.includes('Loading');
+        if (container && (container.children.length === 0 || isLoading)) {
+            loadMLBBEmblems();
+        }
+    }
+
+    // 7. Trigger API load if RANKS is selected
+    if (tabName === 'ranks') {
+        const container = document.getElementById('rankContainer');
+        const isLoading = container.querySelector('.spinner-border') || container.innerText.includes('Loading');
+        if (container && (container.children.length === 0 || isLoading)) {
+            loadMLBBRanks();
+        }
     }
 }
 
@@ -171,18 +212,14 @@ async function loadHeroRoster() {
     const countBadge = document.getElementById('heroCount');
     if (!grid) return;
 
-    grid.innerHTML = '<div class="loading-state">Syncing Hero Database...</div>';
-
     try {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
         const proxy = 'https://corsproxy.io/?';
-
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
-        const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
+        const urls = endpoints.map(ep => ${proxy}${encodeURIComponent(baseUrl + ep)});
 
         const responses = await Promise.all(urls.map(url => fetch(url)));
         const results = await Promise.all(responses.map(res => res.json()));
-
         const allRecords = results.flatMap(res => res.data?.records || []);
 
         const uniqueHeroes = [];
@@ -194,8 +231,7 @@ async function loadHeroRoster() {
 
             if (name && !seenNames.has(name)) {
                 seenNames.add(name);
-
-                let lane = info.lane || "Unknown";
+                let lane = info.lane || "General";
                 const roadsort = info.hero?.data?.roadsort;
                 if (Array.isArray(roadsort) && roadsort.length > 0) {
                     lane = roadsort[0].data.road_sort_title;
@@ -209,26 +245,313 @@ async function loadHeroRoster() {
             }
         });
 
+        // Alphabetical sort for better UX
+        uniqueHeroes.sort((a, b) => a.name.localeCompare(b.name));
+
         grid.innerHTML = '';
         uniqueHeroes.forEach(hero => {
-            const card = document.createElement('div');
-            card.className = 'artwork-item';
+            const heroCol = document.createElement('div');
+            heroCol.className = 'col-6 col-md-4 col-lg-2 mb-3';
 
-            card.innerHTML = `
-                <div style="position:relative; overflow:hidden; border-radius:8px; background: #1a1a1a;">
-                    <img src="${hero.img}" alt="${hero.name}" referrerpolicy="no-referrer" style="width:100%; display:block;"
-                         onerror="this.src='https://placehold.jp/150x150.png?text=Not+Found';">
-                    <div class="hero-name-overlay">${hero.name}</div>
+            heroCol.innerHTML = `
+                <div class="section-card h-100 text-center p-2 d-flex flex-column align-items-center" 
+                     style="border: 1px solid rgba(0, 217, 255, 0.15); background: rgba(11, 26, 51, 0.4);">
+                    
+                    <div class="hero-avatar-wrapper mb-2" style="width: 70px; height: 70px; overflow: hidden; border-radius: 12px; border: 2px solid var(--accent-cyan);">
+                        <img src="${hero.img}" alt="${hero.name}" referrerpolicy="no-referrer" 
+                             style="width: 100%; height: 100%; object-fit: cover;"
+                             onerror="this.src='https://placehold.jp/24/0b1a33/5ce1e6/150x150.png?text=?';">
+                    </div>
+                    
+                    <h6 class="mb-1" style="font-size: 0.8rem; font-weight: bold; color: #fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">
+                        ${hero.name}
+                    </h6>
+                    <span class="badge" style="font-size: 0.6rem; background: rgba(92, 225, 230, 0.1); color: var(--accent-cyan);">
+                        ${hero.lane}
+                    </span>
                 </div>
             `;
-            grid.appendChild(card);
+            grid.appendChild(heroCol);
         });
 
-        if (countBadge) countBadge.innerText = `${uniqueHeroes.length} Heroes Synced`;
+        if (countBadge) countBadge.innerText = ${uniqueHeroes.length} HEROES LOADED;
 
     } catch (error) {
         console.error("Roster Sync Error:", error);
-        grid.innerHTML = `<div class="error-msg">The system could not synchronize.</div>`;
+        grid.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to sync hero database.</div>;
+    }
+}
+
+async function loadMLBBSpells() {
+    const container = document.getElementById('spellsContainer');
+    if (!container) return;
+
+    container.innerHTML = '<div class="loading-state w-100 text-center p-5">Syncing Spell Database...</div>';
+
+    try {
+        const baseUrl = 'https://openmlbb.fastapicloud.dev/api/academy/spells';
+        const proxy = 'https://corsproxy.io/?';
+        const url = ${proxy}${encodeURIComponent(baseUrl)};
+
+        console.log("Fetching spells from:", url); // Debugging line
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(HTTP Error: ${response.status});
+
+        const json = await response.json();
+        console.log("API Response received:", json); // Debugging line
+
+        // Ensure we are getting the array correctly
+        const records = json.data?.records || json.records || [];
+
+        if (records.length === 0) {
+            container.innerHTML = '<div class="text-warning text-center p-5">No spells found in the database.</div>';
+            return;
+        }
+
+        container.innerHTML = '';
+
+        records.forEach(record => {
+            // The API sometimes nests this differently, let's be safe:
+            const details = record.data?.__data || record.data || {};
+
+            const skillName = details.skillname || "Unknown Spell";
+            const skillIcon = details.skillicon || "";
+            const skillDesc = details.skilldesc || "";
+            const shortDesc = record.data?.skillshortdesc || "Battle Spell";
+
+            const cleanDesc = skillDesc.replace(/<[^>]*>?/gm, '');
+
+            const spellCol = document.createElement('div');
+            spellCol.className = 'col-md-4 mb-4';
+
+            spellCol.innerHTML = `
+                <div class="section-card h-100 d-flex flex-column" style="border: 1px solid rgba(0, 217, 255, 0.2);">
+                    <div class="d-flex align-items-center mb-3">
+                        <div style="position:relative; width:50px; height:50px; overflow:hidden; border-radius:8px; background: #1a1a1a; border: 1px solid var(--accent-cyan);">
+                            <img src="${skillIcon}" alt="${skillName}" 
+                                 referrerpolicy="no-referrer"
+                                 style="width:100%; display:block;"
+                                 onerror="this.src='https://placehold.jp/100x100.png?text=?';">
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0" style="color: var(--accent-cyan); font-weight: bold; font-size: 0.95rem;">${skillName}</h6>
+                            <small class="text-white-50 text-uppercase" style="font-size: 0.65rem; letter-spacing: 0.5px;">
+                                ${shortDesc}
+                            </small>
+                        </div>
+                    </div>
+                    <p class="skill-desc mb-0" style="font-size: 0.8rem; line-height: 1.4; color: #e0faff; flex-grow: 1;">
+                        ${cleanDesc}
+                    </p>
+                </div>
+            `;
+            container.appendChild(spellCol);
+        });
+
+    } catch (error) {
+        console.error("Spell Sync Error:", error);
+        container.innerHTML = `
+            <div class="error-msg p-5 text-center w-100">
+                <p>The spell system could not synchronize.</p>
+                <small style="color: rgba(255,0,0,0.5)">${error.message}</small>
+            </div>`;
+    }
+}
+
+async function loadMLBBEquipment() {
+    const container = document.getElementById('equipContainer');
+    if (!container) return;
+
+    container.innerHTML = '<div class="loading-state w-100 text-center p-5">Syncing Armory Database...</div>';
+
+    try {
+        const proxy = 'https://corsproxy.io/?';
+        const expandedUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment/expanded')};
+        const generalUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment')};
+        const [resExpanded, resGeneral] = await Promise.all([
+            fetch(expandedUrl).then(r => r.json()),
+            fetch(generalUrl).then(r => r.json())
+        ]);
+
+        const expandedRecords = resExpanded.data?.records || [];
+        const generalRecords = resGeneral.data?.records || [];
+
+        // Combine them into a Map using equipid as the key to avoid duplicates
+        const equipmentMap = new Map();
+
+        // 1. Fill with general data first
+        generalRecords.forEach(record => {
+            if (record.data) equipmentMap.set(record.data.equipid, record.data);
+        });
+
+        // 2. Overwrite/Add with expanded data (this adds the descriptions and stats)
+        expandedRecords.forEach(record => {
+            if (record.data) {
+                equipmentMap.set(record.data.equipid, record.data);
+            }
+        });
+
+        const finalItems = Array.from(equipmentMap.values());
+        container.innerHTML = '';
+
+        finalItems.forEach(item => {
+            const cleanStats = item.equiptips ? item.equiptips.replace(/<br\s*\/?>/gi, ' • ') : '';
+            const cleanDesc = item.equipskilldesc
+                ? item.equipskilldesc.replace(/<[^>]*>?/gm, '').trim()
+                : 'Basic Equipment';
+
+            const equipCol = document.createElement('div');
+            equipCol.className = 'col-md-6 mb-4';
+
+            equipCol.innerHTML = `
+                <div class="section-card h-100 d-flex flex-column" style="border: 1px solid rgba(0, 217, 255, 0.2);">
+                    <div class="d-flex align-items-start mb-2">
+                        <div style="width:50px; height:50px; flex-shrink:0; border-radius:8px; background: #1a1a1a; border: 1px solid var(--accent-cyan); overflow:hidden;">
+                            <img src="${item.equipicon}" alt="${item.equipname}" style="width:100%;" 
+                                 onerror="this.src='https://placehold.jp/100x100.png?text=?';">
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0" style="color: var(--accent-cyan); font-weight: bold;">${item.equipname}</h6>
+                            <span class="badge bg-dark text-info border border-info mt-1" style="font-size: 0.6rem;">
+                                ${item.equiptypename || 'Consumable/Item'}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    ${cleanStats ? <div class="item-stats my-2" style="font-size: 0.75rem; color: #ffeb3b; font-weight: 500;">${cleanStats}</div> : ''}
+
+                    <p class="skill-desc mb-0" style="font-size: 0.75rem; line-height: 1.4; color: #e0faff; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">
+                        ${cleanDesc}
+                    </p>
+                </div>
+            `;
+            container.appendChild(equipCol);
+        });
+
+    } catch (error) {
+        console.error("Equip Sync Error:", error);
+        container.innerHTML = <div class="error-msg p-5 text-center w-100">Armory sync failed.</div>;
+    }
+}
+
+async function loadMLBBEmblems() {
+    const container = document.getElementById('emblemContainer');
+    if (!container) return;
+
+    container.innerHTML = '<div class="loading-state w-100 text-center p-5">Syncing Talent Matrix...</div>';
+
+    try {
+        const proxy = 'https://corsproxy.io/?';
+        const emblemUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/emblems')};
+
+        const response = await fetch(emblemUrl);
+        const json = await response.json();
+        const records = json.data?.records || [];
+
+        records.sort((a, b) => (a.data.gifttiers || 0) - (b.data.gifttiers || 0));
+
+        container.innerHTML = '';
+
+        records.forEach(record => {
+            const skill = record.data.emblemskill;
+            if (!skill) return;
+
+            const cleanDescription = (text) => {
+                return text
+                    .replace(/\[[a-fA-F0-9]{6}\]/g, '')
+                    .replace(/\[-\]/g, '')
+                    .replace(/<[^>]*>?/gm, '')
+                    .trim();
+            };
+
+            const tier = record.data.gifttiers || 1;
+            const cardColor = tier === 3 ? 'rgba(255, 215, 0, 0.15)' : 'rgba(0, 217, 255, 0.05)';
+            const borderColor = tier === 3 ? '#ffd700' : 'var(--accent-cyan)';
+
+            const emblemCol = document.createElement('div');
+            emblemCol.className = 'col-md-4 mb-4';
+
+            emblemCol.innerHTML = `
+                <div class="section-card h-100 d-flex flex-column" 
+                     style="background: ${cardColor}; border: 1px solid ${borderColor};">
+                    
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="emblem-icon-wrapper" style="width:45px; height:45px; flex-shrink:0; border-radius:50%; background: #000; border: 2px solid ${borderColor}; padding: 5px;">
+                            <img src="${skill.skillicon}" alt="${skill.skillname}" style="width:100%; height:100%; object-fit: contain;">
+                        </div>
+                        <div class="ms-3">
+                            <h6 class="mb-0" style="color: ${borderColor}; font-weight: bold; font-size: 0.9rem;">${skill.skillname}</h6>
+                            <span class="badge" style="background: rgba(0,0,0,0.5); font-size: 0.6rem; color: #ccc;">TIER ${tier}</span>
+                        </div>
+                    </div>
+
+                    <p class="mb-0" style="font-size: 0.75rem; line-height: 1.5; color: #e0faff;">
+                        ${cleanDescription(skill.skilldescemblem || skill.skilldesc)}
+                    </p>
+                </div>
+            `;
+            container.appendChild(emblemCol);
+        });
+
+    } catch (error) {
+        console.error("Emblem Sync Error:", error);
+        container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load talents.</div>;
+    }
+}
+
+async function loadMLBBRanks() {
+    const container = document.getElementById('rankContainer');
+    if (!container) return;
+
+    try {
+        const proxy = 'https://corsproxy.io/?';
+        const rankUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/ranks')};
+
+        const response = await fetch(rankUrl);
+        const json = await response.json();
+        const records = json.data?.records || [];
+
+        // Translation mapping for Rank Names
+        const rankTranslations = {
+            '勇士': 'Warrior',
+            '精英': 'Elite',
+            '大师': 'Master',
+            '宗师': 'Grandmaster',
+            '史诗': 'Epic',
+            '传奇': 'Legend',
+            '神话': 'Mythic',
+            '荣誉神话': 'Mythical Glory',
+            '不朽神话': 'Mythical Immortal'
+        };
+
+        container.innerHTML = '';
+
+        records.forEach(record => {
+            const d = record.data;
+            const engName = rankTranslations[d.bigrank_name] || d.bigrank_name;
+
+            const rankCol = document.createElement('div');
+            rankCol.className = 'col-6 col-md-4 col-lg-3 mb-4';
+
+            rankCol.innerHTML = `
+                <div class="section-card h-100 text-center d-flex flex-column align-items-center justify-content-center p-3" 
+                     style="border: 1px solid rgba(0, 217, 255, 0.2); background: rgba(11, 26, 51, 0.6);">
+                    
+                    <div class="rank-icon-wrapper mb-3" style="width: 80px; height: 80px;">
+                        <img src="${d.icon}" alt="${engName}" style="width: 100%; filter: drop-shadow(0 0 5px rgba(0,217,255,0.3));">
+                    </div>
+                    
+                    <h6 class="mb-1" style="color: var(--accent-cyan); font-weight: bold;">${engName} ${d.minrank_name}</h6>
+                    <small class="text-secondary" style="font-size: 0.7rem;">ID: ${d.rankid_start} - ${d.rankid_end}</small>
+                </div>
+            `;
+            container.appendChild(rankCol);
+        });
+
+    } catch (error) {
+        console.error("Rank Sync Error:", error);
+        container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load rank tiers.</div>;
     }
 }
 
@@ -285,20 +608,21 @@ function updateBanner(name, role, imgSrc) {
 }
 
 function toggleTheme() {
-    const body = document.body;
+    const htmlElement = document.documentElement;
     const themeBtn = document.getElementById('themeToggle');
-    
-    // Toggle the dark-mode class
-    body.classList.toggle('dark-mode');
-    
-    // Update the button appearance
-    if (body.classList.contains('dark-mode')) {
+    const currentTheme = htmlElement.getAttribute('data-bs-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    htmlElement.setAttribute('data-bs-theme', newTheme);
+
+    if (newTheme === 'dark') {
         themeBtn.innerHTML = "☀️ Light Mode";
-        themeBtn.classList.replace('btn-primary', 'btn-outline-info');
+        themeBtn.className = "btn theme-btn-light";
     } else {
         themeBtn.innerHTML = "🌙 Dark Mode";
-        themeBtn.classList.replace('btn-outline-info', 'btn-primary');
+        themeBtn.className = "btn theme-btn-dark";
     }
+
+    localStorage.setItem('theme', newTheme);
 }
 
 window.onload = () => {

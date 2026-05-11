@@ -12,13 +12,18 @@
 <body>
 
     <div class="dashboard-container">
-        <div class="nav-tabs-custom">
-            <div class="nav-tab-item active" id="tab-home" onclick="switchTab('home')">HOME</div>
-            <div class="nav-tab-item" id="tab-story" onclick="switchTab('story')">STORY</div>
-            <div class="nav-tab-item" id="tab-heroes" onclick="switchTab('heroes')">HEROES</div>
-            <div class="nav-tab-item" id="tab-skills" onclick="switchTab('skills')">SKILLS</div>
-            <button type="button" class="btn btn-primary" id="themeToggle" onclick="toggleTheme()"
-                style="margin-left: auto; border-radius: 20px;">
+        <div class="dashboard-header d-flex align-items-center justify-content-between py-3 px-2">
+            <div class="nav-tabs-custom d-flex gap-2" style="overflow-x: auto; scrollbar-width: none;">
+                <div class="nav-tab-item active" id="tab-home" onclick="switchTab('home')">HOME</div>
+                <div class="nav-tab-item" id="tab-story" onclick="switchTab('story')">STORY</div>
+                <div class="nav-tab-item" id="tab-heroes" onclick="switchTab('heroes')">HEROES</div>
+                <div class="nav-tab-item" id="tab-spells" onclick="switchTab('spells')">SPELLS</div>
+                <div class="nav-tab-item" id="tab-equipments" onclick="switchTab('equipments')">EQUIPMENTS</div>
+                <div class="nav-tab-item" id="tab-emblems" onclick="switchTab('emblems')">EMBLEMS</div>
+                <div class="nav-tab-item" id="tab-ranks" onclick="switchTab('ranks')">RANKS</div>
+            </div>
+
+            <button type="button" class="btn btn-primary theme-btn" id="themeToggle" onclick="toggleTheme()">
                 🌙 Dark Mode
             </button>
         </div>
@@ -156,89 +161,135 @@
         </div>
 
         <div id="heroes-view" style="display: none;">
-            <div class="section-card" style="height: auto; min-height: 900px;">
+            <div class="section-card h-auto">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="section-title mb-0">Hero Catalog</h6>
-                    <span class="badge bg-info text-dark" id="heroCount">Loading...</span>
+                    <h6 class="section-title" style="font-weight: 750; font-size: x-large; margin-bottom: 0;">Hero
+                        Roster</h6>
+                    <span id="heroCount" class="badge" style="background: var(--accent-cyan); color: #000;">Ready to
+                        Sync</span>
                 </div>
+                <div id="apiHeroGrid" class="row g-3 p-2">
+                    <div class="text-center p-5">
+                        <div class="spinner-border text-info" role="status"></div>
+                        <p class="mt-2">Connecting to Hero Database...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <div class="artwork-display" id="apiHeroGrid"
-                    style="grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 12px; height: 600px; overflow-y: auto; padding-right: 5px;">
-                    <p class="text-white-50">Fetching the roster...</p>
+        <div id="spells-view" style="display: none;">
+            <div class="section-card h-auto">
+                <h6 class="section-title" style="font-weight: 750; font-size: x-large;">Battle Spells</h6>
+                <div id="spellsContainer" class="row g-3 p-2">
+                    <div class="text-center p-5">
+                        <div class="spinner-border text-info" role="status"></div>
+                        <p class="mt-2">Fetching spells from Academy...</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div id="skills-view" style="display: none;">
-            <h2 class="text-white p-4">Hero Skills (Coming Soon)</h2>
-        </div>
-    </div>
-
-    <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title" id="modalHeroName">Hero Profile</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="wiki-table">
-                        <tr>
-                            <th colspan="2" class="wiki-header">information</th>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Full Name</td>
-                            <td id="info-fullname">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Species</td>
-                            <td id="info-species">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Alias</td>
-                            <td id="info-alias">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Internal Name</td>
-                            <td id="info-internal">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Birthday</td>
-                            <td id="info-birthday">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Origin</td>
-                            <td id="info-origin">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Age</td>
-                            <td id="info-age">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Gender</td>
-                            <td id="info-gender">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Lane</td>
-                            <td id="info-occupation">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Affiliation</td>
-                            <td id="info-affiliation">-</td>
-                        </tr>
-                        <tr>
-                            <td class="wiki-label">Abilities</td>
-                            <td id="info-abilities">-</td>
-                        </tr>
-                    </table>
+        <div id="equipments-view" style="display: none;">
+            <div class="section-card h-auto">
+                <h6 class="section-title" style="font-weight: 750; font-size: x-large;">Equipment Armory</h6>
+                <div id="equipContainer" class="row g-3 p-2">
+                    <div class="text-center p-5">
+                        <div class="spinner-border text-info" role="status"></div>
+                        <p class="mt-2">Loading Armory...</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
+        <div id="emblems-view" style="display: none;">
+            <div class="section-card h-auto">
+                <h6 class="section-title" style="font-weight: 750; font-size: x-large;">Emblems</h6>
+                <div id="emblemContainer" class="row g-3 p-2">
+                    <div class="text-center p-5">
+                        <div class="spinner-border text-info" role="status"></div>
+                        <p class="mt-2">Loading Emblems...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="ranks-view" style="display: none;">
+            <div class="section-card h-auto">
+                <h6 class="section-title" style="font-weight: 750; font-size: x-large;">Rank Tiers</h6>
+                <div id="rankContainer" class="row g-3 p-2">
+                    <div class="text-center p-5">
+                        <div class="spinner-border text-info" role="status"></div>
+                        <p class="mt-2">Loading Rank Data...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title" id="modalHeroName">Hero Profile</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="wiki-table">
+                            <tr>
+                                <th colspan="2" class="wiki-header">information</th>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Full Name</td>
+                                <td id="info-fullname">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Species</td>
+                                <td id="info-species">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Alias</td>
+                                <td id="info-alias">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Internal Name</td>
+                                <td id="info-internal">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Birthday</td>
+                                <td id="info-birthday">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Origin</td>
+                                <td id="info-origin">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Age</td>
+                                <td id="info-age">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Gender</td>
+                                <td id="info-gender">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Lane</td>
+                                <td id="info-occupation">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Affiliation</td>
+                                <td id="info-affiliation">-</td>
+                            </tr>
+                            <tr>
+                                <td class="wiki-label">Abilities</td>
+                                <td id="info-abilities">-</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
 
 </body>
 
