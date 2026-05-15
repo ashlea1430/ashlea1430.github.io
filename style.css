@@ -49,8 +49,8 @@ body {
     background: var(--card-bg);
     border: 1px solid rgba(198, 163, 79, 0.3);
     border-radius: 12px;
-    padding: 40px 50px;
-    text-align: cente
+    padding: 30px 20px;
+    text-align: center;
 }
 
 .profile-name {
