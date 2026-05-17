@@ -507,8 +507,13 @@ body {
 
 [data-bs-theme="dark"] #bannerName {
     color: #00d9ff;
+<<<<<<< HEAD
     text-shadow: 0 0 15px rgba(0, 217, 255, 0.😎, 0 0 30px rgba(0, 217, 255, 0.4);
     }
+=======
+    text-shadow: 0 0 15px rgba(0, 217, 255, 0.8), 0 0 30px rgba(0, 217, 255, 0.4);
+}
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 
     [data-bs-theme="dark"] #bannerQuote {
         color: #b3f0ff;
@@ -565,7 +570,14 @@ body {
         background: #000;
     }
 
+<<<<<<< HEAD
     [data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
         background: #00d9ff;
         border-radius: 10px;
     }
+=======
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: #00d9ff;
+    border-radius: 10px;
+}
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841

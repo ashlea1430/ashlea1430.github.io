@@ -1,4 +1,3 @@
-script.js
 
 const API_BASE = 'https://openmlbb.fastapicloud.dev/api';
 
@@ -216,8 +215,12 @@ async function loadHeroRoster() {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
         const proxy = 'https://corsproxy.io/?';
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
+<<<<<<< HEAD
         const urls = endpoints.map(ep => ${ proxy }${ encodeURIComponent(baseUrl + ep)
     });
+=======
+        const urls = endpoints.map(ep => `${proxy}${encodeURIComponent(baseUrl + ep)}`);
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 
     const responses = await Promise.all(urls.map(url => fetch(url)));
     const results = await Promise.all(responses.map(res => res.json()));
@@ -275,12 +278,21 @@ async function loadHeroRoster() {
         grid.appendChild(heroCol);
     });
 
+<<<<<<< HEAD
     if (countBadge) countBadge.innerText = ${ uniqueHeroes.length } HEROES LOADED;
 
 } catch (error) {
     console.error("Roster Sync Error:", error);
     grid.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to sync hero database.</div>;
 }
+=======
+        if (countBadge) countBadge.innerText = `${uniqueHeroes.length} HEROES LOADED`;
+
+    } catch (error) {
+        console.error("Roster Sync Error:", error);
+        grid.innerHTML = `<div class="error-msg p-5 text-center w-100">Failed to sync hero database.</div>`;
+    }
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 }
 
 async function loadMLBBSpells() {
@@ -292,13 +304,22 @@ async function loadMLBBSpells() {
     try {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api/academy/spells';
         const proxy = 'https://corsproxy.io/?';
+<<<<<<< HEAD
         const url = ${ proxy }${ encodeURIComponent(baseUrl)
     };
+=======
+        const url = `${proxy}${encodeURIComponent(baseUrl)}`;
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 
     console.log("Fetching spells from:", url); // Debugging line
 
+<<<<<<< HEAD
     const response = await fetch(url);
     if (!response.ok) throw new Error(HTTP Error: ${ response.status });
+=======
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 
     const json = await response.json();
     console.log("API Response received:", json); // Debugging line
@@ -369,6 +390,7 @@ async function loadMLBBEquipment() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
+<<<<<<< HEAD
         const expandedUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment/expanded')
     };
     const generalUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment')
@@ -377,6 +399,14 @@ const [resExpanded, resGeneral] = await Promise.all([
     fetch(expandedUrl).then(r => r.json()),
     fetch(generalUrl).then(r => r.json())
 ]);
+=======
+        const expandedUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment/expanded')}`;
+        const generalUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment')}`;
+        const [resExpanded, resGeneral] = await Promise.all([
+            fetch(expandedUrl).then(r => r.json()),
+            fetch(generalUrl).then(r => r.json())
+        ]);
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 
 const expandedRecords = resExpanded.data?.records || [];
 const generalRecords = resGeneral.data?.records || [];
@@ -423,7 +453,7 @@ finalItems.forEach(item => {
                         </div>
                     </div>
                     
-                    ${cleanStats ? <div class="item-stats my-2" style="font-size: 0.75rem; color: #ffeb3b; font-weight: 500;">${cleanStats}</div> : ''}
+                    ${cleanStats ? `<div class="item-stats my-2" style="font-size: 0.75rem; color: #ffeb3b; font-weight: 500;">${cleanStats}</div>` : ''}
 
                     <p class="skill-desc mb-0" style="font-size: 0.75rem; line-height: 1.4; color: #e0faff; flex-grow: 1; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;">
                         ${cleanDesc}
@@ -434,9 +464,15 @@ finalItems.forEach(item => {
 });
 
     } catch (error) {
+<<<<<<< HEAD
     console.error("Equip Sync Error:", error);
     container.innerHTML = <div class="error-msg p-5 text-center w-100">Armory sync failed.</div>;
 }
+=======
+        console.error("Equip Sync Error:", error);
+        container.innerHTML = `<div class="error-msg p-5 text-center w-100">Armory sync failed.</div>`;
+    }
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 }
 
 async function loadMLBBEmblems() {
@@ -447,8 +483,12 @@ async function loadMLBBEmblems() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
+<<<<<<< HEAD
         const emblemUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/emblems')
     };
+=======
+        const emblemUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/emblems')}`;
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 
     const response = await fetch(emblemUrl);
     const json = await response.json();
@@ -499,10 +539,17 @@ async function loadMLBBEmblems() {
         container.appendChild(emblemCol);
     });
 
+<<<<<<< HEAD
 } catch (error) {
     console.error("Emblem Sync Error:", error);
     container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load talents.</div>;
 }
+=======
+    } catch (error) {
+        console.error("Emblem Sync Error:", error);
+        container.innerHTML = `<div class="error-msg p-5 text-center w-100">Failed to load talents.</div>`;
+    }
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 }
 
 async function loadMLBBRanks() {
@@ -511,8 +558,12 @@ async function loadMLBBRanks() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
+<<<<<<< HEAD
         const rankUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/ranks')
     };
+=======
+        const rankUrl = `${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/ranks')}`;
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 
     const response = await fetch(rankUrl);
     const json = await response.json();
@@ -555,10 +606,17 @@ async function loadMLBBRanks() {
         container.appendChild(rankCol);
     });
 
+<<<<<<< HEAD
 } catch (error) {
     console.error("Rank Sync Error:", error);
     container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load rank tiers.</div>;
 }
+=======
+    } catch (error) {
+        console.error("Rank Sync Error:", error);
+        container.innerHTML = `<div class="error-msg p-5 text-center w-100">Failed to load rank tiers.</div>`;
+    }
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 }
 
 function updateBanner(name, role, imgSrc) {

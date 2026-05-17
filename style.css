@@ -65,12 +65,13 @@ body {
     background: linear-gradient(to right, #2b4b8d, #1a2c4d);
     border: 1px solid var(--ml-blue);
     color: var(--ml-blue);
-    display: inline-block;
+    display: block;
+    width: fit-content;
     padding: 2px 15px;
     border-radius: 4px;
     font-weight: bold;
-    margin-top: 10px;
-}
+    margin: 10px auto 0;
+}   
 
 .content-card {
     background: var(--card-bg);
@@ -83,6 +84,7 @@ body {
     background: #2c4169;
     border: none;
     color: #a0aec0;
+<<<<<<< HEAD
     padding: 6px 12px;
     font-size: 0.75rem;
     font-weight: bold;
@@ -90,6 +92,21 @@ body {
     clip-path: polygon(6% 0%, 94% 0%, 100% 100%, 0% 100%);
     cursor: pointer;
     transition: all 0.2s ease;
+=======
+    padding: 10px 5px;
+    font-weight: bold;
+    flex: 1 1 auto;
+    min-width: 80px;
+    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 5px;
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
 }
 
 .tab-btn.active {
@@ -148,7 +165,83 @@ body {
     background: var(--ml-blue);
 }
 
+#email-text {
+    font-size: 0.9rem !important;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+/* Base Styles for SocMed Icons */
+#facebook {
+    background: #0b41e6;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#linkedin {
+    background: #0A66C2;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#github {
+    background: #d3d6d8;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.socials-container a:hover {
+    transform: translateY(-5px) scale(1.1);
+    filter: brightness(1.1);
+}
+
+#facebook:hover {
+    filter: drop-shadow(0 0 8px rgba(24, 119, 242, 0.6));
+}
+
+#linkedin:hover {
+    filter: drop-shadow(0 0 8px rgba(10, 102, 194, 0.6));
+}
+
+#instagram:hover {
+    filter: drop-shadow(0 0 8px rgba(214, 36, 159, 0.6));
+}
+
+#github:hover {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
 @keyframes fadeIn {
+<<<<<<< HEAD
     from { opacity: 0; }
     to { opacity: 1; }
 }
+=======
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 400px) {
+    .tab-btn {
+        font-size: 0.7rem;
+        min-width: 80px;
+    }
+}
+>>>>>>> 30bfc2dcbdcd7621fff4456209d175b3f308c841
