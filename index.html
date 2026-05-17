@@ -8,29 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="style.css?v=1.1" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">    
+    <link rel="stylesheet" href="./style.css">
     <style>
-        .quest-box {
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 3px solid var(--ml-blue);
-            border-radius: 4px;
-            padding: 1.5rem;
-            margin-top: 1.2rem;
-        }
-        .quest-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            color: var(--text-main);
-        }
+
     </style>
 </head>
 
-<body class="d-flex align-items-center min-vh-100">
-
-    <div class="container my-5">
-        <div class="row g-4 justify-content-center align-items-stretch">
-            
+<body class="d-flex min-vh-100">
+    <div class="container-fluid my-5">
+        <div class="row g-3 justify-content-center align-items-start">
             <div class="col-12 col-md-4 col-lg-3">
                 <div class="profile-card shadow-sm h-100">
                     <div class="profile-frame">
@@ -44,13 +30,17 @@
                         <p class="mb-2 fw-bold text-start">Contact Me:</p>
 
                         <div class="d-flex gap-3 mb-2 justify-content-start socials-container">
-                            <a href="https://www.facebook.com/ashlley.nichole.mangabat" target="_blank" id="facebook" class="fs-3"><i class="bi bi-facebook"></i></a>
-                            <a href="https://www.linkedin.com/in/mangabat-ashlley-nichole-a-837535406/" target="_blank" id="linkedin" class="fs-3"><i class="bi bi-linkedin"></i></a>
-                            <a href="https://www.instagram.com/keiraevangeline404/" target="_blank" id="instagram" class="fs-3"><i class="bi bi-instagram"></i></a>
-                            <a href="https://github.com/ashlea1430" target="_blank" id="github" class="fs-3"><i class="bi bi-github"></i></a>
+                            <a href="https://www.facebook.com/ashlley.nichole.mangabat" target="_blank" id="facebook"
+                                class="fs-3"><i class="bi bi-facebook"></i></a>
+                            <a href="https://www.linkedin.com/in/mangabat-ashlley-nichole-a-837535406/" target="_blank"
+                                id="linkedin" class="fs-3"><i class="bi bi-linkedin"></i></a>
+                            <a href="https://www.instagram.com/keiraevangeline404/" target="_blank" id="instagram"
+                                class="fs-3"><i class="bi bi-instagram"></i></a>
+                            <a href="https://github.com/ashlea1430" target="_blank" id="github" class="fs-3"><i
+                                    class="bi bi-github"></i></a>
                         </div>
 
-                        <div id="email" class="d-flex align-items-center gap-3 mb-2">
+                        <div id="email" class="d-flex align-items-center gap-2 mb-2">
                             <i class="bi bi-envelope"></i>
                             <span id="email-text" style="font-size: 1rem;">arminandjean@gmail.com</span>
                         </div>
@@ -60,29 +50,41 @@
 
             <div class="col-12 col-md-8 col-lg-7">
                 <div class="content-card shadow-sm h-100 d-flex flex-column">
-                    
+
                     <div class="tabs d-flex flex-wrap gap-1 mb-4">
                         <button class="tab-btn active" data-tab="about">ABOUT</button>
                         <button class="tab-btn" data-tab="education">EDUCATION</button>
-                        <button class="tab-btn" data-tab="portfolio">PORTFOLIO</button>
                         <button class="tab-btn" data-tab="seminars">SEMINARS</button>
                         <button class="tab-btn" data-tab="organizations">ORGANIZATIONS</button>
-                        <button class="tab-btn" data-tab="skills">SKILLS</button>
+                        <button class="tab-btn" data-tab="portfolio">PORTFOLIO</button>
                     </div>
 
                     <div class="panel active" id="about">
                         <div class="panel-inner">
                             <h1 style="color:var(--ml-gold); font-size:1.5rem;" class="mb-3">About Me</h1>
-                            
+
                             <p style="text-align: justify; line-height: 1.6; margin-bottom: 1.2rem;">
-                                I am Ashlley. You can call me Ash. I enjoy watching anime, playing games, drawing, and learning new things. I am always open for more knowledge. I am an Introvert, I don't really socialize with people, but when I am with my boyfriend I see myself unconsciously talking to other people too, it amazes me sometimes.
-                            </p>
-                            <p style="text-align: justify; line-height: 1.6; margin-bottom: 0;">
-                                My goal is to surpass my boyfriend's coding skills, it gives me a challenge and it's what drives me to always keep doing my best.
+                                I am Ashlley. You can call me Ash. I enjoy watching anime, playing games, drawing, and
+                                learning new things. I am always open for more knowledge. I am an Introvert, I don't
+                                really socialize with people, but when I am with my boyfriend I see myself unconsciously
+                                talking to other people too, it amazes me sometimes. My goal is to surpass my
+                                boyfriend's coding skills,
+                                it gives me a challenge and it's what drives me to always keep doing my best.
                             </p>
 
+                            <h1 style="color:var(--ml-gold); font-size:1.5rem;">Skills</h1>
+                            <ul style="line-height: 1.8;">
+                                <li>Drawing</li>
+                                <li>Communicates well in the English language</li>
+                                <li>Hard Working</li>
+                                <li>Knows how to design in Figma</li>
+                                <li>Somehow knowledgeable in programming</li>
+                                <li>Creative</li>
+                            </ul>
+
                             <div class="quest-box">
-                                <h2 style="color:var(--ml-blue); font-size:1.1rem; letter-spacing: 0.5px;" class="mb-3 fw-bold">
+                                <h2 style="color:var(--ml-blue); font-size:1.1rem; letter-spacing: 0.5px;"
+                                    class="mb-3 fw-bold">
                                     <i class="bi bi-journal-check me-2"></i>Goals:
                                 </h2>
                                 <div class="row g-3">
@@ -111,9 +113,11 @@
                     <div class="panel" id="education">
                         <div class="panel-inner">
                             <h1 style="color:var(--ml-gold); font-size:1.5rem;" class="mb-4">Education</h1>
-                            
+
                             <div class="mb-4 d-flex align-items-center gap-3">
-                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t39.30808-6/300374556_397270912513000_3615777588425021471_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHySVR0FuKU2r1ONrUGaIPQZrUG2lJseb1mtQbaUmx5vW7ML13UQY_i6GUzlk89P44Sik1JGuueDBAM1g4dqqiM&_nc_ohc=xMxo3y41BkgQ7kNvwGzXfPu&_nc_oc=AdrNbvvU09sDNI4_6WWw9B4AEI20HhacZ4jHyLJ_Hy6L7P46tXmORjZpMyaXeTDkCHk&_nc_zt=23&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=xpoSAUqd9jab6PkVYO8WGw&_nc_ss=7b2a8&oh=00_Af7NoJdAf3UR8YJz1yt4lOxjG3OYCPMQFkoUKbFkzDu-SA&oe=6A0F498A" alt="CVS Logo" class="school-logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
+                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t39.30808-6/300374556_397270912513000_3615777588425021471_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHySVR0FuKU2r1ONrUGaIPQZrUG2lJseb1mtQbaUmx5vW7ML13UQY_i6GUzlk89P44Sik1JGuueDBAM1g4dqqiM&_nc_ohc=xMxo3y41BkgQ7kNvwGzXfPu&_nc_oc=AdrNbvvU09sDNI4_6WWw9B4AEI20HhacZ4jHyLJ_Hy6L7P46tXmORjZpMyaXeTDkCHk&_nc_zt=23&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=xpoSAUqd9jab6PkVYO8WGw&_nc_ss=7b2a8&oh=00_Af7NoJdAf3UR8YJz1yt4lOxjG3OYCPMQFkoUKbFkzDu-SA&oe=6A0F498A"
+                                    alt="CVS Logo" class="school-logo"
+                                    style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
                                 <div>
                                     <p class="mb-0"><strong class="text-white">Claire Ville School Inc.</strong></p>
                                     <p class="text-white-50 small mb-0">Primary Education (kinder to Grade 4)</p>
@@ -121,7 +125,9 @@
                             </div>
 
                             <div class="mb-4 d-flex align-items-center gap-3">
-                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t1.6435-1/33184009_101780574044076_7009997079363715072_n.jpg?stp=c14.0.364.364a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGIw7z7SKBoj7P8tycuR8C9mlXcqdPTO7OaVdyp09M7s9SnW674xikQJ7Vy-RCymMkaDhL6pEZVWhEwmedspEtc&_nc_ohc=6bieHYFXTbMQ7kNvwGVp-g3&_nc_oc=AdqpBugpSApwdSR4jmCtUJww21d5zaG-9NlfBId2A3LcN5UN3Poer95Jr5v98keWHWw&_nc_zt=24&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=9sF_ZPLmnpC9bUWlBNYcjg&_nc_ss=7b2a8&oh=00_Af7vHjFduy0CDyCg-ixhJjFf_yKj5v6UbMqlgLeGeti8pw&oe=6A30E701" alt="AMS Logo" class="school-logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
+                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t1.6435-1/33184009_101780574044076_7009997079363715072_n.jpg?stp=c14.0.364.364a_dst-jpg_s200x200_tt6&_nc_cat=104&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeGIw7z7SKBoj7P8tycuR8C9mlXcqdPTO7OaVdyp09M7s9SnW674xikQJ7Vy-RCymMkaDhL6pEZVWhEwmedspEtc&_nc_ohc=6bieHYFXTbMQ7kNvwGVp-g3&_nc_oc=AdqpBugpSApwdSR4jmCtUJww21d5zaG-9NlfBId2A3LcN5UN3Poer95Jr5v98keWHWw&_nc_zt=24&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=9sF_ZPLmnpC9bUWlBNYcjg&_nc_ss=7b2a8&oh=00_Af7vHjFduy0CDyCg-ixhJjFf_yKj5v6UbMqlgLeGeti8pw&oe=6A30E701"
+                                    alt="AMS Logo" class="school-logo"
+                                    style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
                                 <div>
                                     <p class="mb-0"><strong class="text-white">AMS LEARNING School</strong></p>
                                     <p class="text-white-50 small mb-0">Primary Education (Grade 5 to 6)</p>
@@ -129,7 +135,9 @@
                             </div>
 
                             <div class="mb-4 d-flex align-items-center gap-3">
-                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t39.30808-1/308777048_605923447986104_3025040726723976581_n.png?stp=dst-png_s200x200&_nc_cat=105&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeHadgzQaG3Vpdsznf6SG7sq31a7N5exxdTfVrs3l7HF1KyfqQrg8EWI4yfM84y0WKgR9RhLHYj0uKL9D4TLHOKf&_nc_ohc=e30ntK4XWXYQ7kNvwGeIFn0&_nc_oc=AdqOvwCqz-Mh0WHIzB_jQVizxfPLqAs3ZfGmDjCisZgDmjp1dGNmigb5kMDsj4lwg_s&_nc_zt=24&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=4x6M4NHomtArMR52CVX3gQ&_nc_ss=7b2a8&oh=00_Af5WtxwaWv6rE7QhyZXkr0GBnULdOFav5B4UkUTS4tFjzw&oe=6A0F26A7" alt="STA Logo" class="school-logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
+                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t39.30808-1/308777048_605923447986104_3025040726723976581_n.png?stp=dst-png_s200x200&_nc_cat=105&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeHadgzQaG3Vpdsznf6SG7sq31a7N5exxdTfVrs3l7HF1KyfqQrg8EWI4yfM84y0WKgR9RhLHYj0uKL9D4TLHOKf&_nc_ohc=e30ntK4XWXYQ7kNvwGeIFn0&_nc_oc=AdqOvwCqz-Mh0WHIzB_jQVizxfPLqAs3ZfGmDjCisZgDmjp1dGNmigb5kMDsj4lwg_s&_nc_zt=24&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=4x6M4NHomtArMR52CVX3gQ&_nc_ss=7b2a8&oh=00_Af5WtxwaWv6rE7QhyZXkr0GBnULdOFav5B4UkUTS4tFjzw&oe=6A0F26A7"
+                                    alt="STA Logo" class="school-logo"
+                                    style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
                                 <div>
                                     <p class="mb-0"><strong class="text-white">St. Thomas Academy</strong></p>
                                     <p class="text-white-50 small mb-0">Secondary Education</p>
@@ -137,39 +145,14 @@
                             </div>
 
                             <div class="mb-2 d-flex align-items-center gap-3">
-                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t39.30808-1/307702636_503778748424519_2894645270885238438_n.png?stp=dst-png_s200x200&_nc_cat=109&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeGZRlD46sKDLAKb5BVd0pfqqkdJM2xgPJmqR0kzbGA8mVCvSzoa88q3q5wVg1tV2Ukb8SVpbq-Ot3feD377OyNC&_nc_ohc=7Y54nsym3v4Q7kNvwHRc0aG&_nc_oc=AdpcnJJVDufIBm5zHj2xTZHlTOZKWyx3Y7zego7Y6Wk8v5kTY56yVTKEuGBlncTi7WU&_nc_zt=24&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=lubTluxM1n955hhUiI7gNA&_nc_ss=7b2a8&oh=00_Af6C3MPUzhhA88-6x1KQEjIAJBClC-NFXXhB0BYJbVIGYw&oe=6A0F2FD2" alt="PUP Logo" class="school-logo" style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
+                                <img src="https://scontent.fmnl24-1.fna.fbcdn.net/v/t39.30808-1/307702636_503778748424519_2894645270885238438_n.png?stp=dst-png_s200x200&_nc_cat=109&ccb=1-7&_nc_sid=2d3e12&_nc_eui2=AeGZRlD46sKDLAKb5BVd0pfqqkdJM2xgPJmqR0kzbGA8mVCvSzoa88q3q5wVg1tV2Ukb8SVpbq-Ot3feD377OyNC&_nc_ohc=7Y54nsym3v4Q7kNvwHRc0aG&_nc_oc=AdpcnJJVDufIBm5zHj2xTZHlTOZKWyx3Y7zego7Y6Wk8v5kTY56yVTKEuGBlncTi7WU&_nc_zt=24&_nc_ht=scontent.fmnl24-1.fna&_nc_gid=lubTluxM1n955hhUiI7gNA&_nc_ss=7b2a8&oh=00_Af6C3MPUzhhA88-6x1KQEjIAJBClC-NFXXhB0BYJbVIGYw&oe=6A0F2FD2"
+                                    alt="PUP Logo" class="school-logo"
+                                    style="width: 50px; height: 50px; object-fit: contain; border-radius: 4px;">
                                 <div>
-                                    <p class="mb-0"><strong class="text-white">Polytechnic University of the Philippines (Sto. Tomas Campus)</strong></p>
+                                    <p class="mb-0"><strong class="text-white">Polytechnic University of the Philippines
+                                            (Sto. Tomas Campus)</strong></p>
                                     <p class="text-white-50 small mb-0">Tertiary Education</p>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="panel" id="portfolio">
-                        <div class="panel-inner">
-                            <h1 style="color:var(--ml-gold); font-size:1.5rem;" class="mb-3">Activities</h1>
-
-                            <div class="p-3 mb-3 border-start border-4" style="background: rgba(255,255,255,0.03); border-color: var(--ml-blue) !important; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <strong style="color: var(--ml-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">
-                                        A02 - Hardware Electronic Device Showcase
-                                    </strong>
-                                </div>
-                                <a href="https://ashlea1430.github.io/A02/index.html" target="_blank" rel="noopener noreferrer" style="background: var(--ml-blue); color: white; padding: 6px 20px; border-radius: 4px; font-size: 0.7rem; text-decoration: none; transition: 0.3s; box-shadow: 0 0 15px rgba(77, 166, 255, 0.2); font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">
-                                    DEPLOY ➔
-                                </a>
-                            </div>
-
-                            <div class="p-3 mb-3 border-start border-4" style="background: rgba(255,255,255,0.03); border-color: var(--ml-blue) !important; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
-                                <div>
-                                    <strong style="color: var(--ml-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">
-                                        Midterm - MLBB API
-                                    </strong>
-                                </div>
-                                <a href="https://ashlea1430.github.io/midterm/index.html" target="_blank" rel="noopener noreferrer" style="background: var(--ml-blue); color: white; padding: 6px 20px; border-radius: 4px; font-size: 0.7rem; text-decoration: none; transition: 0.3s; box-shadow: 0 0 15px rgba(77, 166, 255, 0.2); font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">
-                                    DEPLOY ➔
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -177,36 +160,44 @@
                     <div class="panel" id="seminars">
                         <div class="panel-inner d-flex flex-column">
                             <h1 style="color:var(--ml-gold); font-size:1.5rem;" class="mb-3">Seminars Attended:</h1>
-                            
+
                             <div class="scrollable-panel-body">
-                                <ul style="color: var(--text-main); padding-left: 20px; line-height: 1.6; list-style-type: disc; margin-bottom: 0;">
+                                <ul
+                                    style="color: var(--text-main); padding-left: 20px; line-height: 1.6; list-style-type: disc; margin-bottom: 0;">
                                     <li style="margin-bottom: 20px;">
                                         <strong style="color: var(--ml-blue); font-size: 1.05rem;">Career Talk</strong>
-                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas Academy</div>
+                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas
+                                            Academy</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">January 17, 2024</div>
                                     </li>
                                     <li style="margin-bottom: 20px;">
                                         <strong style="color: var(--ml-blue); font-size: 1.05rem;">College Fair</strong>
-                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas Academy</div>
+                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas
+                                            Academy</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">January 18-19, 2024</div>
                                     </li>
                                     <li style="margin-bottom: 20px;">
-                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">PESO "Aksyon Bilis na may ngiting Tomasino" Program</strong>
-                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas Academy</div>
+                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">PESO "Aksyon Bilis na
+                                            may ngiting Tomasino" Program</strong>
+                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas
+                                            Academy</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">January 22, 2024</div>
                                     </li>
                                     <li style="margin-bottom: 20px;">
-                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">Mula sa Puso, Dugong Alay ko</strong>
+                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">Mula sa Puso, Dugong
+                                            Alay ko</strong>
                                         <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">PUP</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">March 16, 2025</div>
                                     </li>
                                     <li style="margin-bottom: 20px;">
-                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">HALIGI NG PUSO AT TAPANG: What makes a Leader-LEADER</strong>
+                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">HALIGI NG PUSO AT
+                                            TAPANG: What makes a Leader-LEADER</strong>
                                         <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">PUP</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">May 18, 2025</div>
                                     </li>
                                     <li style="margin-bottom: 20px;">
-                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">"Wonders of UI/UX Design: Where Creativity Meets Functionality"</strong>
+                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">"Wonders of UI/UX
+                                            Design: Where Creativity Meets Functionality"</strong>
                                         <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">PUP</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">April 18, 2026</div>
                                     </li>
@@ -219,19 +210,25 @@
                         <div class="panel-inner d-flex flex-column">
                             <h1 style="color:var(--ml-gold); font-size:1.5rem;" class="mb-3">Organizations</h1>
                             <div class="scrollable-panel-body">
-                                <ul style="color: var(--text-main); padding-left: 20px; line-height: 1.6; list-style-type: disc; margin-bottom: 0;">
+                                <ul
+                                    style="color: var(--text-main); padding-left: 20px; line-height: 1.6; list-style-type: disc; margin-bottom: 0;">
                                     <li style="margin-bottom: 20px;">
-                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">Young Communicators Club</strong>
-                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas Academy</div>
+                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">Young Communicators
+                                            Club</strong>
+                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas
+                                            Academy</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">Auditor: 2020-2022</div>
                                     </li>
                                     <li style="margin-bottom: 20px;">
-                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">The Socials HUMMS</strong>
-                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas Academy</div>
+                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">The Socials
+                                            HUMMS</strong>
+                                        <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">St. Thomas
+                                            Academy</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">Member: 2023-2024</div>
                                     </li>
                                     <li style="margin-bottom: 20px;">
-                                        <strong style="color: var(--ml-blue); font-size: 1.05rem;">TEKNOLOHISTAS</strong>
+                                        <strong
+                                            style="color: var(--ml-blue); font-size: 1.05rem;">TEKNOLOHISTAS</strong>
                                         <div style="color: #a0aec0; font-size: 0.85rem; margin-top: 2px;">PUP</div>
                                         <div style="color: #7a8fae; font-size: 0.8rem;">Member: 2025-2026</div>
                                     </li>
@@ -240,24 +237,43 @@
                         </div>
                     </div>
 
-                    <div class="panel" id="skills">
+                    <div class="panel" id="portfolio">
                         <div class="panel-inner">
-                            <h1 style="color:var(--ml-gold); font-size:1.5rem;" class="mb-3">Skills</h1>
-                            <ul style="line-height: 1.8;">
-                                <li>Drawing</li>
-                                <li>Communicates well in the English language</li>
-                                <li>Hard working</li>
-                                <li>Knows how to design in Figma</li>
-                                <li>Somehow knowledgeable in programming</li>
-                                <li>High Emotional Intelligence</li>
-                                <li>Creative</li>
-                            </ul>                       
+                            <h1 style="color:var(--ml-gold); font-size:1.5rem;" class="mb-3">Activities</h1>
+
+                            <div class="p-3 mb-3 border-start border-4"
+                                style="background: rgba(255,255,255,0.03); border-color: var(--ml-blue) !important; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong
+                                        style="color: var(--ml-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">
+                                        A02 - Hardware Electronic Device Showcase
+                                    </strong>
+                                </div>
+                                <a href="https://ashlea1430.github.io/A02/index.html" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="background: var(--ml-blue); color: white; padding: 6px 20px; border-radius: 4px; font-size: 0.7rem; text-decoration: none; transition: 0.3s; box-shadow: 0 0 15px rgba(77, 166, 255, 0.2); font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">
+                                    DEPLOY ➔
+                                </a>
+                            </div>
+
+                            <div class="p-3 mb-3 border-start border-4"
+                                style="background: rgba(255,255,255,0.03); border-color: var(--ml-blue) !important; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong
+                                        style="color: var(--ml-blue); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem;">
+                                        Midterm - MLBB API
+                                    </strong>
+                                </div>
+                                <a href="https://ashlea1430.github.io/midterm/index.html" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="background: var(--ml-blue); color: white; padding: 6px 20px; border-radius: 4px; font-size: 0.7rem; text-decoration: none; transition: 0.3s; box-shadow: 0 0 15px rgba(77, 166, 255, 0.2); font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">
+                                    DEPLOY ➔
+                                </a>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
 
