@@ -216,44 +216,45 @@ async function loadHeroRoster() {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api';
         const proxy = 'https://corsproxy.io/?';
         const endpoints = ['/heroes', '/heroes/rank', '/academy/heroes', '/academy/heroes/catalog'];
-        const urls = endpoints.map(ep => ${proxy}${encodeURIComponent(baseUrl + ep)});
+        const urls = endpoints.map(ep => ${ proxy }${ encodeURIComponent(baseUrl + ep)
+    });
 
-        const responses = await Promise.all(urls.map(url => fetch(url)));
-        const results = await Promise.all(responses.map(res => res.json()));
-        const allRecords = results.flatMap(res => res.data?.records || []);
+    const responses = await Promise.all(urls.map(url => fetch(url)));
+    const results = await Promise.all(responses.map(res => res.json()));
+    const allRecords = results.flatMap(res => res.data?.records || []);
 
-        const uniqueHeroes = [];
-        const seenNames = new Set();
+    const uniqueHeroes = [];
+    const seenNames = new Set();
 
-        allRecords.forEach(item => {
-            const info = item.data || {};
-            const name = info.hero?.data?.name || info.name;
+    allRecords.forEach(item => {
+        const info = item.data || {};
+        const name = info.hero?.data?.name || info.name;
 
-            if (name && !seenNames.has(name)) {
-                seenNames.add(name);
-                let lane = info.lane || "General";
-                const roadsort = info.hero?.data?.roadsort;
-                if (Array.isArray(roadsort) && roadsort.length > 0) {
-                    lane = roadsort[0].data.road_sort_title;
-                }
-
-                uniqueHeroes.push({
-                    name: name,
-                    img: info.head || info.hero?.data?.head,
-                    lane: lane
-                });
+        if (name && !seenNames.has(name)) {
+            seenNames.add(name);
+            let lane = info.lane || "General";
+            const roadsort = info.hero?.data?.roadsort;
+            if (Array.isArray(roadsort) && roadsort.length > 0) {
+                lane = roadsort[0].data.road_sort_title;
             }
-        });
 
-        // Alphabetical sort for better UX
-        uniqueHeroes.sort((a, b) => a.name.localeCompare(b.name));
+            uniqueHeroes.push({
+                name: name,
+                img: info.head || info.hero?.data?.head,
+                lane: lane
+            });
+        }
+    });
 
-        grid.innerHTML = '';
-        uniqueHeroes.forEach(hero => {
-            const heroCol = document.createElement('div');
-            heroCol.className = 'col-6 col-md-4 col-lg-2 mb-3';
+    // Alphabetical sort for better UX
+    uniqueHeroes.sort((a, b) => a.name.localeCompare(b.name));
 
-            heroCol.innerHTML = `
+    grid.innerHTML = '';
+    uniqueHeroes.forEach(hero => {
+        const heroCol = document.createElement('div');
+        heroCol.className = 'col-6 col-md-4 col-lg-2 mb-3';
+
+        heroCol.innerHTML = `
                 <div class="section-card h-100 text-center p-2 d-flex flex-column align-items-center" 
                      style="border: 1px solid rgba(0, 217, 255, 0.15); background: rgba(11, 26, 51, 0.4);">
                     
@@ -271,15 +272,15 @@ async function loadHeroRoster() {
                     </span>
                 </div>
             `;
-            grid.appendChild(heroCol);
-        });
+        grid.appendChild(heroCol);
+    });
 
-        if (countBadge) countBadge.innerText = ${uniqueHeroes.length} HEROES LOADED;
+    if (countBadge) countBadge.innerText = ${ uniqueHeroes.length } HEROES LOADED;
 
-    } catch (error) {
-        console.error("Roster Sync Error:", error);
-        grid.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to sync hero database.</div>;
-    }
+} catch (error) {
+    console.error("Roster Sync Error:", error);
+    grid.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to sync hero database.</div>;
+}
 }
 
 async function loadMLBBSpells() {
@@ -291,41 +292,42 @@ async function loadMLBBSpells() {
     try {
         const baseUrl = 'https://openmlbb.fastapicloud.dev/api/academy/spells';
         const proxy = 'https://corsproxy.io/?';
-        const url = ${proxy}${encodeURIComponent(baseUrl)};
+        const url = ${ proxy }${ encodeURIComponent(baseUrl)
+    };
 
-        console.log("Fetching spells from:", url); // Debugging line
+    console.log("Fetching spells from:", url); // Debugging line
 
-        const response = await fetch(url);
-        if (!response.ok) throw new Error(HTTP Error: ${response.status});
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(HTTP Error: ${ response.status });
 
-        const json = await response.json();
-        console.log("API Response received:", json); // Debugging line
+    const json = await response.json();
+    console.log("API Response received:", json); // Debugging line
 
-        // Ensure we are getting the array correctly
-        const records = json.data?.records || json.records || [];
+    // Ensure we are getting the array correctly
+    const records = json.data?.records || json.records || [];
 
-        if (records.length === 0) {
-            container.innerHTML = '<div class="text-warning text-center p-5">No spells found in the database.</div>';
-            return;
-        }
+    if (records.length === 0) {
+        container.innerHTML = '<div class="text-warning text-center p-5">No spells found in the database.</div>';
+        return;
+    }
 
-        container.innerHTML = '';
+    container.innerHTML = '';
 
-        records.forEach(record => {
-            // The API sometimes nests this differently, let's be safe:
-            const details = record.data?.__data || record.data || {};
+    records.forEach(record => {
+        // The API sometimes nests this differently, let's be safe:
+        const details = record.data?.__data || record.data || {};
 
-            const skillName = details.skillname || "Unknown Spell";
-            const skillIcon = details.skillicon || "";
-            const skillDesc = details.skilldesc || "";
-            const shortDesc = record.data?.skillshortdesc || "Battle Spell";
+        const skillName = details.skillname || "Unknown Spell";
+        const skillIcon = details.skillicon || "";
+        const skillDesc = details.skilldesc || "";
+        const shortDesc = record.data?.skillshortdesc || "Battle Spell";
 
-            const cleanDesc = skillDesc.replace(/<[^>]*>?/gm, '');
+        const cleanDesc = skillDesc.replace(/<[^>]*>?/gm, '');
 
-            const spellCol = document.createElement('div');
-            spellCol.className = 'col-md-4 mb-4';
+        const spellCol = document.createElement('div');
+        spellCol.className = 'col-md-4 mb-4';
 
-            spellCol.innerHTML = `
+        spellCol.innerHTML = `
                 <div class="section-card h-100 d-flex flex-column" style="border: 1px solid rgba(0, 217, 255, 0.2);">
                     <div class="d-flex align-items-center mb-3">
                         <div style="position:relative; width:50px; height:50px; overflow:hidden; border-radius:8px; background: #1a1a1a; border: 1px solid var(--accent-cyan);">
@@ -346,17 +348,17 @@ async function loadMLBBSpells() {
                     </p>
                 </div>
             `;
-            container.appendChild(spellCol);
-        });
+        container.appendChild(spellCol);
+    });
 
-    } catch (error) {
-        console.error("Spell Sync Error:", error);
-        container.innerHTML = `
+} catch (error) {
+    console.error("Spell Sync Error:", error);
+    container.innerHTML = `
             <div class="error-msg p-5 text-center w-100">
                 <p>The spell system could not synchronize.</p>
                 <small style="color: rgba(255,0,0,0.5)">${error.message}</small>
             </div>`;
-    }
+}
 }
 
 async function loadMLBBEquipment() {
@@ -367,44 +369,46 @@ async function loadMLBBEquipment() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
-        const expandedUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment/expanded')};
-        const generalUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment')};
-        const [resExpanded, resGeneral] = await Promise.all([
-            fetch(expandedUrl).then(r => r.json()),
-            fetch(generalUrl).then(r => r.json())
-        ]);
+        const expandedUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment/expanded')
+    };
+    const generalUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/equipment')
+};
+const [resExpanded, resGeneral] = await Promise.all([
+    fetch(expandedUrl).then(r => r.json()),
+    fetch(generalUrl).then(r => r.json())
+]);
 
-        const expandedRecords = resExpanded.data?.records || [];
-        const generalRecords = resGeneral.data?.records || [];
+const expandedRecords = resExpanded.data?.records || [];
+const generalRecords = resGeneral.data?.records || [];
 
-        // Combine them into a Map using equipid as the key to avoid duplicates
-        const equipmentMap = new Map();
+// Combine them into a Map using equipid as the key to avoid duplicates
+const equipmentMap = new Map();
 
-        // 1. Fill with general data first
-        generalRecords.forEach(record => {
-            if (record.data) equipmentMap.set(record.data.equipid, record.data);
-        });
+// 1. Fill with general data first
+generalRecords.forEach(record => {
+    if (record.data) equipmentMap.set(record.data.equipid, record.data);
+});
 
-        // 2. Overwrite/Add with expanded data (this adds the descriptions and stats)
-        expandedRecords.forEach(record => {
-            if (record.data) {
-                equipmentMap.set(record.data.equipid, record.data);
-            }
-        });
+// 2. Overwrite/Add with expanded data (this adds the descriptions and stats)
+expandedRecords.forEach(record => {
+    if (record.data) {
+        equipmentMap.set(record.data.equipid, record.data);
+    }
+});
 
-        const finalItems = Array.from(equipmentMap.values());
-        container.innerHTML = '';
+const finalItems = Array.from(equipmentMap.values());
+container.innerHTML = '';
 
-        finalItems.forEach(item => {
-            const cleanStats = item.equiptips ? item.equiptips.replace(/<br\s*\/?>/gi, ' • ') : '';
-            const cleanDesc = item.equipskilldesc
-                ? item.equipskilldesc.replace(/<[^>]*>?/gm, '').trim()
-                : 'Basic Equipment';
+finalItems.forEach(item => {
+    const cleanStats = item.equiptips ? item.equiptips.replace(/<br\s*\/?>/gi, ' • ') : '';
+    const cleanDesc = item.equipskilldesc
+        ? item.equipskilldesc.replace(/<[^>]*>?/gm, '').trim()
+        : 'Basic Equipment';
 
-            const equipCol = document.createElement('div');
-            equipCol.className = 'col-md-6 mb-4';
+    const equipCol = document.createElement('div');
+    equipCol.className = 'col-md-6 mb-4';
 
-            equipCol.innerHTML = `
+    equipCol.innerHTML = `
                 <div class="section-card h-100 d-flex flex-column" style="border: 1px solid rgba(0, 217, 255, 0.2);">
                     <div class="d-flex align-items-start mb-2">
                         <div style="width:50px; height:50px; flex-shrink:0; border-radius:8px; background: #1a1a1a; border: 1px solid var(--accent-cyan); overflow:hidden;">
@@ -426,13 +430,13 @@ async function loadMLBBEquipment() {
                     </p>
                 </div>
             `;
-            container.appendChild(equipCol);
-        });
+    container.appendChild(equipCol);
+});
 
     } catch (error) {
-        console.error("Equip Sync Error:", error);
-        container.innerHTML = <div class="error-msg p-5 text-center w-100">Armory sync failed.</div>;
-    }
+    console.error("Equip Sync Error:", error);
+    container.innerHTML = <div class="error-msg p-5 text-center w-100">Armory sync failed.</div>;
+}
 }
 
 async function loadMLBBEmblems() {
@@ -443,36 +447,37 @@ async function loadMLBBEmblems() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
-        const emblemUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/emblems')};
+        const emblemUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/emblems')
+    };
 
-        const response = await fetch(emblemUrl);
-        const json = await response.json();
-        const records = json.data?.records || [];
+    const response = await fetch(emblemUrl);
+    const json = await response.json();
+    const records = json.data?.records || [];
 
-        records.sort((a, b) => (a.data.gifttiers || 0) - (b.data.gifttiers || 0));
+    records.sort((a, b) => (a.data.gifttiers || 0) - (b.data.gifttiers || 0));
 
-        container.innerHTML = '';
+    container.innerHTML = '';
 
-        records.forEach(record => {
-            const skill = record.data.emblemskill;
-            if (!skill) return;
+    records.forEach(record => {
+        const skill = record.data.emblemskill;
+        if (!skill) return;
 
-            const cleanDescription = (text) => {
-                return text
-                    .replace(/\[[a-fA-F0-9]{6}\]/g, '')
-                    .replace(/\[-\]/g, '')
-                    .replace(/<[^>]*>?/gm, '')
-                    .trim();
-            };
+        const cleanDescription = (text) => {
+            return text
+                .replace(/\[[a-fA-F0-9]{6}\]/g, '')
+                .replace(/\[-\]/g, '')
+                .replace(/<[^>]*>?/gm, '')
+                .trim();
+        };
 
-            const tier = record.data.gifttiers || 1;
-            const cardColor = tier === 3 ? 'rgba(255, 215, 0, 0.15)' : 'rgba(0, 217, 255, 0.05)';
-            const borderColor = tier === 3 ? '#ffd700' : 'var(--accent-cyan)';
+        const tier = record.data.gifttiers || 1;
+        const cardColor = tier === 3 ? 'rgba(255, 215, 0, 0.15)' : 'rgba(0, 217, 255, 0.05)';
+        const borderColor = tier === 3 ? '#ffd700' : 'var(--accent-cyan)';
 
-            const emblemCol = document.createElement('div');
-            emblemCol.className = 'col-md-4 mb-4';
+        const emblemCol = document.createElement('div');
+        emblemCol.className = 'col-md-4 mb-4';
 
-            emblemCol.innerHTML = `
+        emblemCol.innerHTML = `
                 <div class="section-card h-100 d-flex flex-column" 
                      style="background: ${cardColor}; border: 1px solid ${borderColor};">
                     
@@ -491,13 +496,13 @@ async function loadMLBBEmblems() {
                     </p>
                 </div>
             `;
-            container.appendChild(emblemCol);
-        });
+        container.appendChild(emblemCol);
+    });
 
-    } catch (error) {
-        console.error("Emblem Sync Error:", error);
-        container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load talents.</div>;
-    }
+} catch (error) {
+    console.error("Emblem Sync Error:", error);
+    container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load talents.</div>;
+}
 }
 
 async function loadMLBBRanks() {
@@ -506,35 +511,36 @@ async function loadMLBBRanks() {
 
     try {
         const proxy = 'https://corsproxy.io/?';
-        const rankUrl = ${proxy}${encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/ranks')};
+        const rankUrl = ${ proxy }${ encodeURIComponent('https://openmlbb.fastapicloud.dev/api/academy/ranks')
+    };
 
-        const response = await fetch(rankUrl);
-        const json = await response.json();
-        const records = json.data?.records || [];
+    const response = await fetch(rankUrl);
+    const json = await response.json();
+    const records = json.data?.records || [];
 
-        // Translation mapping for Rank Names
-        const rankTranslations = {
-            '勇士': 'Warrior',
-            '精英': 'Elite',
-            '大师': 'Master',
-            '宗师': 'Grandmaster',
-            '史诗': 'Epic',
-            '传奇': 'Legend',
-            '神话': 'Mythic',
-            '荣誉神话': 'Mythical Glory',
-            '不朽神话': 'Mythical Immortal'
-        };
+    // Translation mapping for Rank Names
+    const rankTranslations = {
+        '勇士': 'Warrior',
+        '精英': 'Elite',
+        '大师': 'Master',
+        '宗师': 'Grandmaster',
+        '史诗': 'Epic',
+        '传奇': 'Legend',
+        '神话': 'Mythic',
+        '荣誉神话': 'Mythical Glory',
+        '不朽神话': 'Mythical Immortal'
+    };
 
-        container.innerHTML = '';
+    container.innerHTML = '';
 
-        records.forEach(record => {
-            const d = record.data;
-            const engName = rankTranslations[d.bigrank_name] || d.bigrank_name;
+    records.forEach(record => {
+        const d = record.data;
+        const engName = rankTranslations[d.bigrank_name] || d.bigrank_name;
 
-            const rankCol = document.createElement('div');
-            rankCol.className = 'col-6 col-md-4 col-lg-3 mb-4';
+        const rankCol = document.createElement('div');
+        rankCol.className = 'col-6 col-md-4 col-lg-3 mb-4';
 
-            rankCol.innerHTML = `
+        rankCol.innerHTML = `
                 <div class="section-card h-100 text-center d-flex flex-column align-items-center justify-content-center p-3" 
                      style="border: 1px solid rgba(0, 217, 255, 0.2); background: rgba(11, 26, 51, 0.6);">
                     
@@ -546,13 +552,13 @@ async function loadMLBBRanks() {
                     <small class="text-secondary" style="font-size: 0.7rem;">ID: ${d.rankid_start} - ${d.rankid_end}</small>
                 </div>
             `;
-            container.appendChild(rankCol);
-        });
+        container.appendChild(rankCol);
+    });
 
-    } catch (error) {
-        console.error("Rank Sync Error:", error);
-        container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load rank tiers.</div>;
-    }
+} catch (error) {
+    console.error("Rank Sync Error:", error);
+    container.innerHTML = <div class="error-msg p-5 text-center w-100">Failed to load rank tiers.</div>;
+}
 }
 
 function updateBanner(name, role, imgSrc) {

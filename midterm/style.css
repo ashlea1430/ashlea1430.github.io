@@ -508,64 +508,64 @@ body {
 [data-bs-theme="dark"] #bannerName {
     color: #00d9ff;
     text-shadow: 0 0 15px rgba(0, 217, 255, 0.😎, 0 0 30px rgba(0, 217, 255, 0.4);
-}
+    }
 
-[data-bs-theme="dark"] #bannerQuote {
-    color: #b3f0ff;
-}
+    [data-bs-theme="dark"] #bannerQuote {
+        color: #b3f0ff;
+    }
 
-[data-bs-theme="dark"] hr {
-    border-top: 2px solid #00d9ff !important;
-    opacity: 1;
-    box-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
-}
+    [data-bs-theme="dark"] hr {
+        border-top: 2px solid #00d9ff !important;
+        opacity: 1;
+        box-shadow: 0 0 8px rgba(0, 217, 255, 0.5);
+    }
 
-[data-bs-theme="dark"] .nav-tab-item.active {
-    background-color: #00d9ff;
-    color: #000000;
-    border-color: #00d9ff;
-    box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
-    font-weight: 900;
-}
+    [data-bs-theme="dark"] .nav-tab-item.active {
+        background-color: #00d9ff;
+        color: #000000;
+        border-color: #00d9ff;
+        box-shadow: 0 0 15px rgba(0, 217, 255, 0.6);
+        font-weight: 900;
+    }
 
-[data-bs-theme="dark"] .nav-tab-item:not(.active):hover {
-    background: rgba(0, 217, 255, 0.1);
-    color: #00d9ff;
-}
+    [data-bs-theme="dark"] .nav-tab-item:not(.active):hover {
+        background: rgba(0, 217, 255, 0.1);
+        color: #00d9ff;
+    }
 
-/* Tables & Lists */
-[data-bs-theme="dark"] .wiki-table {
-    border-color: #00d9ff;
-}
+    /* Tables & Lists */
+    [data-bs-theme="dark"] .wiki-table {
+        border-color: #00d9ff;
+    }
 
-[data-bs-theme="dark"] .wiki-label {
-    background: rgba(0, 217, 255, 0.1);
-    color: #00d9ff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+    [data-bs-theme="dark"] .wiki-label {
+        background: rgba(0, 217, 255, 0.1);
+        color: #00d9ff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
 
-[data-bs-theme="dark"] .skill-entry {
-    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
-}
+    [data-bs-theme="dark"] .skill-entry {
+        border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+    }
 
-[data-bs-theme="dark"] .skill-desc {
-    color: #e0faff;
-}
+    [data-bs-theme="dark"] .skill-desc {
+        color: #e0faff;
+    }
 
-/* Hero Catalog Grid */
-[data-bs-theme="dark"] .hero-name-overlay {
-    background: rgba(0, 0, 0, 0.85);
-    color: #00d9ff;
-    border-top: 1px solid #00d9ff;
-}
+    /* Hero Catalog Grid */
+    [data-bs-theme="dark"] .hero-name-overlay {
+        background: rgba(0, 0, 0, 0.85);
+        color: #00d9ff;
+        border-top: 1px solid #00d9ff;
+    }
 
-/* Scrollbar for Dark Mode */
-[data-bs-theme="dark"] ::-webkit-scrollbar-track {
-    background: #000;
-}
+    /* Scrollbar for Dark Mode */
+    [data-bs-theme="dark"] ::-webkit-scrollbar-track {
+        background: #000;
+    }
 
-[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
-    background: #00d9ff;
-    border-radius: 10px;
-}
+    [data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+        background: #00d9ff;
+        border-radius: 10px;
+    }

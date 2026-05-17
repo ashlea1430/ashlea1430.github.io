@@ -50,7 +50,7 @@ body {
     border: 1px solid rgba(198, 163, 79, 0.3);
     border-radius: 12px;
     padding: 30px 20px;
-    text-align: cente
+    text-align: center;
 }
 
 .profile-name {
@@ -76,17 +76,20 @@ body {
     background: var(--card-bg);
     border-radius: 12px;
     padding: 20px;
+    max-height: 520px; 
 }
 
 .tab-btn {
     background: #2c4169;
     border: none;
     color: #a0aec0;
-    padding: 10px 20px;
+    padding: 6px 12px;
+    font-size: 0.75rem;
     font-weight: bold;
     flex-grow: 1;
-    clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(6% 0%, 94% 0%, 100% 100%, 0% 100%);
     cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .tab-btn.active {
@@ -97,19 +100,55 @@ body {
 
 .panel {
     display: none;
+    flex-grow: 1;
+    overflow: hidden; 
 }
 
 .panel.active {
-    display: block;
-    animation: fadeIn 0.4s eas
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.4s ease;
+}
+
+.panel-inner {
+    background: #13223f;
+    padding: 25px;
+    padding-right: 15px; 
+    border-radius: 8px;
+    height: 100%;
+    overflow-y: auto;   
+}
+
+.scrollable-panel-body {
+    overflow-y: auto;
+    padding-right: 10px;
+    flex-grow: 1;
+}
+
+.scrollable-panel-body::-webkit-scrollbar,
+.panel-inner::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-panel-body::-webkit-scrollbar-track,
+.panel-inner::-webkit-scrollbar-track {
+    background: #0b1526;
+    border-radius: 10px;
+}
+
+.scrollable-panel-body::-webkit-scrollbar-thumb,
+.panel-inner::-webkit-scrollbar-thumb {
+    background: #2c4169;
+    border-radius: 10px;
+    border: 1px solid var(--ml-blue);
+}
+
+.scrollable-panel-body::-webkit-scrollbar-thumb:hover,
+.panel-inner::-webkit-scrollbar-thumb:hover {
+    background: var(--ml-blue);
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
